@@ -80,7 +80,7 @@ h1 {
   width: 0;
 }
 .logo {
-  background-image: url(/media/wcwr-logo.svg);
+  background-image: url(media/wcwr-logo.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -185,7 +185,7 @@ h1 {
 }
 .image-second {
   width: 100%;
-  background-image: url("/media/options/accommodation/001.jpg");
+  background-image: url("media/options/accommodation/001.jpg");
 }
 
 /* ------- main: carousel SLIDE -------- */
@@ -253,33 +253,33 @@ h1 {
   background-size: contain;
 }
 .accommodation-icon {
-  background-image: url(/media/icons/accommodation.png);
+  background-image: url(media/icons/accommodation.png);
   /* background-size: 40rem 15rem; */
   background-position-y: 0.5rem;
 }
 .fishing-icon {
-  background-image: url(/media/icons/fishing.png);
+  background-image: url(media/icons/fishing.png);
 }
 .kitchen-icon {
-  background-image: url(/media/icons/kitchen.png);
+  background-image: url(media/icons/kitchen.png);
 }
 .surfing-icon {
-  background-image: url(/media/icons/surfing.png);
+  background-image: url(media/icons/surfing.png);
 }
 .whale-icon {
-  background-image: url(/media/icons/whale.png);
+  background-image: url(media/icons/whale.png);
 }
 .animals-icon {
-  background-image: url(/media/icons/animals.png);
+  background-image: url(media/icons/animals.png);
 }
 .rainforest-icon {
-  background-image: url(/media/icons/rainforest.png);
+  background-image: url(media/icons/rainforest.png);
 }
 .lonely-doug-icon {
-  background-image: url(/media/icons/lonely_doug.png);
+  background-image: url(media/icons/lonely_doug.png);
 }
 .ocean-icon {
-  background-image: url(/media/icons/ocean.png);
+  background-image: url(media/icons/ocean.png);
 }
 
 /* ------- FOOTER -------- */
