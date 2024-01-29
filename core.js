@@ -54,11 +54,11 @@ function onSlide(e) {
     const item = option.current_item;
 
     if (option.isSlided) {
-      $image_second.style.backgroundImage = `url("/media/options/${option.category}/00${item}.jpg")`;
+      $image_second.style.backgroundImage = `url("media/options/${option.category}/00${item}.jpg")`;
       $image_second.style.width = "100%";
       $image_first.style.width = "0%";
     } else {
-      $image_first.style.backgroundImage = `url("/media/options/${option.category}/00${item}.jpg")`;
+      $image_first.style.backgroundImage = `url("media/options/${option.category}/00${item}.jpg")`;
       $image_first.style.width = "100%";
       $image_second.style.width = "0%";
     }
