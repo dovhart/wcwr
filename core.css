@@ -666,6 +666,7 @@ input.gsc-input {
   /* ------- carousel -------- */
   .carousel-option {
     width: 100%;
+    max-width: 100%;
   }
   .carousel-option:hover {
     cursor: default;
