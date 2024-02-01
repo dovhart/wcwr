@@ -431,6 +431,9 @@ input.gsc-input {
   overflow: hidden;
   position: relative;
 }
+.carousel-option {
+  max-width: 8rem;
+}
 .carousel-option:hover {
   cursor: pointer;
   font-weight: bolder;
@@ -438,6 +441,7 @@ input.gsc-input {
 .option-icon {
   min-width: 8rem;
   min-height: 8rem;
+  border: 1px solid transparent;
   display: inline-block;
   background-repeat: no-repeat;
   background-size: contain;
