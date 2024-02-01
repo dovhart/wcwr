@@ -252,9 +252,7 @@ function bookNow(e) {
       setImageBackground();
     });
   });
-  $bookNow.forEach(($button, key) => {
-    $button.addEventListener("click", bookNow);
-  });
+
 
   // image slider
   // setInterval(() => {
