@@ -3,53 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="cache-control" content="max-age=0" />
 
     <link href="core.css" type="text/css" media="all" rel="stylesheet" />
 
     <title>Wild Coast Wilderness Resort</title>
   </head>
   <body>
+    <div class="mobile-menu">
+      <div class="mm-container">
+        <div class="mm-close-button-container">
+          <div class="mm-close-button-border">
+            <div class="mm-close-button">X</div>
+          </div>
+        </div>
+        <div class="mm-content">
+          <nav class="mm-menu">
+            <a class="menu-item" href="#weather">Weather</a>
+            <a class="menu-item" href="#livecam">Live Cam</a>
+            <a class="menu-item" href="#events">Events</a>
+            <a class="menu-item" href="#explore">Explore</a>
+            <a class="menu-item" href="#map">Map</a>
+            <a class="menu-item" href="#about-us">About Us</a>
+          </nav>
+          <div class="gcse-search"></div>
+        </div>
+      </div>
+    </div>
     <header class="header-container">
       <div class="header-content">
-        <div class="logo"><a href="/"></a></div>
-        <nav class="main-menu">
-          <a href="#explore" class="menu-item">Explore</a>
-          <a href="#about-us" class="menu-item">About Us</a>
-          <a href="#map" class="menu-item">Map</a>
-          <a href="#book" class="menu-item">Book Now</a>
+        <div class="empty"></div>
+        <div class="logo-container">
+          <div class="logo"><a href="/"></a></div>
+        </div>
+        <div class="search-and-menu">
+          <div class="header-top">
+            <div class="search-container">
+              <script
+                async
+                src="https://cse.google.com/cse.js?cx=96de87059931e4935"
+              ></script>
+              <div class="gcse-search"></div>
+              <!-- <div class="gcse-searchbox"></div> -->
+            </div>
+            <!-- magnifying glass
+        <svg width="13" height="13" viewBox="0 0 13 13"><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg> -->
+          </div>
+          <div class="header-bottom">
+            <nav class="main-menu">
+              <a class="menu-item" href="#weather">Weather</a>
+              <a class="menu-item" href="#livecam">Live Cam</a>
+              <a class="menu-item" href="#events">Events</a>
+              <a class="menu-item" href="#explore">Explore</a>
+              <a class="menu-item" href="#map">Map</a>
+              <a class="menu-item" href="#about-us">About Us</a>
+            </nav>
+          </div>
+        </div>
+        <a class="menu-item book-now-button book-now" href="#book">Book Now</a>
+        <nav class="mobile-menu-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+            class="navbar-toggle-icon"
+          >
+            <rect y="9" width="20" height="2"></rect>
+            <rect y="3" width="20" height="2"></rect>
+            <rect y="15" width="20" height="2"></rect>
+          </svg>
         </nav>
-        <nav class="mobile-menu">Menu</nav>
       </div>
     </header>
     <main class="page-container">
       <div class="main-content">
-        <div class="intro">
-          <div class="intro__title">
-            <h1>Escape to the Wild Beauty of<br />Port Renfrew</h1>
-          </div>
-          <div class="intro__description">
-            Immerse yourself in breathtaking scenery and exclusive experiences
-            at Port Renfrew Wilderness Resort. Discover the perfect blend of
-            luxury and adventure, surrounded by wild rainforests and the
-            stunning ocean beach.
-          </div>
-          <div class="intro__buttons">
-            <a href="#explore" class="button button-dark">Explore</a>
-            <a href="#book" class="button button-light">Book Now</a>
-          </div>
-        </div>
         <div class="carousel">
           <div class="carousel__screen">
             <div class="option-image-container">
+              <!-- <div class="option-image"></div> -->
               <div class="option-image image-first"></div>
               <div class="option-image image-second"></div>
+              <div class="image-tagline-container">
+                <div class="image-tagline">Silence By the Sea</div>
+                <div class="image-buttons">
+                  <a href="#explore" class="button button-left button-dark"
+                    >Explore</a
+                  >
+                  <a
+                    href="#book"
+                    class="button button-right button-light book-now"
+                    >Book Now</a
+                  >
+                </div>
+              </div>
             </div>
           </div>
           <div class="carousel__options-list">
-            <div class="slide slide-left">
-              <div class="slide-button-wrapper">
-                <div class="slide-button">&lt;</div>
+            <div class="slider-shadow"></div>
+            <div class="slider slider-left">
+              <div class="slider-button-wrapper">
+                <div class="slider-button">&lt;</div>
               </div>
             </div>
             <div class="carousel-option">
@@ -62,7 +116,7 @@
             </div>
             <div class="carousel-option">
               <div class="option-icon kitchen-icon"></div>
-              <div class="option-title">Kitchen</div>
+              <div class="option-title">Food + Drinks</div>
             </div>
             <div class="carousel-option">
               <div class="option-icon surfing-icon"></div>
@@ -74,33 +128,51 @@
             </div>
             <div class="carousel-option">
               <div class="option-icon animals-icon"></div>
-              <div class="option-title">Wild animals</div>
+              <div class="option-title">Wildlife</div>
             </div>
             <div class="carousel-option">
               <div class="option-icon rainforest-icon"></div>
-              <div class="option-title">Rainforest</div>
+              <div class="option-title">Forest + Trails</div>
             </div>
-            <div class="carousel-option">
+            <!-- <div class="carousel-option">
               <div class="option-icon lonely-doug-icon"></div>
               <div class="option-title">Big Lonely Doug</div>
-            </div>
+            </div> -->
             <div class="carousel-option">
               <div class="option-icon ocean-icon"></div>
-              <div class="option-title">Ocean beach</div>
+              <div class="option-title">Beaches</div>
+            </div>
+            <div class="carousel-option">
+              <div class="option-icon bike-icon"></div>
+              <div class="option-title">Bike Park</div>
             </div>
             <!-- <div class="carousel-option">
               <div class="option-icon waterfall-icon"></div>
               <div class="option-title">Waterfall</div>
             </div> -->
-            <div class="slide slide-right">
-              <div class="slide-button-wrapper">
-                <div class="slide-button">&gt;</div>
+            <div class="slider slider-right">
+              <div class="slider-button-wrapper">
+                <div class="slider-button">&gt;</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </main>
+    <div class="intro">
+      <div class="intro__title">
+        <h1>Escape to the Wild Beauty of<br />Port Renfrew</h1>
+      </div>
+      <div class="intro__description">
+        Immerse yourself in breathtaking scenery and exclusive experiences at
+        Port Renfrew Wilderness Resort. Discover the perfect blend of luxury and
+        adventure, surrounded by wild rainforests and the stunning ocean beach.
+      </div>
+      <!-- <div class="gcse-searchresults"></div> -->
+    </div>
+    <div class="book-container">
+      <iframe class="book-window" src="https://secure.webrez.com/hotel/3433?location_id=1799"></iframe>
+    </div>
     <footer class="footer-container">
       <div class="footer-content">
         <div class="footer-up">
@@ -149,7 +221,9 @@
           </div>
           <div class="footer-bottom-right">
             <a class="footer__link" href="#privacy-policy">Privacy Policy</a>
-            <a class="footer__link" href="#terms-of-service">Terms of Service</a>
+            <a class="footer__link" href="#terms-of-service"
+              >Terms of Service</a
+            >
             <a class="footer__link" href="#cookie-policy">Cookie Policy</a>
           </div>
         </div>
