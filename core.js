@@ -208,7 +208,8 @@ function nextImage() {
     $slider_shadow.style.left = slider_shadow_pos + "px";
     $iconList[slider_index].scrollIntoView({
       behavior: "smooth",
-      inline: "center",
+      block: "nearest",
+      inline: "nearest",
     });
   } else {
     // next item
