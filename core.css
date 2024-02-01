@@ -47,9 +47,13 @@ h1 {
 .header-container {
   height: var(--header-height);
   background-color: var(--header-bg-color);
+  border-bottom: 1px solid var(--header-border-color);
 }
 .page-container {
   height: calc(100svh - var(--header-height));
+}
+.page-container-secondary {
+  height: calc(30svh - var(--header-height));
 }
 .footer-container {
   min-height: var(--footer-height);
@@ -84,11 +88,13 @@ h1 {
 }
 .header-top {
   height: calc(var(--header-height) / 2);
+  /* overflow: hidden; */
 }
 .header-bottom {
   height: calc(var(--header-height) / 2);
   width: 100%;
   border-top: 1px solid var(--header-border-color);
+  /* overflow: hidden; */
 }
 .menu-item {
   display: inline-block;
@@ -125,7 +131,7 @@ h1 {
   padding-inline: 1rem;
 }
 .logo {
-  background-image: url(media/wcwr-logo.svg);
+  background-image: url(/media/wcwr-logo.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -147,11 +153,13 @@ h1 {
 /* ------- SEARCH -------- */
 .search-container {
   min-width: 18rem;
-  margin-left: -1px;
+  transform: translateX(-1px);
 }
 .gsc-control-cse {
   background-color: var(--header-bg-color) !important;
-  border: 0 !important;
+  /* border: 0 !important;
+  border-left: 1px solid var(--header-border-color) !important; */
+  border: 1px solid var(--header-border-color) !important;
   padding: 0 !important;
 }
 table.gsc-search-box td.gsc-input {
@@ -163,9 +171,9 @@ table.gsc-search-box td.gsc-input {
 .gsc-search-button-v2 {
   background-color: var(--main-color) !important;
   border: 0 !important;
-  padding: 14px 1rem !important;
+  padding: 13px 1rem !important;
   border-radius: 0 !important;
-  transform: translateY(-1px);
+  /* transform: translateY(-1px); */
   cursor: pointer;
 }
 .gsc-search-button-v2:hover svg {
@@ -176,7 +184,7 @@ table.gsc-search-box {
   margin: 0 !important;
 }
 input.gsc-input {
-  height: 1.9rem !important;
+  height: 1.75rem !important;
 }
 .gsc-input-box {
   padding: 0 !important;
@@ -253,7 +261,7 @@ input.gsc-input {
   background-color: navajowhite !important;
 }
 .mobile-menu .gsc-search-button-v2 {
-  padding-block: 12px !important;
+  padding-block: 13px !important;
   transform: none !important;
 }
 
@@ -350,7 +358,7 @@ input.gsc-input {
   left: 0;
   width: 100%;
   height: 83px;
-  background-image: url(media/wave.png);
+  background-image: url(/media/wave.png);
   background-repeat: repeat-x;
   background-position: left;
   z-index: 10;
@@ -365,7 +373,7 @@ input.gsc-input {
   position: absolute;
 }
 .image-first {
-  background-image: url("media/options/accommodation/001.jpg");
+  background-image: url("/media/options/accommodation/001.jpg");
   z-index: 1;
   /* width: 0%; */
 }
@@ -380,6 +388,10 @@ input.gsc-input {
   left: 0;
   width: 100%;
   z-index: 3;
+}
+.page-container-secondary .image-tagline-container {
+  top: 45%;
+  bottom: auto;
 }
 .image-tagline {
   display: inline-block;
@@ -435,36 +447,36 @@ input.gsc-input {
   border-radius: 0.25rem;
 }
 .accommodation-icon {
-  background-image: url(media/icons/accommodation.png);
+  background-image: url(/media/icons/accommodation.png);
   /* background-size: 40rem 15rem; */
   background-position-y: 0.5rem;
 }
 .fishing-icon {
-  background-image: url(media/icons/fishing.png);
+  background-image: url(/media/icons/fishing.png);
 }
 .kitchen-icon {
-  background-image: url(media/icons/kitchen.png);
+  background-image: url(/media/icons/kitchen.png);
 }
 .surfing-icon {
-  background-image: url(media/icons/surfing.png);
+  background-image: url(/media/icons/surfing.png);
 }
 .whale-icon {
-  background-image: url(media/icons/whale.png);
+  background-image: url(/media/icons/whale.png);
 }
 .animals-icon {
-  background-image: url(media/icons/animals.png);
+  background-image: url(/media/icons/animals.png);
 }
 .rainforest-icon {
-  background-image: url(media/icons/rainforest.png);
+  background-image: url(/media/icons/rainforest.png);
 }
 .lonely-doug-icon {
-  background-image: url(media/icons/lonely_doug.png);
+  background-image: url(/media/icons/lonely_doug.png);
 }
 .ocean-icon {
-  background-image: url(media/icons/ocean.png);
+  background-image: url(/media/icons/ocean.png);
 }
 .bike-icon {
-  background-image: url(media/icons/bike.png);
+  background-image: url(/media/icons/bike.png);
 }
 
 /* ------- main: ICONS slider -------- */
@@ -522,12 +534,39 @@ input.gsc-input {
   transition: transform 0.2s ease-in;
 }
 
-/* ------- IFRAME -------- */
-.book-window {
-  display: block;
-  width: var(--main-width);
-  height: 50rem;
-  margin: auto;
+/* ------- TILES -------- */
+.tiles {
+  max-width: var(--main-width);
+  margin-inline: auto;
+  margin-block: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1.5rem;
+}
+.tiles .item {
+  height: 31.875rem;
+  width: 18.125rem;
+  border-radius: 0.25rem;
+  box-shadow: 4px 4px 10px 2px black;
+  text-align: left;
+}
+.tiles .item .image {
+  height: 18.125rem;
+  width: 18.125rem;
+}
+.tiles .item .image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.tiles .item .content {
+  padding: 1rem;
+}
+.tiles .item .content .title h3 {
+  margin-block: 1rem;
 }
 
 /* ------- FOOTER -------- */
@@ -632,6 +671,9 @@ input.gsc-input {
     width: 100vw;
     max-width: 100%;
     background-position-x: center;
+  }
+  .carousel-option:hover .option-icon {
+    border: none;
   }
   .slider-shadow {
     width: 100%;

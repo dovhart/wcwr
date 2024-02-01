@@ -11,8 +11,7 @@ const $iconList = document.querySelectorAll(".carousel-option");
 const $mobileIcon = document.querySelector(".mobile-menu-icon");
 const $mobileCloseButton = document.querySelector(".mm-close-button");
 const $mobileMenu = document.querySelector(".mobile-menu");
-const $bookNow = document.querySelectorAll(".book-now");
-const $bookWindow = document.querySelector(".book-window");
+
 
 let slider_isSlided = false;
 let slider_index = 0;
@@ -23,7 +22,10 @@ const option = [
     tagline: "Silence by the sea",
     buttons: [
       { title: "Explore", href: "#explore" },
-      { title: "Book Now", href: "#book-now" },
+      {
+        title: "Book Now",
+        href: "https://secure.webrez.com/hotel/3433?location_id=1799",
+      },
     ],
     current_item: 1,
     amount: 6,
@@ -167,7 +169,7 @@ function setImageBackground() {
   const tagline = option[slider_index].tagline;
   const buttons = option[slider_index].buttons;
 
-  const backgroundImage = `url("media/options/${category}/00${item}.jpg")`;
+  const backgroundImage = `url("/media/options/${category}/00${item}.jpg")`;
 
   if (!slider_isSlided) {
     $image_second.style.backgroundImage = backgroundImage;
@@ -225,13 +227,19 @@ function toggleMobileMenu() {
   }
 }
 
-function bookNow(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  $bookWindow.scrollIntoView({ behavior: "smooth" });
+async function updatePage() {
+  const fileVersion = document.querySelector(".version").getAttribute("content");
+  const response = await fetch("/version.json");
+  const version = await response.json();
+  if ( fileVersion < version.pages.index) {
+    location.reload();
+  }
 }
 
 (function () {
+  // update
+  updatePage();
+
   // on resize
   window.addEventListener("resize", onWindowResize);
   onWindowResize();
@@ -252,9 +260,6 @@ function bookNow(e) {
       setImageBackground();
     });
   });
-  // $bookNow.forEach(($button, key) => {
-  //   $button.addEventListener("click", bookNow);
-  // });
 
   // image slider
   // setInterval(() => {
