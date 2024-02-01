@@ -21,7 +21,7 @@ const option = [
     category: "accommodation",
     tagline: "Silence by the sea",
     buttons: [
-      { title: "Explore", href: "#explore" },
+      { title: "Accommodations", href: "/wcwr/accommodations.html" },
       {
         title: "Book Now",
         href: "https://secure.webrez.com/hotel/3433?location_id=1799",
