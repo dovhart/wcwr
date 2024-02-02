@@ -21,7 +21,7 @@ const option = [
     category: "accommodation",
     tagline: "Silence by the sea",
     buttons: [
-      { title: "Accommodations", href: "/wcwr/accommodations.html" },
+      { title: "Accommodations", href: "/accommodations.html" },
       {
         title: "Book Now",
         href: "https://secure.webrez.com/hotel/3433?location_id=1799",
@@ -169,7 +169,7 @@ function setImageBackground() {
   const tagline = option[slider_index].tagline;
   const buttons = option[slider_index].buttons;
 
-  const backgroundImage = `url("media/options/${category}/00${item}.jpg")`;
+  const backgroundImage = `url("/media/options/${category}/00${item}.jpg")`;
 
   if (!slider_isSlided) {
     $image_second.style.backgroundImage = backgroundImage;
@@ -233,7 +233,7 @@ async function updatePage() {
   const response = await fetch("/version.json");
   const version = await response.json();
   if ( fileVersion < version.pages.index) {
-    location.reload();
+    location.reload(true);
   }
 }
 
@@ -263,9 +263,10 @@ async function updatePage() {
   });
 
   // image slider
-   setInterval(() => {
-     nextImage();
-   }, 3000);
+  setInterval(() => {
+    nextImage();
+  }, 3000);
+
   // setTimeout(() => {
   //   return false;
 

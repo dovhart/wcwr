@@ -1,6 +1,10 @@
 {
     "pages": {
-        "index" : "0.1",
-        "accommodations" : "0.1"
+        "index" : 2,
+        "accommodations" : 2
+    },
+    "assets": {
+        "core.css": 3,
+        "core.js": 5
     }
 }
