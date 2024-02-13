@@ -180,7 +180,7 @@ function setImageBackground() {
   const tagline = option[slider_index].tagline;
   const buttons = option[slider_index].buttons;
 
-  const backgroundImage = `url("/media/options/${category}/00${item}.jpg")`;
+  const backgroundImage = `url("media/options/${category}/00${item}.jpg")`;
 
   if (!slider_isSlided) {
     $image_second.style.backgroundImage = backgroundImage;
