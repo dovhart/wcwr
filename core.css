@@ -39,7 +39,7 @@
   font-style: normal;
   font-weight: normal;
   font-display: auto;
-  src: url("/media/font/Brunette.ttf");
+  src: url("media/font/Brunette.ttf");
   /* format("truetype") */
   /* local("Trickster"),
     url("trickster-COLRv1.otf") format("opentype") tech(color-COLRv1),
@@ -241,7 +241,7 @@ h1 {
   padding-inline: 1rem;
 }
 .logo {
-  background-image: url(/media/wcwr-logo.svg);
+  background-image: url(media/wcwr-logo.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -478,7 +478,7 @@ input.gsc-input {
   left: 0;
   width: 100%;
   height: 83px;
-  background-image: url(/media/wave.png);
+  background-image: url(media/wave.png);
   background-repeat: repeat-x;
   background-position: left;
   z-index: 10;
@@ -494,7 +494,7 @@ input.gsc-input {
 }
 body.policy .image-main,
 .image-first {
-  background-image: url("/media/options/accommodation/001.jpg");
+  background-image: url("media/options/accommodation/001.jpg");
   z-index: 1;
   /* width: 0%; */
 }
@@ -505,41 +505,41 @@ body.policy .image-main,
 }
 /* accommodations */
 body.cotton-wood .image-main {
-  background-image: url("/media/options/accommodation/cotton-wood/003.jpg");
+  background-image: url("media/options/accommodation/cotton-wood/003.jpg");
   z-index: 1;
 }
 body.sitka .image-main {
-  background-image: url("/media/options/accommodation/sitka/index.jpg");
+  background-image: url("media/options/accommodation/sitka/index.jpg");
   z-index: 1;
 }
 body.suites .image-main {
-  background-image: url("/media/options/accommodation/suites/index.jpg");
+  background-image: url("media/options/accommodation/suites/index.jpg");
   z-index: 1;
 }
 body.huts .image-main {
-  background-image: url("/media/options/accommodation/huts/005.jpg");
+  background-image: url("media/options/accommodation/huts/005.jpg");
   z-index: 1;
 }
 /* activities */
 body.salmon-fishing .image-main,
 body.halibut-fishing .image-main {
-  background-image: url("/media/options/fishing/index.jpg");
+  background-image: url("media/options/fishing/index.jpg");
   z-index: 1;
 }
 body.catch .image-main {
-  background-image: url("/media/options/fishing/011.jpg");
+  background-image: url("media/options/fishing/011.jpg");
   z-index: 1;
 }
 body.kitchen .image-main {
-  background-image: url("/media/options/kitchen/001.jpg");
+  background-image: url("media/options/kitchen/001.jpg");
   z-index: 1;
 }
 body.about-us .image-main {
-  background-image: url("/media/general/about-us.jpg");
+  background-image: url("media/general/about-us.jpg");
   z-index: 1;
 }
 body.gear .image-main {
-  background-image: url("/media/options/gear/index.jpg");
+  background-image: url("media/options/gear/index.jpg");
   z-index: 1;
 }
 .image-tagline-container {
@@ -621,39 +621,39 @@ body.gear .image-main {
   line-height: var(--lh-effra);
 }
 .accommodation-icon {
-  background-image: url(/media/icon/white/accommodation.png);
+  background-image: url(media/icon/white/accommodation.png);
   /* background-size: 40rem 15rem; */
   background-position-y: 0.5rem;
 }
 .fishing-icon {
-  background-image: url(/media/icon/white/fishing.png);
+  background-image: url(media/icon/white/fishing.png);
 }
 .kitchen-icon {
-  background-image: url(/media/icon/white/kitchen.png);
+  background-image: url(media/icon/white/kitchen.png);
 }
 .surfing-icon {
-  background-image: url(/media/icon/white/surfing.png);
+  background-image: url(media/icon/white/surfing.png);
 }
 .whale-icon {
-  background-image: url(/media/icons/whale.png);
+  background-image: url(media/icons/whale.png);
 }
 .kayaking-icon {
-  background-image: url(/media/icon/white/kayaking.png);
+  background-image: url(media/icon/white/kayaking.png);
 }
 .animals-icon {
-  background-image: url(/media/icon/white/watching.png);
+  background-image: url(media/icon/white/watching.png);
 }
 .rainforest-icon {
-  background-image: url(/media/icons/rainforest.png);
+  background-image: url(media/icons/rainforest.png);
 }
 .lonely-doug-icon {
-  background-image: url(/media/icons/lonely_doug.png);
+  background-image: url(media/icons/lonely_doug.png);
 }
 .ocean-icon {
-  background-image: url(/media/icons/ocean.png);
+  background-image: url(media/icons/ocean.png);
 }
 .bike-icon {
-  background-image: url(/media/icon/white/bike.png);
+  background-image: url(media/icon/white/bike.png);
 }
 
 /* ------- main: ICONS slider -------- */
@@ -940,7 +940,7 @@ body.kitchen .aux-container .intro__title {
 
 /* ------- cabins -------- */
 .image-cabins {
-  background-image: url("/media/options/accommodation/cabins/index.jpg");
+  background-image: url("media/options/accommodation/cabins/index.jpg");
 }
 
 .link {
@@ -1289,7 +1289,7 @@ body {
   width: 100%;
   height: 100%;
   opacity: 0.3;
-  background-image: url("/media/gold-waves.png");
+  background-image: url("media/gold-waves.png");
   background-repeat: repeat;
   background-position: 50% 0;
   /* background-size: cover; */
@@ -1343,7 +1343,7 @@ body {
   padding: 0;
 }
 .footer__logo .logo {
-  background-image: url(/media/wcwr-logo-gold.svg);
+  background-image: url(media/wcwr-logo-gold.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
