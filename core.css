@@ -965,6 +965,9 @@ body.kitchen .aux-container .intro__title {
   text-decoration: none;
   color: var(--link-color);
 }
+.link-big {
+  font-size: 4rem;
+}
 
 .aux-container-wrapper {
   max-width: var(--middle-width);
@@ -1325,23 +1328,11 @@ body {
 .pricing .intro::before {
   opacity: 0.1;
 }
-/* .livecam .intro::before {
-  opacity: 0.8;
+
+.contact-us .intro__description.two-column {
+  align-items: center;
+  grid-template-columns: 10% 1fr;
 }
-.kitchen .intro::before {
-  opacity: 0.7;
-}
-.faq .intro::before {
-  opacity: 0.5;
-}
-.accommodations .intro::before,
-.cabins .intro::before,
-.contact-us .intro::before {
-  opacity: 0.3;
-}
-.about-us .intro::before {
-  opacity: 0.2;
-} */
 
 /* ------- FOOTER -------- */
 .footer-content {
