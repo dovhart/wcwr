@@ -1267,6 +1267,15 @@ body.kitchen .aux-container .intro__title {
 .about-us .intro__description {
   text-align: justify;
 }
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2rem;
+}
+.two-column .intro__description {
+  margin: initial;
+}
+
 .map-wrapper {
   width: var(--middle-width);
   margin-inline: auto;
@@ -1585,6 +1594,9 @@ body {
 
 /* ------- MOBILE only -------- */
 @media screen and (max-width: 767px) {
+  .two-column {
+    grid-template-columns: 1fr;
+  }
   .includes-container .options {
     display: block;
     grid-row-gap: 1rem;
