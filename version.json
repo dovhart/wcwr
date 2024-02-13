@@ -23,7 +23,7 @@
         "policy": 1
     },
     "assets": {
-        "core.css": 4,
+        "core.css": 6,
         "core.js": 6
     }
 }
