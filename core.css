@@ -807,11 +807,6 @@ body.kitchen .aux-container .intro__title {
 .location-includes-container .title {
   margin-bottom: 1rem;
 }
-.location-includes-container .options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 2rem;
-}
 .location-includes-container .item {
   margin-bottom: 1rem;
 }
@@ -858,6 +853,21 @@ body.kitchen .aux-container .intro__title {
 }
 .location-gallery-container .options .image9 {
   grid-area: image9;
+}
+.location-gallery-container .options .image10 {
+  grid-area: image10;
+}
+.location-gallery-container .options .image11 {
+  grid-area: image11;
+}
+.location-gallery-container .options .image12 {
+  grid-area: image12;
+}
+.location-gallery-container .options .image13 {
+  grid-area: image13;
+}
+.location-gallery-container .options .image14 {
+  grid-area: image14;
 }
 .location-gallery-container .options {
   display: grid;
@@ -1500,6 +1510,9 @@ body {
   }
   .intro__title .fancy-title {
     font-size: 3rem;
+  }
+  .two-column {
+    grid-column-gap: 1rem;
   }
 
   /* ------- carousel -------- */
