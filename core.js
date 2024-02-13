@@ -46,8 +46,8 @@ const option = [
     category: "kitchen",
     tagline: "Taste the Wild",
     buttons: [
-      { title: "Menu", href: "#menu" },
-      { title: "Hours", href: "#hours" },
+      { title: "Menu", href: "/wcwr/kitchen.html" },
+      { title: "Hours", href: "/wcwr/kitchen.html" },
     ],
     current_item: 1,
     amount: 3,
@@ -56,7 +56,7 @@ const option = [
     category: "surfing",
     tagline: "Ride Coastal Waves",
     buttons: [
-      { title: "Rent", href: "#rent" },
+      { title: "Rent", href: "/wcwr/accommodations.html" },
       {
         title: "Book Now",
         href: "https://secure.webrez.com/hotel/3433?location_id=1799",
