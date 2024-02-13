@@ -6,11 +6,37 @@
     <meta http-equiv="cache-control" content="max-age=0" />
     <meta name="version" content="2" class="version" />
 
-    <link href="core.css?3" type="text/css" media="all" rel="stylesheet" />
+    <link href="core.css?4" type="text/css" media="all" rel="stylesheet" />
 
     <title>Test | Wild Coast Wilderness Resort</title>
   </head>
   <body>
-    {% include footer.html %}
+    <div>
+      <img
+        class="cam"
+        width="100%"
+        height="100%"
+        src="https://dl.dropboxusercontent.com/s/zv98zk6j9knj13r/snap_c1.jpg?dl=0"
+      />
+    </div>
   </body>
+  <script>
+    (function () {
+      async function reloadImg(url) {
+        await fetch(url, { cache: "reload", mode: "no-cors" });
+        $cam.src = url;
+        // document.body
+        //   .querySelectorAll(`img[src='${url}']`)
+        //   .forEach((img) => (img.src = url));
+      }
+      const $cam = document.querySelector(".cam");
+      const imgsrc =
+        "https://dl.dropboxusercontent.com/s/zv98zk6j9knj13r/snap_c1.jpg?dl=0&";
+      setInterval(() => {
+        reloadImg(imgsrc + new Date().getTime());
+        // $cam.src = imgsrc + new Date().getTime();
+        //        console.log("updated", new Date().getTime());
+      }, 1000 * 90);
+    })();
+  </script>
 </html>

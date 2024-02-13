@@ -1,4 +1,4 @@
-// image slider
+const PAGE = location.pathname.split(".")[0].split("/").pop();
 const $image_container = document.querySelector(".option-image-container");
 const $image = document.querySelector(".option-image");
 const $image_first = document.querySelector(".image-first");
@@ -11,7 +11,6 @@ const $iconList = document.querySelectorAll(".carousel-option");
 const $mobileIcon = document.querySelector(".mobile-menu-icon");
 const $mobileCloseButton = document.querySelector(".mm-close-button");
 const $mobileMenu = document.querySelector(".mobile-menu");
-
 
 let slider_isSlided = false;
 let slider_index = 0;
@@ -34,8 +33,11 @@ const option = [
     category: "fishing",
     tagline: "Cast into Wild",
     buttons: [
-      { title: "Explore", href: "#explore" },
-      { title: "Book Now", href: "#book-now" },
+      { title: "Explore", href: "/wcwr/activities.html" },
+      {
+        title: "Book Now",
+        href: "https://secure.webrez.com/hotel/3433?location_id=1799",
+      },
     ],
     current_item: 1,
     amount: 6,
@@ -55,7 +57,10 @@ const option = [
     tagline: "Ride Coastal Waves",
     buttons: [
       { title: "Rent", href: "#rent" },
-      { title: "Book Now", href: "#book-now" },
+      {
+        title: "Book Now",
+        href: "https://secure.webrez.com/hotel/3433?location_id=1799",
+      },
     ],
     current_item: 1,
     amount: 2,
@@ -65,7 +70,10 @@ const option = [
     tagline: "Majestic Sea Giants",
     buttons: [
       { title: "Explore", href: "#explore" },
-      { title: "Book Now", href: "#book-now" },
+      {
+        title: "Book Now",
+        href: "https://secure.webrez.com/hotel/3433?location_id=1799",
+      },
     ],
     current_item: 1,
     amount: 2,
@@ -75,33 +83,33 @@ const option = [
     tagline: "Wild Hearts Roam",
     buttons: [
       { title: "Explore", href: "#explore" },
-      { title: "Book Now", href: "#book-now" },
-    ],
-    current_item: 1,
-    amount: 1,
-  },
-  {
-    category: "rainforest",
-    tagline: "Trail of Whispers",
-    buttons: [
-      { title: "Explore", href: "#explore" },
-      { title: "Book Now", href: "#book-now" },
+      {
+        title: "Book Now",
+        href: "https://secure.webrez.com/hotel/3433?location_id=1799",
+      },
     ],
     current_item: 1,
     amount: 1,
   },
   // {
-  //   category: "lonely_doug",
-  // tagline: "Big Lonely Doug",
+  //   category: "rainforest",
+  //   tagline: "Trail of Whispers",
+  //   buttons: [
+  //     { title: "Explore", href: "#explore" },
+  //     { title: "Book Now", href: "https://secure.webrez.com/hotel/3433?location_id=1799" },
+  //   ],
   //   current_item: 1,
-  //   amount: 2,
+  //   amount: 1,
   // },
   {
     category: "ocean",
     tagline: "Sands of Serenity",
     buttons: [
       { title: "Explore", href: "#explore" },
-      { title: "Book Now", href: "#book-now" },
+      {
+        title: "Book Now",
+        href: "https://secure.webrez.com/hotel/3433?location_id=1799",
+      },
     ],
     current_item: 1,
     amount: 3,
@@ -111,7 +119,10 @@ const option = [
     tagline: "Pedal Through Wild",
     buttons: [
       { title: "Explore", href: "#explore" },
-      { title: "Book Now", href: "#book-now" },
+      {
+        title: "Book Now",
+        href: "https://secure.webrez.com/hotel/3433?location_id=1799",
+      },
     ],
     current_item: 1,
     amount: 3,
@@ -169,7 +180,7 @@ function setImageBackground() {
   const tagline = option[slider_index].tagline;
   const buttons = option[slider_index].buttons;
 
-  const backgroundImage = `url("media/options/${category}/00${item}.jpg")`;
+  const backgroundImage = `url("/media/options/${category}/00${item}.jpg")`;
 
   if (!slider_isSlided) {
     $image_second.style.backgroundImage = backgroundImage;
@@ -206,11 +217,11 @@ function nextImage() {
       slider_shadow_pos = $iconList[slider_index].offsetLeft;
     }
     $slider_shadow.style.left = slider_shadow_pos + "px";
-    $iconList[slider_index].scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "nearest",
-    });
+    // $iconList[slider_index].scrollIntoView({
+    //   behavior: "smooth",
+    //   block: "end",
+    //   inline: "nearest",
+    // });
   } else {
     // next item
     option[slider_index].current_item++;
@@ -224,15 +235,17 @@ function toggleMobileMenu() {
     $mobileMenu.style.height = null;
   } else {
     // $mobileMenu.style.display = "block";
-    $mobileMenu.style.height = "18.5rem";
+    $mobileMenu.style.height = "auto";
   }
 }
 
 async function updatePage() {
-  const fileVersion = document.querySelector(".version").getAttribute("content");
+  const fileVersion = document
+    .querySelector(".version")
+    .getAttribute("content");
   const response = await fetch("/wcwr/version.json");
   const version = await response.json();
-  if ( fileVersion < version.pages.index) {
+  if (fileVersion < version.pages[PAGE]) {
     location.reload(true);
   }
 }
@@ -242,28 +255,89 @@ async function updatePage() {
   updatePage();
 
   // on resize
-  window.addEventListener("resize", onWindowResize);
-  onWindowResize();
+  if (PAGE == "index" || !PAGE) {
+    window.addEventListener("resize", onWindowResize);
+    onWindowResize();
 
-  // on click
-  $slider_left.addEventListener("click", onIconSlide);
-  $slider_right.addEventListener("click", onIconSlide);
-  $image_container.addEventListener("click", nextImage);
+    // on click
+    $slider_left.addEventListener("click", onIconSlide);
+    $slider_right.addEventListener("click", onIconSlide);
+    $image_container.addEventListener("click", nextImage);
+    // $iconList.forEach(($icon, key) => {
+    //   $icon.dataset.index = key;
+    //   $icon.addEventListener("click", (e) => {
+    //     option[slider_index].current_item = 1;
+    //     slider_index = e.currentTarget.dataset.index;
+    //     slider_shadow_pos = $iconList[slider_index].offsetLeft;
+    //     $slider_shadow.style.left = slider_shadow_pos + "px";
+    //     setImageBackground();
+    //   });
+    // });
+
+    // image slider
+    setInterval(() => {
+      nextImage();
+    }, 3000);
+  }
+  if (PAGE == "livecam") {
+    const $cam1 = document.querySelector(".image1 > img");
+    const $cam2 = document.querySelector(".image2 > img");
+    const img1src =
+      "https://dl.dropboxusercontent.com/s/he9smakdtx53y09/snap_c1.jpg?dl=0&";
+    const img2src =
+      "https://dl.dropboxusercontent.com/s/zv98zk6j9knj13r/snap_c1.jpg?dl=0&";
+    async function reloadImg($img, url) {
+      await fetch(url, { cache: "reload", mode: "no-cors" });
+      $img.src = url;
+      // document.body
+      //   .querySelectorAll(`img[src='${url}']`)
+      //   .forEach((img) => (img.src = url));
+    }
+    setInterval(() => {
+      reloadImg($cam1, img1src + new Date().getTime());
+      reloadImg($cam2, img2src + new Date().getTime());
+      // $cam.src = imgsrc + new Date().getTime();
+      //        console.log("updated", new Date().getTime());
+    }, 1000 * 90);
+  }
+  if (PAGE == "faq" || PAGE == "pricing") {
+    const $questionList = document.querySelectorAll(".question");
+    $questionList.forEach(($item) => {
+      $item.addEventListener("click", function () {
+        const $this = this;
+        const isActive = $this.classList.contains("active");
+        $questionList.forEach(($item) => {
+          $item.classList.remove("active");
+        });
+        setTimeout(function () {
+          if (isActive) {
+            $this.classList.remove("active");
+          } else {
+            $this.classList.add("active");
+          }
+        }, 10);
+      });
+    });
+  }
+
   $mobileIcon.addEventListener("click", toggleMobileMenu);
   $mobileCloseButton.addEventListener("click", toggleMobileMenu);
-  $iconList.forEach(($icon, key) => {
-    $icon.dataset.index = key;
-    $icon.addEventListener("click", (e) => {
-      option[slider_index].current_item = 1;
-      slider_index = e.currentTarget.dataset.index;
-      slider_shadow_pos = $iconList[slider_index].offsetLeft;
-      $slider_shadow.style.left = slider_shadow_pos + "px";
-      setImageBackground();
-    });
-  });
 
-  // image slider
-  setInterval(() => {
-    nextImage();
-  }, 3000);
+  // setTimeout(() => {
+  //   return false;
+
+  // if (slider_isSlided) {
+  //   $image_second.style.backgroundImage = backgroundImage;
+  //   $image_second.style.width = "100%";
+  //   $image_first.style.width = "0%";
+  // } else {
+  //   $image_first.style.backgroundImage = backgroundImage;
+  //   $image_first.style.width = "100%";
+  //   $image_second.style.width = "0%";
+  // }
+
+  // setTimeout(() => {
+  //   $image_container.prepend(slider_isSlided ? $image_first : $image_second);
+  //   slider_isSlided = !slider_isSlided;
+  // }, 1000);
 })();
