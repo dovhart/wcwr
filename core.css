@@ -799,6 +799,11 @@ body.gear .image-main {
   text-align: center;
   word-spacing: 1rem;
 }
+.trails .intro__title {
+  text-transform: capitalize;
+  font-size: 5rem;
+  font-weight: 300;
+}
 body.kitchen .aux-container .intro__title {
   text-transform: none;
   font-size: 4rem;
@@ -1062,13 +1067,14 @@ body.kitchen .aux-container .intro__title {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   grid-row-gap: 2rem;
   margin: auto;
 }
 .includes-container.schedule .item {
   margin-bottom: 0;
   text-align: center;
+  padding: 0.5rem;
 }
 .includes-container.schedule .item .time {
   display: inline-block;
@@ -1078,6 +1084,29 @@ body.kitchen .aux-container .intro__title {
 }
 .includes-container.schedule .item.weekend {
   color: var(--golden-color);
+}
+.includes-container.schedule .item.active {
+  /* background-color: var(--main-color); */
+  border-radius: 0.5rem;
+  /* color: var(--white-color); */
+}
+.includes-container.schedule .item .is-open {
+  margin-top: 1rem;
+  display: none;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.includes-container.schedule .item .is-open .text {
+  margin-left: 0.5rem;
+}
+.includes-container.schedule .item.active .is-open {
+  display: flex;
+}
+.includes-container.schedule .item .today {
+  visibility: hidden;
+}
+.includes-container.schedule .item.active .today {
+  visibility: visible;
 }
 
 /* ------- kitchen menu -------- */
@@ -1285,6 +1314,58 @@ body.kitchen .aux-container .intro__title {
   text-align: justify;
 }
 
+.link .contact {
+  cursor: pointer;
+}
+.contact-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(2.5rem);
+  z-index: 100;
+}
+.contact-wrapper {
+  margin: auto;
+  width: var(--middle-width);
+  height: 100%;
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+}
+.contact-content {
+  border: 1px solid lightgray;
+  background-color: var(--white-color);
+  border-radius: 0.5rem;
+  margin: auto;
+  width: 100%;
+  position: relative;
+}
+.contact-content .two-column {
+  grid-template-columns: 10% 1fr;
+  align-items: center;
+  padding-block: 0;
+  padding-inline: 2rem;
+}
+.close-button {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.cut {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ------- about-us -------- */
 .about-us .intro__description {
   text-align: justify;
 }
@@ -1470,6 +1551,10 @@ body {
   border-radius: 1rem;
 }
 
+.show {
+  display: block;
+}
+
 /* ------- TABLET/MOBILE -------- */
 @media screen and (max-width: 900px) {
   /* ------- header -------- */
@@ -1562,6 +1647,27 @@ body {
   .pricing .tiles {
     grid-column-gap: 0;
     justify-content: space-evenly;
+  }
+  .contact-content .two-column {
+    padding-inline: 1rem;
+    grid-template-columns: 25% 1fr;
+  }
+  .contact-wrapper {
+    width: auto;
+    margin-inline: 1rem;
+  }
+  .close-button {
+    top: -3rem;
+    right: 0;
+    background-color: var(--white-color);
+  }
+
+    /* ------- trails -------- */
+  .trails .intro__title {
+    text-transform: capitalize;
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 300;
   }
 
   /* ------- footer -------- */
@@ -1797,5 +1903,8 @@ body {
   .pricing .tiles {
     justify-content: center;
     flex-wrap: wrap;
+  }
+  .link-big {
+    font-size: 100%;
   }
 }

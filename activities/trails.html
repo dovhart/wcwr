@@ -8,9 +8,15 @@
 
     <link href="../core.css?7" type="text/css" media="all" rel="stylesheet" />
 
-    <title>Cotton Wood Cottage | Wild Coast Wilderness Resort</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
+    <title>Trails | Wild Coast Wilderness Resort</title>
   </head>
-  <body class="location cotton-wood">
+  <body class="location trails">
     <div class="contact-container">
       <div class="contact-wrapper">
         <div class="contact-content">
@@ -142,7 +148,7 @@
         <a
           class="menu-item book-now-button book-now"
           target="_blank"
-          href="https://secure.webrez.com/hotel/3433/?invtype_id=48830"
+          href="https://secure.webrez.com/hotel/3433?location_id=1799"
           >Book Now</a
         >
         <nav class="mobile-menu-icon">
@@ -168,9 +174,6 @@
             <div class="option-image-container">
               <div class="option-image image-first image-main"></div>
               <div class="option-image image-second"></div>
-              <!-- <div class="image-tagline-container">
-                <div class="image-tagline"><h1>Cotton Wood Cottage</h1></div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -179,145 +182,131 @@
 
     <div class="intro">
       <div class="intro__title">
-        <div>Cotton Wood Cottage</div>
+        <div>Wildlife, Forest & Trails</div>
       </div>
-      <div class="intro__description">
-        Our secluded cottonwood cottage offers rustic charm with modern
-        amenities. As soon as you walk through the front door you are hit with
-        natural lighting from two skylights and a large window seat with
-        stunning forest views. This unit includes a full bathroom, basic
-        kitchenette (no stove or oven), pull out sofa bed, cozy living room,
-        wifi, deck and private propane fire pit.
+      <div class="two-column">
+        <div class="intro__description">
+          Wild Coast Wilderness Resort is a beautiful hotel & fishing resort in
+          Port Renfrew, BC. Friendly service, comfortable accommodations &
+          amazing fishing are what we’re known for.
+        </div>
+        <div class="intro__description">
+          Book your next trip with Wild Coast Wilderness Resort and you will
+          experience the world-class, friendly service that makes us famous.
+        </div>
       </div>
       <div class="image-buttons">
-        <!-- <a
-          target="_blank"
-          class="button button-left button-dark"
-          href="https://www.youtube.com/watch?v=E57_bK8ovfM"
-          >Virtual Tour</a
-        > -->
         <a class="button button-left button-dark contact">Contact Us</a>
         <a
           target="_blank"
-          href="https://secure.webrez.com/hotel/3433/?invtype_id=48830"
+          href="https://secure.webrez.com/hotel/3433?location_id=1799"
           class="button button-right button-light book-now"
           >Book Now</a
         >
       </div>
     </div>
 
-    <div class="location-includes-container">
+    <div class="includes-container trails">
       <div class="wrapper">
-        <div class="title">Your stay includes</div>
-        <div class="options two-column">
-          <div class="item">
-            <div class="text">
-              <div class="checkmark">&#10004;</div>
-              <span>&#10004;</span> Stunning forest views
-            </div>
-          </div>
-          <div class="item">
-            <div class="text">
-              <div class="checkmark">&#10004;</div>
-              <span>&#10004;</span> Large window seat
-            </div>
-          </div>
-          <div class="item">
-            <div class="text">
-              <div class="checkmark">&#10004;</div>
-              <span>&#10004;</span> Two skylights
-            </div>
-          </div>
-          <div class="item">
-            <div class="text">
-              <div class="checkmark">&#10004;</div>
-              <span>&#10004;</span> Cozy living room
-            </div>
-          </div>
-          <div class="item">
-            <div class="text">
-              <div class="checkmark">&#10004;</div>
-              <span>&#10004;</span> Full bathroom
-            </div>
-          </div>
-          <div class="item">
-            <div class="text">
-              <div class="checkmark">&#10004;</div>
-              <span>&#10004;</span> Basic kitchen (no stove, no oven)
-            </div>
-          </div>
-          <div class="item">
-            <div class="text">
-              <div class="checkmark">&#10004;</div>
-              <span>&#10004;</span> Pull-out sofa bed
-            </div>
-          </div>
-          <div class="item">
-            <div class="text">
-              <div class="checkmark">&#10004;</div>
-              <span>&#10004;</span> Propane fire pit
-            </div>
-          </div>
-          <div class="item">
-            <div class="text">
-              <div class="checkmark">&#10004;</div>
-              <span>&#10004;</span> Deck
-            </div>
-          </div>
-          <div class="item">
-            <div class="text">
-              <div class="checkmark">&#10004;</div>
-              <span>&#10004;</span> Wi-Fi
-            </div>
-          </div>
+        <div class="intro__description">
+          Wild Coast Wilderness Resort & Charters invites you to explore the
+          waters from Victoria to Port Renfrew, British Columbia.
         </div>
       </div>
     </div>
-    <div class="location-gallery-container">
-      <div class="options cotton-wood">
-        <div class="image-main">
-          <img
-            src="../media/options/accommodation/cotton-wood/index.jpg"
-            alt="Cotton Wood Cottage"
-          />
-        </div>
+
+    <!-- <div class="location-gallery-container">
+      <div class="options trails">
         <div class="image1">
           <img
-            src="../media/options/accommodation/cotton-wood/001.jpg"
-            alt="Cotton Wood Cottage"
+            src="/media/general/001.jpg"
+            alt="port renfrew wild coast wilderness resort"
           />
         </div>
         <div class="image2">
           <img
-            src="../media/options/accommodation/cotton-wood/002.jpg"
-            alt="Cotton Wood Cottage"
+            src="/media/general/002.jpg"
+            alt="port renfrew wild coast wilderness resort"
           />
         </div>
         <div class="image3">
           <img
-            src="../media/options/accommodation/cotton-wood/003.jpg"
-            alt="Cotton Wood Cottage"
+            src="/media/general/003.jpg"
+            alt="port renfrew wild coast wilderness resort"
           />
         </div>
         <div class="image4">
           <img
-            src="../media/options/accommodation/cotton-wood/004.jpg"
-            alt="Cotton Wood Cottage"
+            src="/media/general/004.jpg"
+            alt="port renfrew wild coast wilderness resort"
           />
         </div>
         <div class="image5">
           <img
-            src="../media/options/accommodation/cotton-wood/005.jpg"
-            alt="Cotton Wood Cottage"
-          />
-        </div>
-        <div class="image6">
-          <img
-            src="../media/options/accommodation/cotton-wood/006.jpg"
-            alt="Cotton Wood Cottage"
+            src="/media/general/005.jpg"
+            alt="port renfrew wild coast wilderness resort"
           />
         </div>
       </div>
+    </div> -->
+
+    <div class="intro">
+      <div class="intro__title">
+        <div>Big Lonely Doug & Eden Grove</div>
+      </div>
+      <div
+        id="map-doug"
+        style="width: 100%; height: 500px;"
+      ></div>
+    </div>
+
+    <div class="intro">
+      <div class="intro__title">
+        <div>Avatar Grove & Canada's Gnarliest Tree</div>
+      </div>
+      <div
+        id="map-grove"
+        style="width: 100%; height: 500px;"
+      ></div>
+    </div>
+
+    <div class="location-gallery-container">
+      <div class="options second about-us">
+        <div class="image11">
+          <img
+            src="../media/options/experience/001.jpg"
+            alt="port renfrew wild coast wilderness resort"
+          />
+        </div>
+        <div class="image12">
+          <img
+            src="../media/options/experience/004.jpg"
+            alt="port renfrew wild coast wilderness resort"
+          />
+        </div>
+        <div class="image13">
+          <img
+            src="../media/options/experience/008.jpg"
+            alt="port renfrew wild coast wilderness resort"
+          />
+        </div>
+        <div class="image14">
+          <img
+            src="../media/options/experience/005.jpg"
+            alt="port renfrew wild coast wilderness resort"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="intro" style="margin-bottom: 1rem;">
+      <div class="intro__title">
+        <div>Wild&nbsp;Coast Wilderness&nbsp;Resort</div>
+      </div>
+      <div
+        id="map"
+        style="width: 100%; height: 500px;"
+      ></div>
     </div>
 
     <footer class="footer-container">

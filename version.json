@@ -1,29 +1,30 @@
 {
     "pages": {
-        "" : 3,
-        "index" : 3,
-        "livecam": 1,
-        "kitchen": 2,
-        "accommodations" : 3,
-        "cabins": 1,
-        "huts": 1,
-        "suites": 1,
-        "cotton-wood": 1,
-        "sitka-spruce": 1,
-        "activities": 1,
-        "salmon-fishing": 1,
-        "halibut-fishing": 1,
-        "freshwater-fishing": 1,
-        "gear": 1,
-        "catch": 1,
-        "faq": 1,
-        "about-us": 2,
-        "contact-us": 1,
-        "pricing": 1,
-        "policy": 1
+        "" : 4,
+        "index" : 4,
+        "livecam": 4,
+        "kitchen": 4,
+        "accommodations" : 4,
+        "cabins": 4,
+        "huts": 4,
+        "suites": 4,
+        "cotton-wood": 4,
+        "sitka-spruce": 4,
+        "activities": 4,
+        "salmon-fishing": 4,
+        "halibut-fishing": 4,
+        "freshwater-fishing": 4,
+        "gear": 4,
+        "catch": 4,
+        "trails": 4,
+        "faq": 4,
+        "about-us": 4,
+        "contact-us": 4,
+        "pricing": 4,
+        "policy": 4
     },
     "assets": {
-        "core.css": 6,
-        "core.js": 6
+        "core.css": 7,
+        "core.js": 7
     }
 }

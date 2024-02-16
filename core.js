@@ -1,4 +1,8 @@
 const PAGE = location.pathname.split(".")[0].split("/").pop();
+const TOKEN = {
+  MAPBOX:
+    "pk.eyJ1IjoibmF0dXJlYmxvY2tzIiwiYSI6ImNsNGVzcHN3cTA2cnIzZXF1OW56anRreG0ifQ.mV9LWmbKXfkDGbvwugneAg",
+};
 const $image_container = document.querySelector(".option-image-container");
 const $image = document.querySelector(".option-image");
 const $image_first = document.querySelector(".image-first");
@@ -20,20 +24,7 @@ const option = [
     category: "accommodation",
     tagline: "Silence by the sea",
     buttons: [
-      { title: "Accommodations", href: "/wcwr/accommodations.html" },
-      {
-        title: "Book Now",
-        href: "https://secure.webrez.com/hotel/3433?location_id=1799",
-      },
-    ],
-    current_item: 1,
-    amount: 6,
-  },
-  {
-    category: "fishing",
-    tagline: "Cast into Wild",
-    buttons: [
-      { title: "Explore", href: "/wcwr/activities.html" },
+      { title: "Contact Us", href: "#" },
       {
         title: "Book Now",
         href: "https://secure.webrez.com/hotel/3433?location_id=1799",
@@ -46,17 +37,30 @@ const option = [
     category: "kitchen",
     tagline: "Taste the Wild",
     buttons: [
-      { title: "Menu", href: "/wcwr/kitchen.html" },
-      { title: "Hours", href: "/wcwr/kitchen.html" },
+      { title: "Contact Us", href: "#" },
+      { title: "Menu & Hours", href: "/kitchen.html" },
     ],
     current_item: 1,
     amount: 3,
   },
   {
+    category: "fishing",
+    tagline: "Cast into Wild",
+    buttons: [
+      { title: "Contact Us", href: "#" },
+      {
+        title: "Book Now",
+        href: "https://secure.webrez.com/hotel/3433?location_id=1799",
+      },
+    ],
+    current_item: 1,
+    amount: 6,
+  },
+  {
     category: "surfing",
     tagline: "Ride Coastal Waves",
     buttons: [
-      { title: "Rent", href: "/wcwr/accommodations.html" },
+      { title: "Contact Us", href: "#" },
       {
         title: "Book Now",
         href: "https://secure.webrez.com/hotel/3433?location_id=1799",
@@ -66,10 +70,10 @@ const option = [
     amount: 2,
   },
   {
-    category: "whale",
+    category: "experience",
     tagline: "Majestic Sea Giants",
     buttons: [
-      { title: "Explore", href: "#explore" },
+      { title: "Contact Us", href: "#" },
       {
         title: "Book Now",
         href: "https://secure.webrez.com/hotel/3433?location_id=1799",
@@ -79,10 +83,10 @@ const option = [
     amount: 2,
   },
   {
-    category: "animals",
+    category: "gear",
     tagline: "Wild Hearts Roam",
     buttons: [
-      { title: "Explore", href: "#explore" },
+      { title: "Contact Us", href: "#" },
       {
         title: "Book Now",
         href: "https://secure.webrez.com/hotel/3433?location_id=1799",
@@ -91,34 +95,11 @@ const option = [
     current_item: 1,
     amount: 1,
   },
-  // {
-  //   category: "rainforest",
-  //   tagline: "Trail of Whispers",
-  //   buttons: [
-  //     { title: "Explore", href: "#explore" },
-  //     { title: "Book Now", href: "https://secure.webrez.com/hotel/3433?location_id=1799" },
-  //   ],
-  //   current_item: 1,
-  //   amount: 1,
-  // },
-  {
-    category: "ocean",
-    tagline: "Sands of Serenity",
-    buttons: [
-      { title: "Explore", href: "#explore" },
-      {
-        title: "Book Now",
-        href: "https://secure.webrez.com/hotel/3433?location_id=1799",
-      },
-    ],
-    current_item: 1,
-    amount: 3,
-  },
   {
     category: "bike",
     tagline: "Pedal Through Wild",
     buttons: [
-      { title: "Explore", href: "#explore" },
+      { title: "Contact Us", href: "#" },
       {
         title: "Book Now",
         href: "https://secure.webrez.com/hotel/3433?location_id=1799",
@@ -250,6 +231,85 @@ async function updatePage() {
   }
 }
 
+function highlightCurrentDay() {
+  const DAY_OF_WEEK = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
+  const timeVancouver = dayjs().tz("America/Vancouver");
+
+  const dayOfWeek = DAY_OF_WEEK[timeVancouver.day()];
+  document.querySelector(".schedule .item.active")?.classList.remove("active");
+  document.querySelector(".schedule ." + dayOfWeek).classList.add("active");
+  //
+  let isOpen = false;
+  let day = HOURS.find((item) => item.day == dayOfWeek);
+  let workHours = [];
+  let hour = 0;
+  let minute = 0;
+
+  // from
+  if (day.from.toLowerCase().trim().endsWith("am")) {
+    // AM
+    workHours = day.from.toLowerCase().split("am")[0].trim().split(":");
+
+    hour = Number(workHours[0]);
+    if (hour == 12) hour = hour - 12;
+
+    isOpen = timeVancouver.hour() > hour;
+    if (isOpen && workHours.length == 2) {
+      minute = Number(workHours[1]);
+      isOpen = timeVancouver.minute() > minute;
+    }
+  } else {
+    // PM
+    workHours = day.from.toLowerCase().split("pm")[0].trim().split(":");
+
+    hour = Number(workHours[0]);
+    if (hour < 12) hour = hour + 12;
+
+    isOpen = timeVancouver.hour() > hour;
+    if (isOpen && workHours.length == 2) {
+      minute = Number(workHours[1]);
+      isOpen = timeVancouver.minute() > minute;
+    }
+  }
+
+  // to
+  if (day.to.toLowerCase().trim().endsWith("am")) {
+    // AM
+    workHours = day.to.toLowerCase().split("am")[0].trim().split(":");
+
+    hour = Number(workHours[0]);
+    if (hour == 12) hour = hour - 12;
+
+    isOpen = timeVancouver.hour() < hour;
+    if (isOpen && workHours.length == 2) {
+      minute = Number(workHours[1]);
+      isOpen = timeVancouver.minute() < minute;
+    }
+  } else {
+    // PM
+    workHours = day.to.toLowerCase().split("pm")[0].trim().split(":");
+
+    hour = Number(workHours[0]);
+    if (hour < 12) hour = hour + 12;
+
+    isOpen = timeVancouver.hour() < hour;
+    if (isOpen && workHours.length == 2) {
+      minute = Number(workHours[1]);
+      isOpen = timeVancouver.minute() < minute;
+    }
+  }
+  document.querySelector(".schedule .item.active .is-open .text").textContent =
+    isOpen ? "OPEN" : "CLOSED";
+}
+
 (function () {
   // update
   updatePage();
@@ -318,6 +378,129 @@ async function updatePage() {
         }, 10);
       });
     });
+  }
+  if (PAGE == "kitchen") {
+    HOURS?.forEach((item) => {
+      document.querySelector(".schedule ." + item.day + " .open").textContent =
+        item.from;
+      document.querySelector(".schedule ." + item.day + " .close").textContent =
+        item.to;
+      document.querySelector(".schedule ." + item.day + " .plain").textContent =
+        item.from + " - " + item.to;
+    });
+
+    // highlight working day
+    dayjs.extend(window.dayjs_plugin_utc);
+    dayjs.extend(window.dayjs_plugin_timezone);
+    highlightCurrentDay();
+    setInterval(highlightCurrentDay, 1000 * 60 * 5);
+  }
+  if (PAGE == "trails") {
+    if (!mapboxgl.supported()) {
+      document.querySelector(".map").style.display = "none";
+    } else {
+      const map = new mapboxgl.Map({
+        container: "map",
+        // style: "mapbox://styles/mapbox/streets-v11",
+        style: "mapbox://styles/mapbox/satellite-streets-v12",
+        center: [-124.42208, 48.55169],
+        zoom: 17,
+        accessToken: TOKEN.MAPBOX,
+      });
+      map.addControl(new mapboxgl.NavigationControl());
+      map.scrollZoom.disable();
+      const marker = new mapboxgl.Marker({ color: "blue", rotation: 0 })
+        .setLngLat([-124.4215, 48.55155])
+        .addTo(map);
+
+      const mapDoug = new mapboxgl.Map({
+        container: "map-doug",
+        // style: "mapbox://styles/mapbox/streets-v11",
+        style: "mapbox://styles/mapbox/satellite-streets-v12",
+        center: [-124.45063, 48.64626],
+        zoom: 14,
+        accessToken: TOKEN.MAPBOX,
+      });
+      mapDoug.addControl(new mapboxgl.NavigationControl());
+      mapDoug.scrollZoom.disable();
+      const markerDoug = new mapboxgl.Marker({ color: "blue", rotation: 0 })
+        .setLngLat([-124.45063, 48.64626])
+        .addTo(mapDoug);
+
+      const mapGrove = new mapboxgl.Map({
+        container: "map-grove",
+        // style: "mapbox://styles/mapbox/streets-v11",
+        style: "mapbox://styles/mapbox/satellite-streets-v12",
+        center: [-124.4375, 48.6173],
+        zoom: 16,
+        accessToken: TOKEN.MAPBOX,
+      });
+      mapGrove.addControl(new mapboxgl.NavigationControl());
+      mapGrove.scrollZoom.disable();
+      const markerGrove = new mapboxgl.Marker({ color: "blue", rotation: 0 })
+        .setLngLat([-124.4375, 48.6168])
+        .addTo(mapGrove);
+
+      const geojson = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {
+              message: "Wild Coast Wilderness Resort",
+              iconSize: [100, 100],
+            },
+            geometry: {
+              type: "Point",
+              coordinates: [-124.4215, 48.55155],
+            },
+          },
+          // {
+          //   type: "Feature",
+          //   properties: {
+          //     message: "Bar",
+          //     iconSize: [50, 50],
+          //   },
+          //   geometry: {
+          //     type: "Point",
+          //     coordinates: [-61.21582, -15.971891],
+          //   },
+          // },
+          // {
+          //   type: "Feature",
+          //   properties: {
+          //     message: "Baz",
+          //     iconSize: [40, 40],
+          //   },
+          //   geometry: {
+          //     type: "Point",
+          //     coordinates: [-63.292236, -18.281518],
+          //   },
+          // },
+        ],
+      };
+      // Add markers to the map.
+      // for (const marker of geojson.features) {
+      //   // Create a DOM element for each marker.
+      //   const el = document.createElement("div");
+      //   const width = marker.properties.iconSize[0];
+      //   const height = marker.properties.iconSize[1];
+      //   el.className = "marker";
+      //   el.style.backgroundImage = "url(/media/icon/gold/fishing.png)";
+      //   el.style.width = `${width}px`;
+      //   el.style.height = `${height}px`;
+      //   el.style.backgroundSize = "100%";
+
+      //   // el.addEventListener("click", () => {
+      //   //   window.alert(marker.properties.message);
+      //   // });
+
+      //   // Add markers to the map.
+      //   new mapboxgl.Marker(el)
+      //     .setLngLat(marker.geometry.coordinates)
+      //     .addTo(map);
+      // }
+    }
   }
 
   $mobileIcon.addEventListener("click", toggleMobileMenu);
