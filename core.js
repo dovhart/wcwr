@@ -395,7 +395,7 @@ function highlightCurrentDay() {
     highlightCurrentDay();
     setInterval(highlightCurrentDay, 1000 * 60 * 5);
   }
-  if (PAGE == "trails") {
+  if (PAGE == "trailsX") {
     if (!mapboxgl.supported()) {
       document.querySelector(".map").style.display = "none";
     } else {

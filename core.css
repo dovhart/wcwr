@@ -521,6 +521,10 @@ body.huts .image-main {
   z-index: 1;
 }
 /* activities */
+body.activities .image-main {
+  background-image: url("media/options/experience/003.jpg");
+  z-index: 1;
+}
 body.salmon-fishing .image-main,
 body.halibut-fishing .image-main {
   background-image: url("media/options/fishing/index.jpg");
@@ -542,6 +546,23 @@ body.gear .image-main {
   background-image: url("media/options/gear/index.jpg");
   z-index: 1;
 }
+body.trails .image-main {
+  background-image: url("media/options/experience/010.jpg");
+  z-index: 1;
+}
+body.shop .image-main {
+  background-image: url("media/options/shop/001.jpg");
+  z-index: 1;
+}
+body.sustainability .image-main {
+  background-image: url("media/options/experience/011.jpg");
+  z-index: 1;
+}
+body.surfing .image-main {
+  background-image: url("media/options/experience/006.jpg");
+  z-index: 1;
+}
+
 .image-tagline-container {
   position: absolute;
   bottom: 12%;
@@ -879,6 +900,9 @@ body.kitchen .aux-container .intro__title {
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
 }
+.location-gallery-container .options.surfing {
+  grid-column-gap: 0;
+}
 .location-gallery-container .options.cabins {
   grid-template-areas:
     "main main image1 image1"
@@ -948,6 +972,24 @@ body.kitchen .aux-container .intro__title {
     "image9 image9 image9 image9"
     "image12 image12 image14 image14"
     "image11 image13 image14 image14";
+}
+.location-gallery-container .options.second.trails {
+  grid-template-areas:
+    "image11 image11 image10 image10 image12 image12"
+    "image13 image13 image14 image14 image9 image9";
+}
+.location-gallery-container .options.second.shop {
+  grid-template-areas:
+    "image1 image1 image2 image2 image3 image3 image4 image4"
+    "image5 image5 image6 image6 image7 image7 image8 image8";
+}
+.location-gallery-container .options.second.trails .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-family: Brunette;
+  text-align: center;
 }
 .location-gallery-container .options.livecam {
   grid-template-areas: "image1 image2";
@@ -1382,9 +1424,18 @@ body.kitchen .aux-container .intro__title {
   width: var(--middle-width);
   margin-inline: auto;
 }
+.trails .map-wrapper {
+  width: 100%;
+}
 .map {
   width: 100%;
   min-height: 30rem;
+}
+
+/* ------- weather -------- */
+.weather .list {
+  width: 14rem;
+  margin-inline: auto;
 }
 
 /* ------- background -------- */
@@ -1662,12 +1713,18 @@ body {
     background-color: var(--white-color);
   }
 
-    /* ------- trails -------- */
+  /* ------- trails -------- */
   .trails .intro__title {
     text-transform: capitalize;
     font-size: 3rem;
     line-height: 1.2;
     font-weight: 300;
+  }
+
+  .gear .image-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 1rem;
   }
 
   /* ------- footer -------- */
@@ -1697,6 +1754,9 @@ body {
     display: grid;
     grid-column-gap: 0.5rem;
     grid-row-gap: 0.5rem;
+  }
+  .location-gallery-container .options.surfing {
+    grid-column-gap: 0;
   }
   .map-wrapper,
   .map {
@@ -1738,8 +1798,14 @@ body {
   }
   .location-gallery-container .options {
     display: grid;
-    grid-column-gap: 1rem;
+    grid-column-gap: 0.5rem;
     grid-row-gap: 0.5rem;
+  }
+  .location-gallery-container .options.shop {
+    grid-column-gap: 0.5rem;
+  }
+  .location-gallery-container .options.surfing {
+    grid-column-gap: 0;
   }
   .location-gallery-container .options.cabins {
     grid-template-areas:
@@ -1845,6 +1911,23 @@ body {
       "image4"
       "image5";
   }
+  .location-gallery-container .options.second.trails {
+    grid-template-areas:
+      "image12"
+      "image10"
+      "image11"
+      "image13"
+      "image14"
+      "image9";
+  }
+  .location-gallery-container .options.second.trails .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-family: Brunette;
+    text-align: center;
+  }
   body.catch .image-buttons {
     flex-direction: column;
     grid-row-gap: 1rem;
@@ -1905,6 +1988,6 @@ body {
     flex-wrap: wrap;
   }
   .link-big {
-    font-size: 100%;
+    font-size: 2rem;
   }
 }
