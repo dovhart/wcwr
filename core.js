@@ -502,7 +502,7 @@ function addListings(array, selector, callback) {
           e.stopPropagation();
 
           const feature =
-            attractionPoints.features.find(
+            attractions.features.find(
               (item) => this.id == `listing-${item.data.properties.id}`
             ) ||
             trails.features.find(
@@ -1646,19 +1646,14 @@ function addListings(array, selector, callback) {
         }
         // ATTRACTION POINTS
         addPoints(attractions, "blue");
-        console.log('START attractions')
         addListings(attractions, ".attractions", pointClick);
-        console.log(' ')
 
         // TRAILS
         addPoints(trails, "green");
-        console.log('START trails')
         addListings(trails, ".trails", pointClick);
-        console.log(' ')
 
         // BEACHES
         addPoints(beaches, "steelblue");
-        console.log('START beaches')
         addListings(beaches, ".beaches", pointClick);
 
         // TOILETS
