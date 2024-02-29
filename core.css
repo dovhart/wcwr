@@ -531,6 +531,10 @@ body.halibut-fishing .image-main {
   background-image: url("media/options/fishing/index.jpg?1");
   z-index: 1;
 }
+body.freshwater-fishing .image-main {
+  background-image: url("media/options/fishing/002.jpg");
+  z-index: 1;
+}
 body.catch .image-main {
   background-image: url("media/options/fishing/011.jpg?1");
   z-index: 1;
