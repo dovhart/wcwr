@@ -564,7 +564,7 @@ body.surfing .image-main {
   z-index: 1;
 }
 body.report .image-main {
-  background-image: url("/media/options/fishing/004.jpg?1");
+  background-image: url("media/options/fishing/004.jpg?1");
   z-index: 1;
 }
 
