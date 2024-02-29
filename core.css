@@ -159,6 +159,7 @@ h1 {
 .footer-container {
   min-height: var(--footer-height);
   background-color: var(--black-color);
+  overflow: hidden;
 }
 
 /* ------- HEADER -------- */
@@ -494,7 +495,7 @@ input.gsc-input {
 }
 body.policy .image-main,
 .image-first {
-  background-image: url("media/options/accommodation/001.jpg");
+  background-image: url("media/options/accommodation/001.jpg?1");
   z-index: 1;
   /* width: 0%; */
 }
@@ -505,61 +506,65 @@ body.policy .image-main,
 }
 /* accommodations */
 body.cotton-wood .image-main {
-  background-image: url("media/options/accommodation/cotton-wood/003.jpg");
+  background-image: url("media/options/accommodation/cotton-wood/003.jpg?1");
   z-index: 1;
 }
 body.sitka .image-main {
-  background-image: url("media/options/accommodation/sitka/index.jpg");
+  background-image: url("media/options/accommodation/sitka/index.jpg?1");
   z-index: 1;
 }
 body.suites .image-main {
-  background-image: url("media/options/accommodation/suites/index.jpg");
+  background-image: url("media/options/accommodation/suites/index.jpg?1");
   z-index: 1;
 }
 body.huts .image-main {
-  background-image: url("media/options/accommodation/huts/005.jpg");
+  background-image: url("media/options/accommodation/huts/005.jpg?1");
   z-index: 1;
 }
 /* activities */
 body.activities .image-main {
-  background-image: url("media/options/experience/003.jpg");
+  background-image: url("media/options/experience/003.jpg?1");
   z-index: 1;
 }
 body.salmon-fishing .image-main,
 body.halibut-fishing .image-main {
-  background-image: url("media/options/fishing/index.jpg");
+  background-image: url("media/options/fishing/index.jpg?1");
   z-index: 1;
 }
 body.catch .image-main {
-  background-image: url("media/options/fishing/011.jpg");
+  background-image: url("media/options/fishing/011.jpg?1");
   z-index: 1;
 }
 body.kitchen .image-main {
-  background-image: url("media/options/kitchen/001.jpg");
+  background-image: url("media/options/kitchen/001.jpg?1");
   z-index: 1;
 }
 body.about-us .image-main {
-  background-image: url("media/general/about-us.jpg");
+  background-image: url("media/general/about-us.jpg?1");
   z-index: 1;
 }
 body.gear .image-main {
-  background-image: url("media/options/gear/index.jpg");
+  background-image: url("media/options/gear/index.jpg?1");
   z-index: 1;
 }
 body.trails .image-main {
-  background-image: url("media/options/experience/010.jpg");
+  background-image: url("media/options/experience/010.jpg?1");
   z-index: 1;
 }
 body.shop .image-main {
-  background-image: url("media/options/shop/001.jpg");
+  background-image: url("media/options/shop/001.jpg?1");
   z-index: 1;
 }
 body.sustainability .image-main {
-  background-image: url("media/options/experience/011.jpg");
+  background-image: url("media/options/experience/011.jpg?1");
   z-index: 1;
 }
 body.surfing .image-main {
-  background-image: url("media/options/experience/006.jpg");
+  background-image: url("media/options/experience/006.jpg?1");
+  z-index: 1;
+}
+body.report .image-main {
+  background-image: url("/media/options/fishing/004.jpg?1");
   z-index: 1;
 }
 
@@ -1234,7 +1239,6 @@ body.kitchen .aux-container .intro__title {
 
 /* ------- faq -------- */
 .faq .list-section {
-  border: 1px solid lightgray;
   margin-bottom: 2rem;
   padding: 0;
 }
@@ -1278,6 +1282,9 @@ body.kitchen .aux-container .intro__title {
 }
 
 /* ------- pricing plan -------- */
+.pricing h1 {
+  font-weight: 500;
+}
 .pricing .intro .title {
   text-transform: uppercase;
   font-family: "Brunette";
@@ -1420,13 +1427,6 @@ body.kitchen .aux-container .intro__title {
   margin: initial;
 }
 
-.map-wrapper {
-  width: var(--middle-width);
-  margin-inline: auto;
-}
-.trails .map-wrapper {
-  width: 100%;
-}
 .map {
   width: 100%;
   min-height: 30rem;
@@ -1436,6 +1436,200 @@ body.kitchen .aux-container .intro__title {
 .weather .list {
   width: 14rem;
   margin-inline: auto;
+}
+
+/* ------- report -------- */
+.report .subtitle {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+.map-wrapper {
+  width: 100%;
+  position: relative;
+}
+.map-wrapper .measure-map {
+  width: 100%;
+}
+.mapboxgl-popup-content pre {
+  white-space: normal !important;
+}
+
+/* ------- map sidebar -------- */
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33%;
+  max-width: 26rem;
+  height: 100%;
+  border-right: 1px solid rgb(0 0 0 / 25%);
+  background-color: #f6f1e8;
+  z-index: 10;
+  display: flex;
+  flex-wrap: nowrap;
+  transition: all 0.3s ease;
+}
+.sidebar .left {
+  width: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+}
+.sidebar .right {
+  width: 0;
+  height: 100%;
+  position: relative;
+}
+.sidebar.collapsed {
+  width: 0;
+}
+.sidebar.collapsed .left {
+  width: 0;
+  overflow: hidden;
+}
+.sidebar.collapsed .expanded,
+.sidebar .collapsed {
+  display: none;
+}
+.sidebar .expanded,
+.sidebar.collapsed .collapsed {
+  display: block;
+}
+.sidebar .close {
+  position: absolute;
+  top: calc(50% - 1rem);
+  right: -1.5rem;
+  width: 1.5rem;
+  height: 3rem;
+  border: 1px solid rgb(0 0 0 / 25%);
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-size: 10px;
+  line-height: 10px;
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white-color);
+  cursor: pointer;
+}
+.sidebar .close .title {
+  display: none;
+  width: 10rem;
+  position: absolute;
+  left: 1.5rem;
+  color: var(--white-color);
+  background-color: var(--black-color);
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.sidebar .close:hover .title {
+  display: block;
+}
+.sidebar .heading {
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  border-bottom: 1px solid lightgray;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow-x: auto;
+  text-transform: uppercase;
+  font-family: var(--ff-effra);
+  font-size: var(--fs-effra);
+}
+.sidebar .heading .open,
+.sidebar .heading .closed {
+  width: 1.25rem;
+  text-align: center;
+  display: inline-block;
+}
+.sidebar .heading .open {
+  display: none;
+}
+.sidebar .heading.active .open {
+  display: inline-block;
+}
+.sidebar .heading.active .closed {
+  display: none;
+}
+
+.sidebar .heading .circle-color {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+  margin-inline: 0.5rem;
+}
+.sidebar .attractions .heading .circle-color {
+  background-color: blue;
+}
+.sidebar .trails .heading .circle-color {
+  background-color: darkgreen;
+}
+.sidebar .fishing .heading .circle-color {
+  background-color: navy;
+}
+.sidebar .restricted .heading .circle-color {
+  background-color: red;
+}
+.sidebar .beaches .heading .circle-color {
+  background-color: steelblue;
+}
+.sidebar .toilets .heading .circle-color {
+  background-color: var(--black-color);
+}
+.sidebar .parking .heading .circle-color {
+  background-color: slategrey;
+}
+.sidebar .useful .heading .circle-color {
+  background-color: peru;
+}
+
+/* ------- map sidebar listings -------- */
+.sidebar .listings {
+  height: 0;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+}
+.sidebar .listings.open {
+  height: auto;
+  overflow: auto;
+}
+.sidebar .initial-view {
+  margin-left: 7rem;
+  padding-top: 1rem;
+}
+.sidebar .initial-view,
+.sidebar .listings .item {
+  display: block;
+  padding-inline: 1rem;
+  padding-bottom: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.sidebar .listings .item:first-child {
+  padding-top: 1rem;
+}
+.sidebar .listings .item pre {
+  margin: 0;
+  white-space: normal;
+}
+.sidebar .initial-view a,
+.sidebar .listings .item a {
+  cursor: pointer;
+  color: var(--main-color);
+  font-weight: 700;
+  text-decoration: none;
+}
+.sidebar .listings .item:hover a {
+  color: var(--black-color);
+  border-bottom: 0;
+}
+.sidebar .listings .item.active a {
+  text-decoration: underline;
+}
+
+.sidebar .listings .item:last-child {
+  border-bottom: none;
 }
 
 /* ------- background -------- */
@@ -1762,6 +1956,14 @@ body {
   .map {
     width: 100%;
   }
+
+  .report .sidebar {
+    width: 50%;
+    max-width: 26rem;
+  }
+  .report .sidebar .close .title {
+    display: none !important;
+  }
 }
 
 @media screen and (min-width: 896px) {
@@ -1989,5 +2191,9 @@ body {
   }
   .link-big {
     font-size: 2rem;
+  }
+
+  .report .sidebar .initial-view {
+    margin-left: 2rem;
   }
 }
