@@ -22,8 +22,9 @@
   /* --header-bg-color: navajowhite; */
   --header-bg-color: #c2a061;
   /* --header-border-color: #dfe1e5; */
-  --header-border-color: #e3530d;
-  --main-color: #e3530d;
+  --header-border-color: gray;
+  /* --header-border-color: #e3530d; */
+  /* --main-color: #e3530d; */
   --black-color: #111111;
   --white-color: #f9f9f9;
   --golden-color: #c2a061;
@@ -128,6 +129,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 body {
   font-size: var(--fs-default);
@@ -147,8 +149,9 @@ h1 {
 /* ------- LAYOUT -------- */
 .header-container {
   height: var(--header-height);
-  background-color: var(--header-bg-color);
-  border-bottom: 1px solid var(--header-border-color);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 .page-container {
   height: calc(100svh - var(--header-height));
@@ -171,7 +174,11 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* grid-row-gap: 1rem; */
+  position: relative;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  background-color: var(--white-color);
 }
 .search-and-menu {
   flex-grow: 1;
@@ -180,13 +187,161 @@ h1 {
   justify-content: flex-start;
   align-items: flex-start;
   height: 100%;
-  border-left: 1px solid var(--header-border-color);
+  /* border-left: 1px solid var(--header-border-color); */
+  border-left: 1px solid gray;
 }
 .main-menu {
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
   align-items: center;
   height: 100%;
+}
+.main-menu > ul {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* position: relative; */
+  display: flex;
+  font-size: 1.25rem;
+}
+.main-menu > ul > li {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+}
+.sub-menu {
+  position: absolute;
+  left: -1px;
+  max-width: var(--main-width);
+  min-width: calc(100% + 2px);
+  background-color: var(--golden-color);
+  border-right: 1px solid var(--black-color);
+  z-index: 2;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: all 0.4s ease-in-out;
+}
+.sub-menu > ul {
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.sub-menu > ul > li {
+  /* height: calc(var(--header-height) / 2); */
+  border: 1px solid var(--black-color);
+  border-right: none;
+  width: 100%;
+  display: inline-block;
+  height: 12rem;
+  padding-block: 0.5rem;
+  padding-inline: 0.5rem;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.sub-menu .menu-item {
+  color: var(--white-color);
+  background-color: hsl(0 0 0 / 0.25);
+  white-space: normal;
+}
+.sub-menu .menu-item span {
+  display: inline-block;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(2px);
+  text-transform: uppercase;
+}
+.main-menu li:hover .sub-menu {
+  grid-template-rows: 1fr;
+}
+
+.sub-menu .image-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.sub-menu .image-container .image {
+  width: 100%;
+  height: calc(100% - 2px);
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white-color);
+  font-size: 2rem;
+  font-weight: 900;
+}
+.sub-menu .image-container .image.accommodation {
+  background-image: url("media/options/accommodation/001.jpg");
+}
+.sub-menu .image-container .image.activities {
+  background-image: url("media/options/fishing/002.jpg");
+}
+.sub-menu .image-container .image.weather {
+  background-image: url("media/options/surfing/002.jpg");
+}
+.sub-menu .image-container .image.about {
+  background-image: url("media/general/about-us.jpg");
+}
+/**/
+.sub-menu .cabins {
+  background-image: url("media/options/accommodation/001.jpg");
+}
+.sub-menu .cotton-wood {
+  background-image: url("media/options/accommodation/cotton-wood/001.jpg");
+}
+.sub-menu .sitka-spruce {
+  background-image: url("media/options/accommodation/sitka/001.jpg");
+}
+.sub-menu .suites {
+  background-image: url("media/options/accommodation/suites/index.jpg");
+}
+.sub-menu .huts {
+  background-image: url("media/options/accommodation/huts/index.jpg");
+}
+.sub-menu .fishing {
+  background-image: url("media/options/fishing/004.jpg");
+}
+.sub-menu .hiking {
+  background-image: url("media/options/experience/004.jpg");
+}
+.sub-menu .surfing {
+  background-image: url("media/options/surfing/002.jpg");
+}
+.sub-menu .events {
+  background-image: url("media/options/experience/008.jpg");
+}
+.sub-menu .contact {
+  background-image: url("media/general/about-us.jpg");
+}
+.sub-menu .faq {
+  background-image: url("media/options/accommodation/006.jpg");
+}
+.sub-menu .sustainability {
+  background-image: url("media/options/experience/011.jpg");
+}
+.sub-menu .policy {
+  background-image: url("media/options/accommodation/002.jpg");
+}
+
+.sub-menu li:hover > .menu-item,
+.sub-menu .menu-item:hover {
+  text-decoration: underline;
 }
 .header-top .main-menu {
   display: inline-flex;
@@ -197,16 +352,25 @@ h1 {
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
-  /* overflow: hidden; */
 }
 .header-bottom {
   height: calc(var(--header-height) / 2);
+  height: 100%;
   width: 100%;
   border-top: 1px solid var(--header-border-color);
-  /* overflow: hidden; */
+  border-top: none;
+}
+.main-menu.phone {
+  margin-inline: 1rem;
+  justify-content: right;
+}
+.main-menu .link {
+  color: var(--black-color);
+}
+.main-menu .link:hover {
+  text-decoration: underline;
 }
 .menu-item {
-  display: inline-block;
   padding-inline: clamp(0.5rem, 1rem, 1.5rem);
   color: var(--black-color);
   text-decoration: none;
@@ -214,8 +378,13 @@ h1 {
   align-items: center;
   height: 100%;
   white-space: nowrap;
+  font-weight: 600;
 }
-.menu-item:hover {
+.main-menu > ul > li > .menu-item {
+  justify-content: space-evenly;
+}
+.main-menu > ul > li:hover > .menu-item,
+.main-menu > ul > li > .menu-item:hover {
   color: var(--white-color);
   background-color: var(--main-color);
 }
@@ -230,7 +399,6 @@ h1 {
 }
 .book-now-button:hover {
   border-color: var(--main-color);
-  /* background-color: var(--header-bg-color); */
   background-color: var(--white-color);
   color: var(--main-color);
 }
@@ -269,8 +437,6 @@ h1 {
 }
 .gsc-control-cse {
   background-color: var(--header-bg-color) !important;
-  /* border: 0 !important;
-  border-left: 1px solid var(--header-border-color) !important; */
   border: 1px solid var(--header-border-color) !important;
   padding: 0 !important;
 }
@@ -338,7 +504,7 @@ input.gsc-input {
   justify-content: center;
 }
 .mm-close-button-border {
-  border: 1px solid var(--main-color);
+  border: 1px solid var(--black-color);
   border-radius: 0.25rem;
 }
 .mm-close-button {
@@ -348,7 +514,7 @@ input.gsc-input {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--main-color);
+  color: var(--black-color);
   font-weight: 400;
   font-size: x-large;
   transform: translateY(-1px);
@@ -381,7 +547,7 @@ input.gsc-input {
 /* ------- MAIN -------- */
 .main-content {
   height: 100%;
-  /* max-width: var(--main-width); */
+  max-width: var(--main-width);
   margin: auto;
   text-align: center;
   display: flex;
@@ -405,8 +571,11 @@ input.gsc-input {
 .intro__title .fancy-title {
   font-family: "Brunette";
   font-size: 6rem;
+  font-weight: 700;
   word-spacing: 1rem;
   color: var(--black-color);
+  letter-spacing: 0.125rem;
+  text-transform: capitalize;
 }
 .intro__description {
   /* max-width: var(--main-width); */
@@ -418,7 +587,6 @@ input.gsc-input {
   line-height: var(--lh-effra);
 
   text-overflow: ellipsis;
-  /* overflow: hidden; */
   transition-property: all;
   transition-duration: 1s;
   transition-timing-function: ease-in;
@@ -462,14 +630,10 @@ input.gsc-input {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  /* border: 1px solid black; */
   overflow: hidden;
 }
 .option-image-container {
   width: 100%;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   position: relative;
 }
 .option-image-container::after {
@@ -531,6 +695,7 @@ body.halibut-fishing .image-main {
   background-image: url("media/options/fishing/index.jpg?1");
   z-index: 1;
 }
+body.fishing .image-main,
 body.freshwater-fishing .image-main {
   background-image: url("media/options/fishing/002.jpg");
   z-index: 1;
@@ -797,7 +962,7 @@ body.report .image-main {
 }
 .tiles .item .content .link a:hover {
   color: var(--black-color);
-  border-bottom: 0;
+  /* border-bottom: 0; */
 }
 
 /* ------- accommodation page -------- */
@@ -1251,6 +1416,14 @@ body.kitchen .aux-container .intro__title {
   padding-inline: 1rem;
   border-bottom: 1px solid lightgray;
   cursor: pointer;
+  display: flex;
+  justify-content: stretch;
+  align-items: flex-start;
+}
+.question .toggle {
+  position: relative;
+  width: 2rem;
+  min-height: 30px;
 }
 .answer:last-of-type,
 .question:last-of-type {
@@ -1263,33 +1436,38 @@ body.kitchen .aux-container .intro__title {
   display: inline-block;
   width: 1.25rem;
   text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .answer {
   border-bottom: 1px solid lightgray;
   padding-inline: 1rem;
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: all 0.3s ease-out;
 }
-.question .open {
-  display: none;
+.inner {
+  overflow: hidden;
 }
 .question.active + .answer {
-  max-height: 50rem;
   padding-block: 1rem;
+  grid-template-rows: 1fr;
 }
-.question.active .open {
-  display: inline-block;
+.question .closed {
+  height: 100%;
+  transition: all 0.3s ease-out;
+  overflow: hidden;
 }
 .question.active .closed {
-  display: none;
+  height: 0%;
 }
 
 /* ------- pricing plan -------- */
 .pricing h1 {
   font-weight: 500;
 }
-.pricing .intro .title {
+.intro .title {
   text-transform: uppercase;
   font-family: "Brunette";
   font-size: var(--fs-h1);
@@ -1298,42 +1476,49 @@ body.kitchen .aux-container .intro__title {
   text-align: center;
   word-spacing: 1rem;
 }
-.pricing .tiles {
+.tiles {
   margin-bottom: 5rem;
 }
-.pricing .tiles .item {
-  max-width: 24rem;
+.tiles .item {
+  /* max-width: 24rem; */
+  max-width: 18.125rem;
 }
-.pricing .tiles.wide .item {
+.tiles.wide .item {
   width: 24rem;
 }
-.pricing .tiles .content {
+.tiles.short .item {
+  min-height: 25rem;
+}
+.tiles.short .item .content {
+  height: 100%;
+}
+.tiles .content {
   padding-block: 3rem;
   padding-inline: 2rem;
-  height: 100%;
-  min-height: calc(100% - 15rem);
+  /* height: 100%;
+  min-height: calc(100% - 15rem); */
 }
-.pricing .tiles .sub {
+.tiles .sub {
   font-weight: 700;
 }
-.pricing .tiles .price {
+.tiles .price {
   font-size: 3rem;
 }
-.pricing .tiles .line {
+.tiles .line {
   border-bottom: 1px solid var(--black-color);
   margin-block: 1rem;
 }
-.pricing .tiles .price h3 {
+.tiles .price h3 {
   margin: 0;
 }
-.pricing .tiles .description {
+.tiles .description {
   margin-bottom: 0.5rem;
 }
-.pricing .tiles .checkmark {
+.tiles .checkmark {
   margin-right: 0.75rem;
 }
-.pricing .intro .link a,
-.pricing .tiles .item .content .link a {
+.intro .link a,
+.tiles .item .content .link a {
   display: block;
   text-align: center;
   background-color: var(--black-color);
@@ -1343,12 +1528,12 @@ body.kitchen .aux-container .intro__title {
   border: 1px solid var(--black-color);
   font-weight: 400;
 }
-.pricing .intro .link a:hover,
-.pricing .tiles .item .content .link a:hover {
+.intro .link a:hover,
+.tiles .item .content .link a:hover {
   background-color: var(--white-color);
   color: var(--black-color);
 }
-.pricing .intro .link a {
+.intro .link a {
   width: 10rem;
   margin: auto;
 }
@@ -1358,11 +1543,11 @@ body.kitchen .aux-container .intro__title {
 .pricing .list-section {
   margin-bottom: 3rem;
 }
-.pricing .description {
+.intro .description {
   font-size: var(--fs-effra);
   margin-block: 1rem;
 }
-.pricing .intro__description {
+.intro .intro__description {
   margin-block: 1rem;
   text-align: justify;
 }
@@ -1443,7 +1628,7 @@ body.kitchen .aux-container .intro__title {
 }
 
 /* ------- report -------- */
-.report .subtitle {
+.subtitle {
   text-align: right;
   margin-bottom: 1rem;
 }
@@ -1539,6 +1724,7 @@ body.kitchen .aux-container .intro__title {
   text-transform: uppercase;
   font-family: var(--ff-effra);
   font-size: var(--fs-effra);
+  display: flex;
 }
 .sidebar .heading .open,
 .sidebar .heading .closed {
@@ -1590,16 +1776,18 @@ body.kitchen .aux-container .intro__title {
 
 /* ------- map sidebar listings -------- */
 .sidebar .listings {
-  height: 0;
-  overflow: hidden;
-  transition: all 1s ease-in-out;
+  /* height: 0; */
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: all 0.3s ease-in-out;
 }
 .sidebar .listings.open {
-  height: auto;
-  overflow: auto;
+  /* height: auto;
+  overflow: auto; */
+  grid-template-rows: 1fr;
 }
 .sidebar .initial-view {
-  margin-left: 7rem;
+  text-align: center;
   padding-top: 1rem;
 }
 .sidebar .initial-view,
@@ -1636,6 +1824,120 @@ body.kitchen .aux-container .intro__title {
   border-bottom: none;
 }
 
+/* ------- fishing: tabs -------- */
+.fishing .tabs-container {
+  background-color: var(--main-color);
+  padding-top: 1rem;
+}
+.fishing .tabs {
+  --size: 1.5rem;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  font-family: var(--ff-effra);
+  font-size: var(--fs-effra);
+}
+.fishing .tabs li {
+  padding-bottom: 1rem;
+  background-color: var(--main-color);
+  border-radius: 2rem 2rem 0 0;
+}
+.fishing .tabs li.active {
+  view-transition-name: activeNavTab;
+  background-color: var(--white-color);
+  position: relative;
+}
+.tabs li .curve {
+  display: none;
+}
+.tabs li.active .left-curve {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: calc(var(--size) * -1);
+  width: var(--size);
+  height: var(--size);
+  background-color: var(--white-color);
+}
+.tabs li .left-curve div {
+  width: 100%;
+  height: 100%;
+  border-radius: 0 0 var(--size) 0;
+  background-color: var(--main-color);
+}
+.tabs li.active .right-curve {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  right: calc(var(--size) * -1);
+  width: var(--size);
+  height: var(--size);
+  background-color: var(--white-color);
+}
+.tabs li .right-curve div {
+  width: 100%;
+  height: 100%;
+  border-radius: 0 0 0 var(--size);
+  background-color: var(--main-color);
+}
+
+::view-transition-group(activeNavTab) {
+  animation-duration: 500ms;
+}
+/* .fishing .tabs li.active::before,
+.fishing .tabs li.active::after {
+  --size: 1.5rem;
+
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: var(--size);
+  height: var(--size);
+}
+.fishing .tabs li.active::before {
+  border-radius: 0 0 var(--size) 0;
+  box-shadow: 5px 5px 0 5px var(--white-color);
+  left: calc(var(--size) * -1);
+}
+.fishing .tabs li.active::after {
+  border-radius: 0 0 0 var(--size);
+  box-shadow: -5px 5px 0 5px var(--white-color);
+  right: calc(var(--size) * -1);
+} */
+.fishing .tabs li.active a {
+  color: var(--black-color);
+}
+.fishing .tabs a {
+  color: var(--white-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding-inline: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+/* ------- fishing: chart -------- */
+.chart {
+  padding-top: 1rem;
+  max-width: 50rem;
+  min-width: 100%;
+  margin-inline: auto;
+  background-color: var(--white-color);
+}
+.chart .caption,
+.chart .tick text {
+  font-size: 1rem;
+}
+.fishing .intro.sticky-top {
+  max-width: unset;
+}
+
 /* ------- background -------- */
 body {
   position: relative;
@@ -1655,6 +1957,7 @@ body {
   /* background-size: cover; */
   z-index: -1;
 }
+.fishing .intro::before,
 .pricing .intro::before {
   opacity: 0.1;
 }
@@ -1662,6 +1965,12 @@ body {
 .contact-us .intro__description.two-column {
   align-items: center;
   grid-template-columns: 10% 1fr;
+}
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 /* ------- FOOTER -------- */
@@ -1893,7 +2202,7 @@ body {
   }
 
   /* ------- pricing -------- */
-  .pricing .tiles {
+  .tiles {
     grid-column-gap: 0;
     justify-content: space-evenly;
   }
@@ -2189,7 +2498,7 @@ body {
     left: calc(50% - 2rem);
   }
 
-  .pricing .tiles {
+  .tiles {
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -2197,7 +2506,22 @@ body {
     font-size: 2rem;
   }
 
-  .report .sidebar .initial-view {
-    margin-left: 2rem;
+  .sidebar {
+    width: 70%;
+    max-width: unset;
+  }
+
+  .chart {
+    max-width: 100%;
+  }
+
+  .fishing .tabs {
+    gap: 0;
+    overflow: hidden;
+  }
+  .fishing .tabs a {
+    padding-inline: 1rem;
   }
 }
+
+/* background: hsl(0 0% 100% / 0.1); */

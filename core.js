@@ -311,7 +311,7 @@ function highlightCurrentDay() {
 }
 
 function addListings(array, selector, callback) {
-  const $listings = document.querySelector(`.listings${selector}`);
+  const $listings = document.querySelector(`.listings${selector} .inner`);
   for (const feature of array.features) {
     const $listingsItem = $listings.appendChild(document.createElement("div"));
     $listingsItem.id = `listing-${feature.data.properties.id}`;
@@ -377,7 +377,7 @@ function addListings(array, selector, callback) {
     }, 1000 * 90);
   }
 
-  if (["faq", "pricing", "report"].indexOf(PAGE) > -1) {
+  if (["faq", "pricing", "fishing", "report"].indexOf(PAGE) > -1) {
     const $questionList = document.querySelectorAll(".question");
     $questionList.forEach(($item) => {
       $item.addEventListener("click", function () {
@@ -1671,7 +1671,7 @@ function addListings(array, selector, callback) {
     }
   }
 
-  if (PAGE == "report") {
+  if (PAGE == "report" || PAGE == "fishing") {
     if (!mapboxgl.supported()) {
       document.querySelector("#map").style.display = "none";
     } else {
@@ -2158,6 +2158,16 @@ function addListings(array, selector, callback) {
       //   .setLngLat([-124.768889, 48.616667])
       //   .addTo(map);
     }
+  }
+
+  if (PAGE == "fishing") {
+    function setActiveTab() {
+      document.querySelector(".tabs li.active").classList.remove("active");
+      this.classList.add("active");
+    }
+    document.querySelectorAll(".tabs li").forEach(($li) => {
+      $li.addEventListener("click", setActiveTab);
+    });
   }
 
   $mobileIcon.addEventListener("click", toggleMobileMenu);
