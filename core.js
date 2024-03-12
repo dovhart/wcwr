@@ -224,9 +224,7 @@ async function updatePage() {
   const fileVersion = document
     .querySelector(".version")
     .getAttribute("content");
-  const response = await fetch(
-    "/wcwr/version.json?" + 1 * Math.random().toString().split(".")[1]
-  );
+  const response = await fetch("/wcwr/version.json?" + Date.now());
   const version = await response.json();
   if (fileVersion < version.pages[PAGE]) {
     location.reload(true);
