@@ -224,11 +224,14 @@ async function updatePage() {
   const fileVersion = document
     .querySelector(".version")
     .getAttribute("content");
-  const response = await fetch("/wcwr/version.json?3");
+  const response = await fetch(
+    "/version.json?" + 1 * Math.random().toString().split(".")[1]
+  );
   const version = await response.json();
   if (fileVersion < version.pages[PAGE]) {
     location.reload(true);
   }
+  setTimeout(updatePage, 10 * 60 * 1000);
 }
 
 function highlightCurrentDay() {
@@ -1967,23 +1970,26 @@ function addListings(array, selector, callback) {
         addListings(fishingAreas, ".fishing", areaClick);
 
         // red dashed pattern
-        map.loadImage("../media/general/pattern-red-square.png", (err, image) => {
-          if (err) throw err;
+        map.loadImage(
+          "../media/general/pattern-red-square.png",
+          (err, image) => {
+            if (err) throw err;
 
-          map.addImage("pattern-red-stripes", image);
+            map.addImage("pattern-red-stripes", image);
 
-          restrictedAreas.features.forEach((item) => {
-            const id = item.data.properties.id;
-            map.addLayer({
-              id: id,
-              type: "fill",
-              source: id,
-              paint: {
-                "fill-pattern": "pattern-red-stripes",
-              },
+            restrictedAreas.features.forEach((item) => {
+              const id = item.data.properties.id;
+              map.addLayer({
+                id: id,
+                type: "fill",
+                source: id,
+                paint: {
+                  "fill-pattern": "pattern-red-stripes",
+                },
+              });
             });
-          });
-        });
+          }
+        );
 
         // carmanah-point
         map.addSource("carmanah-point", {
