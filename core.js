@@ -225,7 +225,7 @@ async function updatePage() {
     .querySelector(".version")
     .getAttribute("content");
   const response = await fetch(
-    "/version.json?" + 1 * Math.random().toString().split(".")[1]
+    "/wcwr/version.json?" + 1 * Math.random().toString().split(".")[1]
   );
   const version = await response.json();
   if (fileVersion < version.pages[PAGE]) {
