@@ -136,6 +136,11 @@ body {
   font-size: var(--fs-default);
   line-height: var(--lh-default);
   font-family: var(--ff-effra);
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 * {
   box-sizing: border-box;
@@ -153,9 +158,11 @@ h1 {
   position: sticky;
   top: 0;
   z-index: 50;
+  background-color: var(--white-color);
+  border-bottom: 1px solid gray;
 }
 .page-container {
-  height: calc(100svh - var(--header-height));
+  height: calc(60svh - var(--header-height));
 }
 .page-container-secondary {
   height: calc(30svh - var(--header-height));
@@ -176,9 +183,8 @@ h1 {
   justify-content: space-between;
   align-items: center;
   position: relative;
-  border-left: 1px solid gray;
-  border-right: 1px solid gray;
-  border-bottom: 1px solid gray;
+  /* border-left: 1px solid gray; */
+  /* border-right: 1px solid gray; */
   background-color: var(--white-color);
 }
 .search-and-menu {
@@ -189,7 +195,7 @@ h1 {
   align-items: flex-start;
   height: 100%;
   /* border-left: 1px solid var(--header-border-color); */
-  border-left: 1px solid gray;
+  /* border-left: 1px solid gray; */
 }
 .main-menu {
   /* overflow: hidden; */
@@ -338,6 +344,18 @@ h1 {
 }
 .sub-menu .policy {
   background-image: url("media/options/accommodation/002.jpg");
+}
+.sub-menu .weather {
+  background-image: url("/media/options/experience/006.jpg");
+}
+.sub-menu .livecam {
+  background-image: url("/media/options/fishing/003.jpg");
+}
+.sub-menu .report {
+  background-image: url("/media/options/fishing/005.jpg");
+}
+.sub-menu .surf-forecast {
+  background-image: url("/media/options/surfing/002.jpg");
 }
 
 .sub-menu li:hover > .menu-item,
@@ -549,7 +567,7 @@ input.gsc-input {
 /* ------- MAIN -------- */
 .main-content {
   height: 100%;
-  max-width: var(--main-width);
+  max-width: var(--wide-width);
   margin: auto;
   text-align: center;
   display: flex;
@@ -571,8 +589,8 @@ input.gsc-input {
   padding-block: clamp(1rem, 3vh, 2rem);
 }
 .intro__title .fancy-title {
-  font-family: "Brunette";
-  font-size: 6rem;
+  /* font-family: "Brunette"; */
+  font-size: 4rem;
   font-weight: 700;
   word-spacing: 1rem;
   color: var(--black-color);
@@ -584,6 +602,7 @@ input.gsc-input {
   max-width: var(--middle-width);
   margin: auto;
   padding-bottom: 3rem;
+  padding-inline: 1rem;
   /* font-size: clamp(0.95rem, 2vw, 1.1rem); */
   font-size: var(--fs-effra);
   line-height: var(--lh-effra);
@@ -648,7 +667,7 @@ input.gsc-input {
   background-image: url(media/wave.png);
   background-repeat: repeat-x;
   background-position: left;
-  z-index: 10;
+  z-index: 1;
 }
 .option-image {
   background-repeat: no-repeat;
@@ -989,7 +1008,7 @@ body.report .image-main {
 .location .intro__title,
 .location-includes-container .title {
   text-transform: uppercase;
-  font-family: "Brunette";
+  /* font-family: "Brunette"; */
   font-size: var(--fs-title);
   font-weight: 700;
   line-height: var(--lh-title);
@@ -1229,7 +1248,7 @@ body.kitchen .aux-container .intro__title {
   color: var(--white-color);
 }
 .includes-container .wrapper {
-  max-width: var(--middle-width);
+  max-width: var(--main-width);
   margin: auto;
   padding-block: 2rem;
 }
@@ -1259,6 +1278,7 @@ body.kitchen .aux-container .intro__title {
 .includes-container .intro__description {
   text-align: center;
   padding-bottom: 0;
+  padding-inline: 1rem;
 }
 .intro .grid {
   display: grid;
@@ -1471,7 +1491,7 @@ body.kitchen .aux-container .intro__title {
 }
 .intro .title {
   text-transform: uppercase;
-  font-family: "Brunette";
+  /* font-family: "Brunette"; */
   font-size: var(--fs-h1);
   font-weight: 700;
   line-height: var(--lh-h1);
@@ -1635,8 +1655,9 @@ body.kitchen .aux-container .intro__title {
   margin-bottom: 1rem;
 }
 .map-wrapper {
-  width: 100%;
+  max-width: var(--wide-width);
   position: relative;
+  margin-inline: auto;
 }
 .map-wrapper .measure-map {
   width: 100%;
@@ -1941,9 +1962,6 @@ body.kitchen .aux-container .intro__title {
 }
 
 /* ------- background -------- */
-body {
-  position: relative;
-}
 .intro::before {
   content: " ";
   display: block;
@@ -1959,6 +1977,7 @@ body {
   /* background-size: cover; */
   z-index: -1;
 }
+.about-us .intro::before,
 .fishing .intro::before,
 .pricing .intro::before {
   opacity: 0.1;
