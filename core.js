@@ -326,9 +326,23 @@ function addListings(array, selector, callback) {
   }
 }
 
+function setSubmenuWidth(e) {
+  const width =
+    document.querySelector(".header-content .logo-container").clientWidth +
+    document.querySelector(".header-content .search-and-menu").clientWidth +
+    document.querySelector(".header-content .book-now").clientWidth +
+    4;
+  // document.body.style.setProperty("--sub-menu-width", width);
+  document.querySelectorAll(".header-content .sub-menu ul").forEach((item) => {
+    item.style.width = width + "px";
+  });
+}
+
 (function () {
   // update
   updatePage();
+  window.addEventListener("resize", setSubmenuWidth);
+  setSubmenuWidth();
 
   // on resize
   if (PAGE == "index" || !PAGE) {
