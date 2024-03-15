@@ -1205,6 +1205,11 @@ body.kitchen .aux-container .intro__title {
 .location-gallery-container .options.gear {
   grid-template-areas: "image1 image2";
 }
+.location-gallery-container .options.boats {
+  grid-template-areas:
+    "image1 image2 image2 image2"
+    "image4 image4 image4 image3";
+}
 .location-gallery-container .options img {
   object-fit: cover;
   width: 100%;
@@ -1995,6 +2000,64 @@ body.kitchen .aux-container .intro__title {
 }
 .fishing .intro.sticky-top {
   max-width: unset;
+}
+
+/* ------- fishing: table -------- */
+.table {
+  background-color: var(--white-color);
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  border: 1px solid var(--black-color);
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+}
+.table th,
+.table tfoot td {
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+.table th.input {
+  width: 20rem;
+}
+.table td.input {
+  padding: 0;
+}
+.table td.input input {
+  width: 100%;
+  height: 2.75rem;
+  border: none;
+  font-size: 1.5rem;
+  text-align: right;
+  padding-inline: 0.25rem;
+}
+.table td.dressed,
+.table td.pack,
+.table td.price {
+  text-align: right;
+}
+.table .total-row td {
+  text-align: right;
+}
+.table tr.plain td {
+  font-weight: 100;
+}
+.table .text {
+  font-weight: 100;
+  text-align: center;
+}
+
+.fishing .image.gear {
+  width: 100%;
+  height: 50svh;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  background-image: url("../media/options/gear/003.JPG");
 }
 
 /* ------- background -------- */

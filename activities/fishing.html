@@ -8,7 +8,7 @@
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
     />
-    <meta name="version" content="17" class="version" />
+    <meta name="version" content="18" class="version" />
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
     <link
@@ -22,7 +22,7 @@
       type="text/css"
     />
 
-    <link href="../core.css?17" type="text/css" media="all" rel="stylesheet" />
+    <link href="../core.css?18" type="text/css" media="all" rel="stylesheet" />
 
     <title>Fishing | Wild Coast Wilderness Resort</title>
   </head>
@@ -350,9 +350,19 @@
       </div>
 
       <div class="includes-container fishing">
-        <div class="wrapper">
-          <div class="intro__description">
-            REQUIRED: Saltwater fishing license with salmon stamp
+        <div class="wrapper" style="max-width: 56rem">
+          <div class="intro__description" style="text-align: left">
+            <div style="text-align: center">REQUIRED:</div>
+            <ul>
+              <li>
+                Tidal fishing license with salmon stamp if wanting to retain
+                fish.
+              </li>
+              <li>
+                A paper copy must be present when fishing (digital copy on your
+                phone is not accepted).
+              </li>
+            </ul>
             <!-- <a
             target="_blank"
             class="button button-left button-dark"
@@ -725,7 +735,7 @@
         </div>
         <div class="intro last-section">
           <div class="description"></div>
-          <div class="title">Still have questions?</div>
+          <div class="intro__title sub-title">Still have questions?</div>
           <div class="description">
             Contact our team for further assistance.
           </div>
@@ -772,13 +782,148 @@
             catch back home; our top quality catch care service keeps your fish
             tasting “just caught fresh” all winter long.
           </div>
-          <a name="regs-reports"></a>
-          <div class="intro__description">
-            For guests wanting to have their fish canned or smoked, St. Jean’s
-            Cannery offers a great service and can be found right here on
-            Vancouver Island, with additional locations close to the Vancouver
-            International Airport (YVR) in Richmond, BC.
+          <div class="intro__title sub-title">
+            <div>Price Estimator</div>
           </div>
+          <div class="intro__description">
+            <div class="table-wrapper">
+              <table class="table">
+                <thead class="header">
+                  <tr>
+                    <th>Species</th>
+                    <th class="input">Input Weight, lbs</th>
+                    <th>Dressed Weight, lbs</th>
+                    <th>Packs</th>
+                    <th>Additional Fees</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Chinook</td>
+                    <td class="input">
+                      <input
+                        class="weight"
+                        type="number"
+                        placeholder="input your values here"
+                        value=""
+                        name="chinook"
+                      />
+                    </td>
+                    <td class="dressed chinook"></td>
+                    <td class="pack chinook"></td>
+                    <td rowspan="7"></td>
+                  </tr>
+                  <tr>
+                    <td>Coho</td>
+                    <td class="input">
+                      <input
+                        class="weight"
+                        type="number"
+                        value=""
+                        name="coho"
+                      />
+                    </td>
+                    <td class="dressed coho"></td>
+                    <td class="pack coho"></td>
+                  </tr>
+                  <tr>
+                    <td>Halibut</td>
+                    <td class="input">
+                      <input
+                        class="weight"
+                        type="number"
+                        value=""
+                        name="halibut"
+                      />
+                    </td>
+                    <td class="dressed halibut"></td>
+                    <td class="pack halibut"></td>
+                  </tr>
+                  <tr>
+                    <td>Ling Cod</td>
+                    <td class="input">
+                      <input
+                        class="weight"
+                        type="number"
+                        value=""
+                        name="lingcod"
+                      />
+                    </td>
+                    <td class="dressed lingcod"></td>
+                    <td class="pack lingcod"></td>
+                  </tr>
+                  <tr>
+                    <td>Black Cod</td>
+                    <td class="input">
+                      <input
+                        class="weight"
+                        type="number"
+                        value=""
+                        name="blackcod"
+                      />
+                    </td>
+                    <td class="dressed blackcod"></td>
+                    <td class="pack blackcod"></td>
+                  </tr>
+                  <tr>
+                    <td>Rock Fish</td>
+                    <td class="input">
+                      <input
+                        class="weight"
+                        type="number"
+                        value=""
+                        name="rockfish"
+                      />
+                    </td>
+                    <td class="dressed rockfish"></td>
+                    <td class="pack rockfish"></td>
+                  </tr>
+                  <tr>
+                    <td>Other</td>
+                    <td class="input">
+                      <input
+                        class="weight"
+                        type="number"
+                        value=""
+                        name="other"
+                      />
+                    </td>
+                    <td class="dressed other"></td>
+                    <td class="pack other"></td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr class="total-row plain">
+                    <td colspan="3" rowspan="5">
+                      <div class="text">
+                        Weight of processed fish margin of error is &#177; 10%
+                      </div>
+                    </td>
+                    <td>Packs</td>
+                    <td class="packs">0</td>
+                  </tr>
+                  <tr class="total-row plain">
+                    <td>Price</td>
+                    <td class="price">$0 CAD</td>
+                  </tr>
+                  <tr class="total-row plain">
+                    <td>Additional Fees</td>
+                    <td class="fees">$0 CAD</td>
+                  </tr>
+                  <tr class="total-row plain">
+                    <td>GST 5%</td>
+                    <td class="gst">$0 CAD</td>
+                  </tr>
+                  <tr class="total-row">
+                    <td>Total</td>
+                    <td class="total">$0 CAD</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <a name="regs-reports"></a>
           <div class="image-buttons">
             <a class="button button-left button-dark contact">Contact Us</a>
             <a
@@ -809,10 +954,6 @@
           <div class="aux-container-wrapper middle-width">
             <div class="intro__title sub-title">
               <div>Saltwater licensing & limits</div>
-            </div>
-            <div class="intro__description">
-              Most guests hit their limit on Chinook and Halibut and typically
-              leave with between 100 – 120lbs of fish per person.
             </div>
             <div class="grid">
               <div class="grid-item">
@@ -990,8 +1131,36 @@
       <!-- BOAT & GEAR -->
       <div class="section-gear">
         <div class="intro">
-          <div class="intro__title">
+          <div class="intro__title" style="padding-bottom: 0">
             <div>BOATS</div>
+          </div>
+          <div class="location-gallery-container">
+            <div class="options boats">
+              <div class="image1">
+                <img
+                  src="../media/options/fishing/015.jpg"
+                  alt="salmon fishing"
+                />
+              </div>
+              <div class="image2">
+                <img
+                  src="../media/options/fishing/017.jpg"
+                  alt="salmon fishing"
+                />
+              </div>
+              <div class="image3">
+                <img
+                  src="../media/options/fishing/016.jpg"
+                  alt="salmon fishing"
+                />
+              </div>
+              <div class="image4">
+                <img
+                  src="../media/options/fishing/018.jpg"
+                  alt="salmon fishing"
+                />
+              </div>
+            </div>
           </div>
           <div class="intro__description">
             Wild Coast Wilderness Resort has 6 vessels, each custom designed &
@@ -1006,6 +1175,9 @@
         <div class="intro">
           <div class="intro__title">
             <div>GEAR</div>
+          </div>
+          <div class="image gear">
+            <!-- <img src="/media/options/gear/003.JPG" alt="salmon fishing" /> -->
           </div>
           <div class="intro__description">
             We tailor our gear to the type of fishing you are doing on the day,
@@ -1210,7 +1382,7 @@
         </div>
       </div>
     </footer>
-    <script src="../core.js?17"></script>
+    <script src="../core.js?18"></script>
     <script src="../d3.v7.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/d3@7"></script> -->
     <script type="application/javascript">
@@ -1240,7 +1412,7 @@
         // Declare the y (vertical position) scale.
         const y = d3
           .scaleLinear()
-          .domain([50, 100])
+          .domain([0, 100])
           .range([height - marginBottom, marginTop]);
 
         // Create the SVG container.
@@ -1278,38 +1450,38 @@
               .attr("fill", "currentColor")
               .attr("text-anchor", "start")
               .attr("class", "caption")
-              .text("↑ Fish catched (%)")
-          )
-          .call((g) =>
-            g
-              .append("text")
-              .attr("x", 0)
-              .attr("y", height * 0.2)
-              .attr("fill", "cornflowerblue")
-              .attr("text-anchor", "start")
-              .attr("class", "caption")
-              .text("halibut")
-          )
-          .call((g) =>
-            g
-              .append("text")
-              .attr("x", 0)
-              .attr("y", height - 40)
-              .attr("fill", "red")
-              .attr("text-anchor", "start")
-              .attr("class", "caption")
-              .text("coho")
-              )
-              .call((g) =>
-              g
-              .append("text")
-              .attr("x", 0)
-              .attr("y", height / 2 + height * 0.19)
-              .attr("fill", "green")
-              .attr("text-anchor", "start")
-              .attr("class", "caption")
-              .text("springs")
+              .text("↑ Historial Volumes (%)")
           );
+        // .call((g) =>
+        //   g
+        //     .append("text")
+        //     .attr("x", 0)
+        //     .attr("y", height * 0.2)
+        //     .attr("fill", "cornflowerblue")
+        //     .attr("text-anchor", "start")
+        //     .attr("class", "caption")
+        //     .text("halibut")
+        // )
+        // .call((g) =>
+        //   g
+        //     .append("text")
+        //     .attr("x", 0)
+        //     .attr("y", height - 40)
+        //     .attr("fill", "red")
+        //     .attr("text-anchor", "start")
+        //     .attr("class", "caption")
+        //     .text("coho")
+        // )
+        // .call((g) =>
+        //   g
+        //     .append("text")
+        //     .attr("x", 0)
+        //     .attr("y", height / 2 + height * 0.19)
+        //     .attr("fill", "green")
+        //     .attr("text-anchor", "start")
+        //     .attr("class", "caption")
+        //     .text("springs")
+        // );
         //   .call(d3.axisLeft(y).ticks(height / 40))
 
         // Append a path for the line.

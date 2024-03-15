@@ -1657,6 +1657,10 @@ function setSubmenuWidth(e) {
               },
             });
             map.on("click", `${id}-point`, showPopupPoint);
+            map.on("mouseenter", `${id}-point`, showPopupPoint);
+            map.on("mouseleave", `${id}-point`, function (e) {
+              popupPoint.remove();
+            });
           });
         }
         // ATTRACTION POINTS
@@ -2185,6 +2189,49 @@ function setSubmenuWidth(e) {
     }
     document.querySelectorAll(".tabs li").forEach(($li) => {
       $li.addEventListener("click", setActiveTab);
+    });
+
+    function setValue(e) {
+      let currentPrice = 0;
+      let gst = 0;
+      let fees = 0;
+      let packs = 0;
+      const pricePerFish = 2;
+      const lbsPerPack = 2;
+      const dressedWeight = 0.63;
+      const gstMultiplier = 0.05;
+
+      document.querySelectorAll(".table input.weight").forEach(($input) => {
+        const value = $input.value;
+        const currentWeight = value
+          ? Number(value * dressedWeight).toFixed(3)
+          : 0;
+        document.querySelector(".table .dressed." + $input.name).innerText =
+          value ? currentWeight + " lbs" : "";
+        const pack = Math.ceil(Number(currentWeight / lbsPerPack));
+        document.querySelector(".table .pack." + $input.name).innerText = value
+          ? pack
+          : "";
+
+        packs += pack;
+        currentPrice += currentWeight * pricePerFish;
+      });
+
+      gst = (currentPrice + fees) * gstMultiplier;
+
+      document.querySelector(".table td.packs").innerText = Number(packs);
+      document.querySelector(".table td.price").innerText =
+        "$" + Number(currentPrice).toFixed(2) + " CAD";
+      document.querySelector(".table td.fees").innerText =
+        "$" + Number(fees).toFixed(2) + " CAD";
+      document.querySelector(".table td.gst").innerText =
+        "$" + Number(gst).toFixed(2) + " CAD";
+      document.querySelector(".table td.total").innerText =
+        "$" + Number(gst + currentPrice).toFixed(2) + " CAD";
+    }
+    document.querySelectorAll(".table input.weight").forEach(($input) => {
+      $input.addEventListener("keyup", setValue);
+      $input.addEventListener("change", setValue);
     });
   }
 
