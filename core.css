@@ -235,9 +235,9 @@ h1 {
   width: 100%;
   max-width: var(--wide-width);
   margin-inline: auto;
+  overflow: hidden;
 }
 .sub-menu ul {
-  overflow: hidden;
   list-style: none;
   margin-block: 0;
   margin-inline: auto;
