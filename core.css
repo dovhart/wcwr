@@ -1950,6 +1950,7 @@ body.kitchen .aux-container .intro__title {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
   padding-inline: 2rem;
   padding-top: 1rem;
@@ -2003,15 +2004,26 @@ body.kitchen .aux-container .intro__title {
 }
 
 /* ------- fishing: table -------- */
+.table-container {
+  padding-inline: 0;
+  margin-inline: 0;
+}
+.table-wrapper {
+  overflow: auto;
+}
 .table {
   background-color: var(--white-color);
   border-collapse: collapse;
+  width: 100%;
 }
 .table th,
 .table td {
   border: 1px solid var(--black-color);
   padding-block: 0.5rem;
   padding-inline: 1rem;
+}
+.table tbody td {
+  padding-block: 0;
 }
 .table th,
 .table tfoot td {
@@ -2033,20 +2045,95 @@ body.kitchen .aux-container .intro__title {
   text-align: right;
   padding-inline: 0.25rem;
 }
-.table td.dressed,
-.table td.pack,
-.table td.price {
+.table .dressed,
+.table .pack,
+.table .price {
   text-align: right;
 }
 .table .total-row td {
   text-align: right;
 }
-.table tr.plain td {
+.table .plain td {
   font-weight: 100;
 }
 .table .text {
   font-weight: 100;
   text-align: center;
+}
+/* fees */
+.table .fees-cell-wrapper {
+  border: 1px solid var(--black-color);
+  border-top: none;
+}
+.table .fees-cell {
+  padding: 0.25rem;
+}
+.table .fees-item {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  border-top: 1px solid var(--black-color);
+}
+.table .fees-item .desc {
+  flex-grow: 1;
+  padding-inline: 1rem;
+  border-right: 1px solid var(--black-color);
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+}
+.table .fees-item .cost {
+  min-width: 5.125rem;
+  padding-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.table .radio,
+.table .checkbox {
+  height: 1.5rem;
+  width: 1.5rem;
+  cursor: pointer;
+}
+.table .radio-buttons {
+  text-align: left;
+}
+.table .radio-button {
+  font-weight: 100;
+  font-size: 1rem;
+  display: inline-flex;
+  margin-left: 1rem;
+  align-items: center;
+  cursor: pointer;
+}
+.table label {
+  cursor: pointer;
+}
+.table input:disabled + label,
+.table input:disabled {
+  cursor: default;
+}
+.table .checkbox {
+  appearance: none;
+  border-radius: 2px;
+  border: 1px solid var(--black-color);
+  transition: 0.2s all linear;
+}
+.table input:disabled {
+  border: 1px solid #aaa;
+  background-color: #eee;
+}
+.table .checkbox:checked {
+  border: 0.75rem solid var(--black-color);
+}
+.table .radio {
+  appearance: none;
+  border-radius: 50%;
+  border: 2px solid var(--black-color);
+  transition: 0.2s all linear;
+}
+.table .radio:checked {
+  border: 0.75rem solid var(--black-color);
 }
 
 .fishing .image.gear {
@@ -2091,7 +2178,7 @@ body.kitchen .aux-container .intro__title {
 
 .sticky-top {
   position: sticky;
-  top: 0;
+  top: var(--header-height);
   z-index: 100;
 }
 .middle-width {
@@ -2101,6 +2188,11 @@ body.kitchen .aux-container .intro__title {
 .small-width {
   margin-inline: auto;
   max-width: var(--small-width);
+}
+
+.anchor {
+  position: absolute;
+  top: -8.75rem;
 }
 
 /* ------- FOOTER -------- */
@@ -2206,6 +2298,9 @@ body.kitchen .aux-container .intro__title {
 .footer__column-link:hover {
   text-decoration: underline;
 }
+.footer__shift {
+  transform: translateX(-1.5rem);
+}
 /* ------- FOOTER bottom -------- */
 .footer-bottom {
   display: flex;
@@ -2253,6 +2348,9 @@ body.kitchen .aux-container .intro__title {
 
 .show {
   display: block;
+}
+.mobile {
+  display: none;
 }
 
 /* ------- TABLET/MOBILE -------- */
@@ -2423,6 +2521,9 @@ body.kitchen .aux-container .intro__title {
   }
   .report .sidebar .close .title {
     display: none !important;
+  }
+  .table .fees-item .desc {
+    font-size: 1rem;
   }
 }
 
@@ -2672,11 +2773,23 @@ body.kitchen .aux-container .intro__title {
     overflow: hidden;
   }
   .fishing .tabs a {
-    padding-inline: 1rem;
+    padding-inline: 0.5rem;
+    padding-bottom: 0;
   }
   .image-tagline {
     display: none;
   }
+  .fishing .tabs a {
+    flex-direction: column;
+  }
+
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: initial;
+  }
+
 }
 
 /* background: hsl(0 0% 100% / 0.1); */

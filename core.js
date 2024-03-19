@@ -2191,16 +2191,21 @@ function setSubmenuWidth(e) {
       $li.addEventListener("click", setActiveTab);
     });
 
-    function setValue(e) {
-      let currentPrice = 0;
-      let gst = 0;
-      let fees = 0;
-      let packs = 0;
-      const pricePerFish = 2;
-      const lbsPerPack = 2;
-      const dressedWeight = 0.63;
-      const gstMultiplier = 0.05;
-
+    const pricePerFish = 2.5;
+    const dressedWeight = 0.63;
+    const gstMultiplier = 0.05;
+    let currentPrice = 0;
+    let gst = 0;
+    let fees = 0;
+    let packs = 0;
+    let pack_size = 1;
+    function setValue() {
+      packs = 0;
+      gst = 0;
+      currentPrice = 0;
+      pack_size = Number(
+        document.querySelector(".table input[name=pack-switch]:checked").value
+      );
       document.querySelectorAll(".table input.weight").forEach(($input) => {
         const value = $input.value;
         const currentWeight = value
@@ -2208,7 +2213,7 @@ function setSubmenuWidth(e) {
           : 0;
         document.querySelector(".table .dressed." + $input.name).innerText =
           value ? currentWeight + " lbs" : "";
-        const pack = Math.ceil(Number(currentWeight / lbsPerPack));
+        const pack = Math.ceil(Number(currentWeight / pack_size));
         document.querySelector(".table .pack." + $input.name).innerText = value
           ? pack
           : "";
@@ -2217,6 +2222,9 @@ function setSubmenuWidth(e) {
         currentPrice += currentWeight * pricePerFish;
       });
 
+      if (packs == 0) {
+        fees = 0;
+      }
       gst = (currentPrice + fees) * gstMultiplier;
 
       document.querySelector(".table td.packs").innerText = Number(packs);
@@ -2227,11 +2235,47 @@ function setSubmenuWidth(e) {
       document.querySelector(".table td.gst").innerText =
         "$" + Number(gst).toFixed(2) + " CAD";
       document.querySelector(".table td.total").innerText =
-        "$" + Number(gst + currentPrice).toFixed(2) + " CAD";
+        "$" + Number(fees + gst + currentPrice).toFixed(2) + " CAD";
+
+      if (packs) {
+        document.querySelectorAll(".table input.add-fee").forEach(($input) => {
+          $input.disabled = false;
+        });
+      } else {
+        document.querySelectorAll(".table input.add-fee").forEach(($input) => {
+          $input.disabled = true;
+          $input.checked = false;
+        });
+      }
+    }
+    function addFee(e) {
+      const FEE = {
+        fresh: 15,
+        frozen: 20,
+        freezer: 10,
+        pickup: 50,
+      };
+      fees = 0;
+      document.querySelectorAll(".table input.add-fee").forEach(($input) => {
+        fees += $input.checked ? FEE[$input.name] : 0;
+      });
+      setValue();
     }
     document.querySelectorAll(".table input.weight").forEach(($input) => {
       $input.addEventListener("keyup", setValue);
       $input.addEventListener("change", setValue);
+    });
+    document.querySelectorAll(".table input.add-fee").forEach(($input) => {
+      $input.addEventListener("click", addFee);
+    });
+    function changePackSize(e) {
+      pack_size = Number(
+        document.querySelector(".table input[name=pack-switch]:checked").value
+      );
+      setValue();
+    }
+    document.querySelectorAll(".table input.pack-switch").forEach(($input) => {
+      $input.addEventListener("click", changePackSize);
     });
   }
 
