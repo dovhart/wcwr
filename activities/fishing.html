@@ -8,7 +8,7 @@
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
     />
-    <meta name="version" content="20" class="version" />
+    <meta name="version" content="21" class="version" />
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
     <link
@@ -22,7 +22,7 @@
       type="text/css"
     />
 
-    <link href="../core.css?20" type="text/css" media="all" rel="stylesheet" />
+    <link href="../core.css?21" type="text/css" media="all" rel="stylesheet" />
 
     <title>Fishing | Wild Coast Wilderness Resort</title>
   </head>
@@ -277,15 +277,15 @@
           >
           <nav class="mobile-menu-icon">
             <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
+              width="21"
+              height="21"
+              viewBox="0 0 20 21"
               xmlns="http://www.w3.org/2000/svg"
               class="navbar-toggle-icon"
             >
-              <rect y="9" width="20" height="2"></rect>
-              <rect y="3" width="20" height="2"></rect>
-              <rect y="15" width="20" height="2"></rect>
+              <rect y="9" width="21" height="2"></rect>
+              <rect y="3" width="21" height="2"></rect>
+              <rect y="15" width="21" height="2"></rect>
             </svg>
           </nav>
         </div>
@@ -374,6 +374,16 @@
                 ><span class="desktop">&nbsp;+&nbsp;</span
                 ><span> Reports</span></a
               >
+              <div class="curve right-curve"><div></div></div>
+            </li>
+            <li>
+              <div class="curve left-curve"><div></div></div>
+              <a href="#boats">Boats</a>
+              <div class="curve right-curve"><div></div></div>
+            </li>
+            <li>
+              <div class="curve left-curve"><div></div></div>
+              <a href="#gear">Gear</a>
               <div class="curve right-curve"><div></div></div>
             </li>
           </ul>
@@ -567,7 +577,7 @@
             </div>
           </div>
         </div>
-        <div class="intro">
+        <div class="intro middle-width">
           <div class="intro__title sub-title">All-Inclusive Pricing</div>
           <div class="intro__description">
             Port Renfrew is an amazing destionation, guaranteed to create
@@ -999,7 +1009,8 @@
                       <div class="text">
                         Weight of processed fish margin of error is &#177; 10%.
                         <br />
-                        The cost is $2.50 per lbs.
+                        The cost is $2.50 per lbs plus taxes and optional
+                        additional fees.
                       </div>
                     </td>
                     <td>Packs</td>
@@ -1108,7 +1119,7 @@
         </div>
         <div class="list-section middle-width">
           <div class="subtitle">
-            <div>Week of February 19/2024</div>
+            <div>Week of February 18/2024</div>
           </div>
         </div>
         <div class="list-section middle-width">
@@ -1276,60 +1287,34 @@
             ></div>
           </div>
         </div>
-        <div class="intro">
+        <div class="intro" style="margin-top: 5rem">
           <div class="intro__title">Closure Map</div>
+          <div class="intro__description">Measurement Areas</div>
         </div>
 
         <div class="map-container">
           <div class="map-wrapper report">
             <img
               class="measure-map"
-              src="../media/general/2023-measures-swiftsure.jpg"
+              src="../media/general/swiftsure-closure-map.jpg"
             />
-          </div>
-          <div style="padding-right: 6rem; text-align: right">
-            Source:
-            <a
-              href="https://www.pac.dfo-mpo.gc.ca/fm-gp/mammals-mammiferes/whales-baleines/docs/srkw-measures-mesures-ers/2023-srkw-ers-swiftsure-eng.html"
-              >Government of Canada</a
-            >
+            <div style="padding-right: 1.5rem; text-align: right">
+              Source:
+              <a
+                href="https://www.pac.dfo-mpo.gc.ca/fm-gp/mammals-mammiferes/whales-baleines/docs/srkw-measures-mesures-ers/2023-srkw-ers-swiftsure-eng.html"
+                >Government of Canada</a
+              >
+            </div>
           </div>
         </div>
       </div>
 
       <!-- BOAT & GEAR -->
-      <div class="section-gear">
+      <div class="section-boats" style="position: relative">
+        <a name="boats" class="anchor"></a>
         <div class="intro">
           <div class="intro__title" style="padding-bottom: 0">
             <div>BOATS</div>
-          </div>
-          <div class="location-gallery-container">
-            <div class="options boats">
-              <div class="image1">
-                <img
-                  src="../media/options/fishing/015.jpg"
-                  alt="salmon fishing"
-                />
-              </div>
-              <div class="image2">
-                <img
-                  src="../media/options/fishing/017.jpg"
-                  alt="salmon fishing"
-                />
-              </div>
-              <div class="image3">
-                <img
-                  src="../media/options/fishing/019.jpg"
-                  alt="salmon fishing"
-                />
-              </div>
-              <div class="image4">
-                <img
-                  src="../media/options/fishing/018.jpg"
-                  alt="salmon fishing"
-                />
-              </div>
-            </div>
           </div>
           <div class="intro__description">
             Wild Coast Wilderness Resort has 6 vessels, each custom designed &
@@ -1340,13 +1325,41 @@
             hand – busy, active and safe West Coast BC fishing.
           </div>
         </div>
+        <div class="location-gallery-container">
+          <div class="options boats">
+            <div class="image1">
+              <img
+                src="../media/options/fishing/015.jpg"
+                alt="salmon fishing"
+              />
+            </div>
+            <div class="image2">
+              <img
+                src="../media/options/fishing/017.jpg"
+                alt="salmon fishing"
+              />
+            </div>
+            <div class="image3">
+              <img
+                src="../media/options/fishing/019.jpg"
+                alt="salmon fishing"
+              />
+            </div>
+            <div class="image4">
+              <img
+                src="../media/options/fishing/018.jpg"
+                alt="salmon fishing"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="section-gear" style="position: relative">
+        <a name="gear" class="anchor"></a>
         <div class="intro">
           <div class="intro__title">
             <div>GEAR</div>
-          </div>
-          <div class="image gear">
-            <!-- <img src="/media/options/gear/003.JPG" alt="salmon fishing" /> -->
           </div>
           <div class="intro__description">
             We tailor our gear to the type of fishing you are doing on the day,
@@ -1355,6 +1368,7 @@
             quality gear that suits the conditions and optimizes your chance to
             max out your daily quota.
           </div>
+          <div class="image gear"></div>
           <div class="intro__description">
             All of our rods and reels are in great condition with fresh line and
             terminal tackle. When trolling for salmon, we use 10.5 foot limber
@@ -1551,7 +1565,7 @@
         </div>
       </div>
     </footer>
-    <script src="../core.js?20"></script>
+    <script src="../core.js?21"></script>
     <script src="../d3.v7.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/d3@7"></script> -->
     <script type="application/javascript">

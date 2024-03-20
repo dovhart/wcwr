@@ -2179,7 +2179,7 @@ body.kitchen .aux-container .intro__title {
 .sticky-top {
   position: sticky;
   top: var(--header-height);
-  z-index: 100;
+  z-index: 11;
 }
 .middle-width {
   margin-inline: auto;
@@ -2263,7 +2263,7 @@ body.kitchen .aux-container .intro__title {
 
 .footer__acknowledgement {
   max-width: 12rem;
-  margin-top: 0.75rem;  
+  margin-top: 0.75rem;
 }
 .footer__acknowledgement-title {
   text-align: center;
@@ -2525,6 +2525,15 @@ body.kitchen .aux-container .intro__title {
   .table .fees-item .desc {
     font-size: 1rem;
   }
+
+  /* --- fishing --- */
+  .fishing .tabs {
+    gap: 0;
+    overflow: hidden;
+  }
+  .fishing .tabs a {
+    padding-inline: 0.75rem;
+  }
 }
 
 @media screen and (min-width: 896px) {
@@ -2768,19 +2777,16 @@ body.kitchen .aux-container .intro__title {
     max-width: 100%;
   }
 
-  .fishing .tabs {
-    gap: 0;
-    overflow: hidden;
-  }
+  /* --- fishing --- */
   .fishing .tabs a {
     padding-inline: 0.5rem;
     padding-bottom: 0;
+    flex-direction: column;
+    font-size: 0.875rem;
   }
+
   .image-tagline {
     display: none;
-  }
-  .fishing .tabs a {
-    flex-direction: column;
   }
 
   .desktop {
@@ -2789,7 +2795,6 @@ body.kitchen .aux-container .intro__title {
   .mobile {
     display: initial;
   }
-
 }
 
 /* background: hsl(0 0% 100% / 0.1); */

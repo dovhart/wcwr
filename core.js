@@ -2279,6 +2279,32 @@ function setSubmenuWidth(e) {
     });
   }
 
+  if (PAGE == "events") {
+    const $calendar = document.getElementById("calendar");
+    if ($calendar && window.FullCalendar) {
+      const calendar = new FullCalendar.Calendar($calendar, {
+        initialView: "dayGridMonth",
+        events: [
+          {
+            title: "Song and Surf",
+            url: "https://songandsurf.com/",
+            start: "2024-02-16",
+            end: "2024-02-19",
+            allDay: true,
+          },
+        ],
+        eventClick: function (info) {
+          info.jsEvent.preventDefault();
+
+          if (info.event.url) {
+            window.open(info.event.url);
+          }
+        },
+      });
+      calendar.render();
+    }
+  }
+
   $mobileIcon.addEventListener("click", toggleMobileMenu);
   $mobileCloseButton.addEventListener("click", toggleMobileMenu);
 
