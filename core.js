@@ -158,7 +158,6 @@ function onIconSlide(e) {
 function setImageBackground() {
   const category = option[slider_index].category;
   const item = option[slider_index].current_item;
-  const tagline = option[slider_index].tagline;
   const buttons = option[slider_index].buttons;
 
   const backgroundImage = `url("media/options/${category}/00${item}.jpg?1")`;
@@ -176,7 +175,6 @@ function setImageBackground() {
       $image_first.style.zIndex = 1;
       $image_second.style.zIndex = 0;
     }
-    $image_tagline.textContent = tagline;
     $button_left.textContent = buttons[0].title;
     $button_left.setAttribute("href", buttons[0].href);
     $button_right.textContent = buttons[1].title;
