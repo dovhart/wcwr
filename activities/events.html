@@ -7,10 +7,30 @@
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
     />
-    <meta name="version" content="21" class="version" />
+    <meta name="version" content="22" class="version" />
 
     <link href="../core.css?21" type="text/css" media="all" rel="stylesheet" />
     <script src="../index.global.min.js"></script>
+    <!-- <script
+      type="text/javascript"
+      src="https://widgets.webrez.com/Javascript/embed_bookingrequest.version26.js?hotel_id=3433&format=portrait&max_adults=8&max_child_age=12&max_children=8&max_baby_age=2&max_babies=8"
+    ></script> -->
+    <!-- <script src="https://widgets.webrez.com/Widget/jquery-1.9.1.min.js"></script>      
+    <script src="https://widgets.webrez.com/Widget/jquery-ui.js"></script>
+    <script src="https://widgets.webrez.com/Widget/wrp_calendar_14.js"></script>
+    <link
+      href="https://widgets.webrez.com/Widget/jquery-ui-1.8.6.custom.css"
+      rel="stylesheet"
+      type="text/css"
+    /> -->
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/wrp_calendar_14.js"></script>
+    <link
+      href="../css/jquery-ui-1.8.6.custom.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <title>Events | Wild Coast Wilderness Resort</title>
   </head>
@@ -304,6 +324,115 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="intro">
+        <script type="text/javascript">
+          // EmbedBookingRequest_ReturnHTML();
+          // https://widgets.webrez.com/Widget/?hotel_id=3433
+          urlParams = new URLSearchParams(window.location.search);
+          myParam = 3433; // urlParams.get("hotel_id");
+
+          setup_parameters = {
+            hotel_id: myParam || "22", // required - your WebRezPro hotel id must be entered
+            date_format: "D M dd, yy", // optional - default is 'DD M dd, yy'
+            default_days_in_advance: "0", // optional - default is 0 days in advance,
+            flag_turnoff_autoload_date: "1", // 0 = arrival and departure dates automatically loaded, 1 = not loaded, default is 0
+          };
+        </script>
+        <form id="widget_link" action="" class="webrez-form">
+          <input type="hidden" name="table" value="" />
+          <input type="hidden" name="hotel_id" value="3433" />
+          <input type="hidden" name="listing_id" value="" />
+          <input type="hidden" name="mode" value="" />
+          <input type="hidden" name="command" value="" />
+          <input type="hidden" name="nextcommand" value="" />
+          <table>
+            <tr>
+              <td>Arrival date</td>
+              <td>
+                <input
+                  name="formatted_date_from"
+                  id="formatted_date_from"
+                  size="20"
+                  value="Arrival date"
+                />
+                <input type="hidden" name="date_from" id="date_from" value="" />
+              </td>
+            </tr>
+
+            <tr>
+              <td>Departure date</td>
+              <td>
+                <input
+                  name="formatted_date_to"
+                  id="formatted_date_to"
+                  size="20"
+                  value="Departure date"
+                />
+                <input type="hidden" name="date_to" id="date_to" value="" />
+              </td>
+            </tr>
+
+            <tr>
+              <td>Adults</td>
+              <td>
+                <select name="num_adults" id="num_adults">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Children</td>
+              <td>
+                <select name="num_children" id="num_children">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Infants</td>
+              <td>
+                <select name="num_babies" id="num_babies">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Access code</td>
+              <td>
+                <input
+                  type="text"
+                  name="access_code"
+                  id="access_code"
+                  size="8"
+                />
+              </td>
+            </tr>
+          </table>
+          <input
+            type="submit"
+            value="Search for availability"
+            id="submit-webrez-form"
+          />
+        </form>
+        <!-- <iframe
+          width="220"
+          height="235"
+          src="https://secure.webrez.com/Bookings105/booking-request.html?hotel_id=3433&template=1&secureserver_flag=1&body_style=background-color:%23f9f9f9&table_style=font-size:1rem"
+          scrolling="no"
+          frameborder="0"
+          style="margin-inline: auto"
+        ></iframe> -->
       </div>
 
       <div

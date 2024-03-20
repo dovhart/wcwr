@@ -2278,6 +2278,7 @@ function setSubmenuWidth(e) {
   }
 
   if (PAGE == "events") {
+    // https://fullcalendar.io/docs/initialize-globals
     const $calendar = document.getElementById("calendar");
     if ($calendar && window.FullCalendar) {
       const calendar = new FullCalendar.Calendar($calendar, {
@@ -2301,6 +2302,31 @@ function setSubmenuWidth(e) {
       });
       calendar.render();
     }
+    // EmbedBookingRequest_OnLoad();
+    const $date_from = document.getElementById("date_from");
+    const $formatted_date_from = document.getElementById("formatted_date_from");
+    const $date_to = document.getElementById("date_to");
+    const $formatted_date_to = document.getElementById("formatted_date_to");
+    document
+      .getElementById("submit-webrez-form")
+      .addEventListener("click", function (e) {
+        if (!$date_from.value) {
+          const d = new Date($formatted_date_from.value);
+          const year = d.getFullYear();
+          const month =
+            d.getMonth() < 10 ? "0" + (d.getMonth() + 1) : d.getMonth() + 1;
+          const date = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
+          $date_from.value = year + month + date;
+        }
+        if (!$date_to.value) {
+          const d = new Date($formatted_date_to.value);
+          const year = d.getFullYear();
+          const month =
+            d.getMonth() < 10 ? "0" + (d.getMonth() + 1) : d.getMonth() + 1;
+          const date = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
+          $date_to.value = year + month + date;
+        }
+      });
   }
 
   $mobileIcon.addEventListener("click", toggleMobileMenu);
