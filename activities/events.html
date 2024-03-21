@@ -9,7 +9,7 @@
     />
     <meta name="version" content="22" class="version" />
 
-    <link href="../core.css?21" type="text/css" media="all" rel="stylesheet" />
+    <link href="../core.css?23" type="text/css" media="all" rel="stylesheet" />
     <script src="../index.global.min.js"></script>
     <!-- <script
       type="text/javascript"
@@ -260,15 +260,15 @@
           >
           <nav class="mobile-menu-icon">
             <svg
-              width="21"
-              height="21"
-              viewBox="0 0 20 21"
+              width="23"
+              height="23"
+              viewBox="0 0 20 23"
               xmlns="http://www.w3.org/2000/svg"
               class="navbar-toggle-icon"
             >
-              <rect y="9" width="21" height="2"></rect>
-              <rect y="3" width="21" height="2"></rect>
-              <rect y="15" width="21" height="2"></rect>
+              <rect y="9" width="23" height="2"></rect>
+              <rect y="3" width="23" height="2"></rect>
+              <rect y="15" width="23" height="2"></rect>
             </svg>
           </nav>
         </div>
@@ -325,7 +325,7 @@
           </div>
         </div>
       </div>
-      <div class="intro">
+      <div class="intro__description">
         <script type="text/javascript">
           // EmbedBookingRequest_ReturnHTML();
           // https://widgets.webrez.com/Widget/?hotel_id=3433
@@ -346,84 +346,95 @@
           <input type="hidden" name="mode" value="" />
           <input type="hidden" name="command" value="" />
           <input type="hidden" name="nextcommand" value="" />
-          <table>
-            <tr>
-              <td>Arrival date</td>
-              <td>
-                <input
-                  name="formatted_date_from"
-                  id="formatted_date_from"
-                  size="20"
-                  value="Arrival date"
-                />
-                <input type="hidden" name="date_from" id="date_from" value="" />
-              </td>
-            </tr>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="first-column">Arrival date</td>
+                <td class="input">
+                  <input
+                    name="formatted_date_from"
+                    id="formatted_date_from"
+                    size="20"
+                    value="Arrival date"
+                  />
+                  <input
+                    type="hidden"
+                    name="date_from"
+                    id="date_from"
+                    value=""
+                  />
+                </td>
+              </tr>
 
-            <tr>
-              <td>Departure date</td>
-              <td>
-                <input
-                  name="formatted_date_to"
-                  id="formatted_date_to"
-                  size="20"
-                  value="Departure date"
-                />
-                <input type="hidden" name="date_to" id="date_to" value="" />
-              </td>
-            </tr>
+              <tr>
+                <td>Departure date</td>
+                <td class="input">
+                  <input
+                    name="formatted_date_to"
+                    id="formatted_date_to"
+                    size="20"
+                    value="Departure date"
+                  />
+                  <input type="hidden" name="date_to" id="date_to" value="" />
+                </td>
+              </tr>
 
-            <tr>
-              <td>Adults</td>
-              <td>
-                <select name="num_adults" id="num_adults">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>Adults</td>
+                <td class="input">
+                  <select name="num_adults" id="num_adults">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>Children</td>
-              <td>
-                <select name="num_children" id="num_children">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>Children</td>
+                <td class="input">
+                  <select name="num_children" id="num_children">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>Infants</td>
-              <td>
-                <select name="num_babies" id="num_babies">
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                </select>
-              </td>
-            </tr>
+              <tr>
+                <td>Infants</td>
+                <td class="input">
+                  <select name="num_babies" id="num_babies">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr>
-              <td>Access code</td>
-              <td>
-                <input
-                  type="text"
-                  name="access_code"
-                  id="access_code"
-                  size="8"
-                />
-              </td>
-            </tr>
+              <tr>
+                <td>Access code</td>
+                <td class="input">
+                  <input
+                    type="text"
+                    name="access_code"
+                    id="access_code"
+                    placeholder="enter access code"
+                    size="8"
+                  />
+                </td>
+              </tr>
+            </tbody>
           </table>
-          <input
-            type="submit"
-            value="Search for availability"
-            id="submit-webrez-form"
-          />
+          <div class="centered">
+            <input
+              type="submit"
+              value="Book Now"
+              id="submit-webrez-form"
+              class="button button-right button-light book-now"
+            />
+          </div>
         </form>
         <!-- <iframe
           width="220"
@@ -597,6 +608,6 @@
         </div>
       </div>
     </footer>
-    <script src="../core.js?22"></script>
+    <script src="../core.js?23"></script>
   </body>
 </html>
