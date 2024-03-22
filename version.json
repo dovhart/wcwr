@@ -1,29 +1,29 @@
 {
     "pages": {
-        "" : 24,
-        "index" : 24,
-        "livecam": 24,
-        "accommodations" : 24,
-        "cabins": 24,
-        "huts": 24,
-        "suites": 24,
-        "cotton-wood": 24,
-        "sitka-spruce": 24,
-        "activities": 24,
-        "trails": 24,
-        "weather": 24,
-        "events": 24,
-        "surfing": 24,
-        "fishing": 24,
-        "kitchen": 24,
-        "shop": 24,
-        "faq": 24,
-        "about-us": 24,
-        "contact-us": 24,
-        "policy": 24
+        "" : 25,
+        "index" : 25,
+        "livecam": 25,
+        "accommodations" : 25,
+        "cabins": 25,
+        "huts": 25,
+        "suites": 25,
+        "cotton-wood": 25,
+        "sitka-spruce": 25,
+        "activities": 25,
+        "trails": 25,
+        "weather": 25,
+        "events": 25,
+        "surfing": 25,
+        "fishing": 25,
+        "kitchen": 25,
+        "shop": 25,
+        "faq": 25,
+        "about-us": 25,
+        "contact-us": 25,
+        "policy": 25
     },
     "assets": {
-        "core.css": 24,
-        "core.js": 24
+        "core.css": 25,
+        "core.js": 25
     }
 }

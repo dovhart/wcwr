@@ -2341,9 +2341,7 @@ function setSubmenuWidth(e) {
   $mobileCloseButton.addEventListener("click", toggleMobileMenu);
   document
     .querySelector(".book-now-form")
-    .addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
+    .addEventListener("click", function () {
       this.classList.toggle("active");
     });
   document
