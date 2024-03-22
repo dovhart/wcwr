@@ -28,35 +28,41 @@ jQuery(document).ready(function ($) {
     date_to.setDate(date_from.getDate() + 1);
 
     //if ($("#formatted_date_from").val() == 'Arrival date')
-    $("#formatted_date_from").val(
+    $("#formatted_date_from,#formatted_date_from-mobile").val(
       $.datepicker.formatDate(global_date_format, date_from)
     );
 
     //if ($("#formatted_date_to").val() == 'Departure date')
-    $("#formatted_date_to").val(
+    $("#formatted_date_to,#formatted_date_to-mobile").val(
       $.datepicker.formatDate(global_date_format, date_to)
     );
 
     if (setup_parameters == 1) {
-      $("#date_from").val(formatDate(date_from));
-      $("#date_to").val(formatDate(date_to));
+      $("#date_from,#date_from-mobile").val(formatDate(date_from));
+      $("#date_to,#date_to-mobile").val(formatDate(date_to));
     }
 
     var num_months = 1;
     Date.format = "yyyy-mm-dd";
-    $(function () {
-      $("#formatted_date_from").datepicker({
-        dateFormat: global_date_format,
-        numberOfMonths: num_months,
-        beforeShowDay: DisableArrivalDays,
-      });
+    $("#formatted_date_from").datepicker({
+      dateFormat: global_date_format,
+      numberOfMonths: num_months,
+      beforeShowDay: DisableArrivalDays,
     });
-    $(function () {
-      $("#formatted_date_to").datepicker({
-        dateFormat: global_date_format,
-        numberOfMonths: num_months,
-        beforeShowDay: DisableArrivalDays,
-      });
+    $("#formatted_date_from-mobile").datepicker({
+      dateFormat: global_date_format,
+      numberOfMonths: num_months,
+      beforeShowDay: DisableArrivalDays,
+    });
+    $("#formatted_date_to").datepicker({
+      dateFormat: global_date_format,
+      numberOfMonths: num_months,
+      beforeShowDay: DisableArrivalDays,
+    });
+    $("#formatted_date_to-mobile").datepicker({
+      dateFormat: global_date_format,
+      numberOfMonths: num_months,
+      beforeShowDay: DisableArrivalDays,
     });
 
     function DisableArrivalDays(date) {
@@ -69,51 +75,65 @@ jQuery(document).ready(function ($) {
       return [1];
     }
 
-    $("#formatted_date_from").change(function () {
-      var date_from = ConvertDateTextToDate($("#formatted_date_from").val());
-      $("#date_from").val(
-        ConvertDateTextToInteger($("#formatted_date_from").val())
+    $("#formatted_date_from,#formatted_date_from-mobile").change(function () {
+      var date_from = ConvertDateTextToDate($(this).val());
+      $("#date_from,#date_from-mobile").val(
+        ConvertDateTextToInteger($(this).val())
       );
 
-      var date_to = ConvertDateTextToDate($("#formatted_date_to").val());
+      var date_to = ConvertDateTextToDate(
+        $("#formatted_date_to,#formatted_date_to-mobile").val()
+      );
       if (!date_from) return false;
 
       //alert('date from ' + date_from + ', dater to ' + date_to);
 
       if (date_to <= date_from) {
-        var date_start = $("#formatted_date_from").datepicker("getDate");
+        var date_start = $(this).datepicker("getDate");
         var date_new = new Date(Date.parse(date_start));
         date_new.setDate(date_new.getDate() + 1);
         var newDate = date_new.toDateString();
         newDate = new Date(Date.parse(newDate));
-        $("#formatted_date_to").datepicker("setDate", newDate);
-        var date_to = ConvertDateTextToInteger($("#formatted_date_to").val());
-        $("#date_to").val(date_to);
+        $("#formatted_date_to,#formatted_date_to-mobile").datepicker(
+          "setDate",
+          newDate
+        );
+        var date_to = ConvertDateTextToInteger(
+          $("#formatted_date_to,#formatted_date_to-mobile").val()
+        );
+        $("#date_to,#date_to-mobile").val(date_to);
       }
 
       return false;
     });
 
-    $("#formatted_date_to").change(function () {
-      var date_from = ConvertDateTextToDate($("#formatted_date_from").val());
-      var date_to = ConvertDateTextToDate($("#formatted_date_to").val());
+    $("#formatted_date_to,#formatted_date_to-mobile").change(function () {
+      var date_from = ConvertDateTextToDate(
+        $("#formatted_date_from,#formatted_date_from-mobile").val()
+      );
+      var date_to = ConvertDateTextToDate($(this).val());
 
       if (date_to <= date_from) {
-        var date_end = $("#formatted_date_to").datepicker("getDate");
+        var date_end = $(this).datepicker("getDate");
         var date_new = new Date(Date.parse(date_end));
         date_new.setDate(date_new.getDate() - 1);
         var newDate = date_new.toDateString();
         newDate = new Date(Date.parse(newDate));
-        $("#formatted_date_from").datepicker("setDate", newDate);
+        $("#formatted_date_from,#formatted_date_from-mobile").datepicker(
+          "setDate",
+          newDate
+        );
 
         var date_from = ConvertDateTextToInteger(
-          $("#formatted_date_from").val()
+          $("#formatted_date_from,#formatted_date_from-mobile").val()
         );
-        $("#date_from").val(date_from);
+        $("#date_from,#date_from-mobile").val(date_from);
       }
 
-      var date_to = ConvertDateTextToInteger($("#formatted_date_to").val());
-      $("#date_to").val(date_to);
+      var date_to = ConvertDateTextToInteger(
+        $("#formatted_date_to,#formatted_date_to-mobile").val()
+      );
+      $("#date_to,#date_to-mobile").val(date_to);
       return false;
     });
 
