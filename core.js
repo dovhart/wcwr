@@ -175,10 +175,10 @@ function setImageBackground() {
       $image_first.style.zIndex = 1;
       $image_second.style.zIndex = 0;
     }
-    $button_left.textContent = buttons[0].title;
-    $button_left.setAttribute("href", buttons[0].href);
-    $button_right.textContent = buttons[1].title;
-    $button_right.setAttribute("href", buttons[1].href);
+    // $button_left.textContent = buttons[0].title;
+    // $button_left.setAttribute("href", buttons[0].href);
+    // $button_right.textContent = buttons[1].title;
+    // $button_right.setAttribute("href", buttons[1].href);
 
     slider_isSlided = !slider_isSlided;
   }, 300);
@@ -193,7 +193,8 @@ function nextImage() {
       slider_index = 0;
       slider_shadow_pos = 0;
     } else {
-      slider_shadow_pos = $iconList[slider_index].offsetLeft;
+      slider_shadow_pos =
+        $iconList[slider_index]?.offsetLeft || slider_shadow_pos;
     }
     $slider_shadow.style.left = slider_shadow_pos + "px";
     // $iconList[slider_index].scrollIntoView({
@@ -328,7 +329,7 @@ function setSubmenuWidth(e) {
   const width =
     document.querySelector(".header-content .logo-container").clientWidth +
     document.querySelector(".header-content .search-and-menu").clientWidth +
-    document.querySelector(".header-content .book-now").clientWidth +
+    // document.querySelector(".header-content .book-now").clientWidth +
     4;
   // document.body.style.setProperty("--sub-menu-width", width);
   document.querySelectorAll(".header-content .sub-menu ul").forEach((item) => {
@@ -2291,6 +2292,13 @@ function setSubmenuWidth(e) {
             end: "2024-02-19",
             allDay: true,
           },
+          {
+            title: "Derby Weekend",
+            url: "https://pacificgatewaymarina.ca/",
+            start: "2024-08-17",
+            end: "2024-08-19",
+            allDay: true,
+          },
         ],
         eventClick: function (info) {
           info.jsEvent.preventDefault();
@@ -2331,6 +2339,40 @@ function setSubmenuWidth(e) {
 
   $mobileIcon.addEventListener("click", toggleMobileMenu);
   $mobileCloseButton.addEventListener("click", toggleMobileMenu);
+  document
+    .querySelector(".book-now-form")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.classList.toggle("active");
+    });
+  document
+    .querySelector(".book-now-form .sub-menu")
+    .addEventListener("click", function (e) {
+      if (!e.target.classList.contains("book-now")) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+  // book now window
+  let isBookOpen = false;
+  const $bookWindow = document.querySelector(".mobile-book-form-container");
+  const mobileFormWindow = () => {
+    $bookButtonMobile.classList.toggle("hide");
+    if (isBookOpen) {
+      $bookWindow.classList.remove("show");
+    } else {
+      $bookWindow.classList.add("show");
+    }
+    isBookOpen = !isBookOpen;
+  };
+  const $bookButtonMobile = document.querySelector(
+    ".mobile-book-container .menu-item"
+  );
+  $bookButtonMobile.addEventListener("click", mobileFormWindow);
+  document
+    .querySelector(".mobile-book-form-close")
+    ?.addEventListener("click", mobileFormWindow);
 
   // setTimeout(() => {
   //   return false;

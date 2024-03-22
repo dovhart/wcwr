@@ -7,35 +7,136 @@
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
     />
-    <meta name="version" content="23" class="version" />
+    <meta name="version" content="24" class="version" />
 
-    <link href="../core.css?23" type="text/css" media="all" rel="stylesheet" />
+    <link href="../core.css?24" type="text/css" media="all" rel="stylesheet" />
+
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/wrp_calendar_14.js?2"></script>
+    <link
+      href="https://widgets.webrez.com/Widget/jquery-ui-1.8.6.custom.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <title>Sitka Spruce Cottage | Wild Coast Wilderness Resort</title>
   </head>
   <body class="location sitka">
     <div>
-      <div class="contact-container">
-        <div class="contact-wrapper middle-width">
-          <div class="contact-content">
-            <div class="intro__description two-column">
-              <span>Phone:</span>
-              <a
-                class="link link-big"
-                target="_blank"
-                href="tel:+1-250-647-5468"
-                >+1-250-647-5468</a
+      <div class="mobile-book-form-container">
+        <div class="mobile-book-form-wrapper">
+          <form
+            class="mobile-book-form"
+            id="widget_link-mobile"
+            action="https://secure.webrez.com/hotel/3433/?"
+          >
+            <input type="hidden" name="table" value="hotels" />
+            <input type="hidden" name="hotel_id" value="3433" />
+            <input type="hidden" name="listing_id" value="3433" />
+            <input type="hidden" name="mode" value="command" />
+            <input type="hidden" name="command" value="pleasewait" />
+            <input type="hidden" name="nextcommand" value="roomsearch" />
+            <div class="mobile-book-form-close">&#8592; BACK</div>
+            <div>
+              <div class="flex-row">
+                <div class="text">Arrival date</div>
+                <div class="input">
+                  <input
+                    name="formatted_date_from"
+                    id="formatted_date_from-mobile"
+                    size="20"
+                    value="Arrival date"
+                  />
+                  <input
+                    type="hidden"
+                    name="date_from"
+                    id="date_from-mobile"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="text">Departure date</div>
+                <div class="input">
+                  <input
+                    name="formatted_date_to"
+                    id="formatted_date_to-mobile"
+                    size="20"
+                    value="Departure date"
+                  />
+                  <input
+                    type="hidden"
+                    name="date_to"
+                    id="date_to-mobile"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="text">Adults</div>
+                <div class="input">
+                  <select name="num_adults" id="num_adults-mobile">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="text">Children</div>
+                <div class="input">
+                  <select name="num_children" id="num_children-mobile">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="text">Infants</div>
+                <div class="input">
+                  <select name="num_babies" id="num_babies-mobile">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="text">Access code</div>
+                <div class="input">
+                  <input
+                    type="text"
+                    name="access_code"
+                    id="access_code-mobile"
+                    placeholder="enter access code"
+                    size="8"
+                  />
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  margin-top: 2rem;
+                "
               >
-              <span>Email:</span>
-              <a
-                class="link link-big"
-                target="_blank"
-                href="mailto:info@wcwr.ca"
-                >info@wcwr.ca</a
-              >
+                <input
+                  type="submit"
+                  value="View Rates"
+                  id="submit-webrez-form-mobile"
+                  class="button button-right button-light book-now"
+                />
+              </div>
             </div>
-            <div class="close-button">close</div>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -252,27 +353,159 @@
                       </div>
                     </div>
                   </li>
+                  <li class="book-now-form">
+                    <div class="menu-item book-now-button book-now">
+                      Book Now
+                    </div>
+                    <div class="sub-menu">
+                      <div class="sub-menu-wrapper">
+                        <!-- <script type="text/javascript">
+                          // EmbedBookingRequest_ReturnHTML();
+                          // https://widgets.webrez.com/Widget/?hotel_id=3433
+                        </script> -->
+                        <form
+                          id="widget_link"
+                          target="_blank"
+                          action="https://secure.webrez.com/hotel/3433/?"
+                        >
+                          <input type="hidden" name="table" value="hotels" />
+                          <input type="hidden" name="hotel_id" value="3433" />
+                          <input type="hidden" name="listing_id" value="3433" />
+                          <input type="hidden" name="mode" value="command" />
+                          <input
+                            type="hidden"
+                            name="command"
+                            value="pleasewait"
+                          />
+                          <input
+                            type="hidden"
+                            name="nextcommand"
+                            value="roomsearch"
+                          />
+                          <ul>
+                            <li>
+                              <div
+                                style="
+                                  display: flex;
+                                  flex-wrap: nowrap;
+                                  justify-content: space-around;
+                                "
+                              >
+                                <div>Arrival date</div>
+                                <div>Departure date</div>
+                              </div>
+                              <div class="input">
+                                <input
+                                  name="formatted_date_from"
+                                  id="formatted_date_from"
+                                  size="20"
+                                  value="Arrival date"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="date_from"
+                                  id="date_from"
+                                  value=""
+                                />
+                                <input
+                                  name="formatted_date_to"
+                                  id="formatted_date_to"
+                                  size="20"
+                                  value="Departure date"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="date_to"
+                                  id="date_to"
+                                  value=""
+                                />
+                              </div>
+                            </li>
+                            <li>
+                              <div>Adults</div>
+                              <div class="input">
+                                <select name="num_adults" id="num_adults">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                </select>
+                              </div>
+                            </li>
+                            <li>
+                              <div>Children</div>
+                              <div class="input">
+                                <select name="num_children" id="num_children">
+                                  <option value="0">0</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                </select>
+                              </div>
+                            </li>
+                            <li>
+                              <div>Infants</div>
+                              <div class="input">
+                                <select name="num_babies" id="num_babies">
+                                  <option value="0">0</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                </select>
+                              </div>
+                            </li>
+                            <li>
+                              <div>Access code</div>
+                              <div class="input">
+                                <input
+                                  type="text"
+                                  name="access_code"
+                                  id="access_code"
+                                  placeholder="enter access code"
+                                  size="8"
+                                />
+                              </div>
+                            </li>
+                            <li>
+                              <div
+                                style="
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  height: 100%;
+                                "
+                              >
+                                <input
+                                  type="submit"
+                                  value="View Rates"
+                                  id="submit-webrez-form"
+                                  class="button button-right button-light book-now"
+                                />
+                              </div>
+                            </li>
+                          </ul>
+                        </form>
+                      </div>
+                    </div>
+                  </li>
                 </ul>
               </nav>
             </div>
           </div>
-          <a
-            class="menu-item book-now-button book-now"
-            target="_blank"
-            href="https://secure.webrez.com/hotel/3433/?invtype_id=48834"
-            >Book Now</a
-          >
+
           <nav class="mobile-menu-icon">
             <svg
-              width="23"
-              height="23"
-              viewBox="0 0 20 23"
+              width="24"
+              height="24"
+              viewBox="0 0 20 24"
               xmlns="http://www.w3.org/2000/svg"
               class="navbar-toggle-icon"
             >
-              <rect y="9" width="23" height="2"></rect>
-              <rect y="3" width="23" height="2"></rect>
-              <rect y="15" width="23" height="2"></rect>
+              <rect y="9" width="24" height="2"></rect>
+              <rect y="3" width="24" height="2"></rect>
+              <rect y="15" width="24" height="2"></rect>
             </svg>
           </nav>
         </div>
@@ -306,13 +539,13 @@
           basic kitchenette (no stove or oven), dining area, wifi, deck and a
           private propane fire pit.
         </div>
-        <div class="image-buttons">
-          <!-- <a
-          target="_blank"
-          class="button button-left button-dark"
-          href="https://www.youtube.com/watch?v=E57_bK8ovfM"
-          >Virtual Tour</a
-        > -->
+        <!-- <div class="image-buttons">
+          <a
+            target="_blank"
+            class="button button-left button-dark"
+            href="https://www.youtube.com/watch?v=E57_bK8ovfM"
+            >Virtual Tour</a
+          >
           <a class="button button-left button-dark contact">Contact Us</a>
           <a
             target="_blank"
@@ -320,7 +553,7 @@
             class="button button-right button-light book-now"
             >Book Now</a
           >
-        </div>
+        </div> -->
         <!-- <div class="gcse-searchresults"></div> -->
       </div>
 
@@ -536,7 +769,7 @@
                 >Book Now</a
               >
             </div>
-            <div class="footer__column">
+            <div class="footer__column last-column">
               <div class="footer__column-title footer__shift">Adventure</div>
               <a href="/wcwr/activities.html" class="footer__column-link"
                 >Activities</a
@@ -577,6 +810,6 @@
         </div>
       </div>
     </footer>
-    <script src="../core.js?23"></script>
+    <script src="../core.js?24"></script>
   </body>
 </html>
