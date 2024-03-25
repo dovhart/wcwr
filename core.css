@@ -1517,6 +1517,10 @@ body.kitchen .aux-container .intro__title {
   top: 0;
   left: 0;
   width: 2rem;
+  height: 100%;
+}
+.question .open {
+  visibility: hidden;
 }
 .answer {
   border-bottom: 1px solid lightgray;
@@ -1533,12 +1537,13 @@ body.kitchen .aux-container .intro__title {
   grid-template-rows: 1fr;
 }
 .question .closed {
-  height: 100%;
-  transition: all 0.3s ease-out;
   overflow: hidden;
 }
 .question.active .closed {
-  height: 0%;
+  visibility: hidden;
+}
+.question.active .open {
+  visibility: visible;
 }
 
 /* ------- pricing plan -------- */
