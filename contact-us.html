@@ -7,9 +7,9 @@
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
     />
-    <meta name="version" content="28" class="version" />
+    <meta name="version" content="29" class="version" />
 
-    <link href="core.css?28" type="text/css" media="all" rel="stylesheet" />
+    <link href="core.css?29" type="text/css" media="all" rel="stylesheet" />
 
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/jquery-ui.js"></script>
@@ -17,6 +17,18 @@
     <link
       href="https://widgets.webrez.com/Widget/jquery-ui-1.8.6.custom.css"
       rel="stylesheet"
+      type="text/css"
+    />
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
       type="text/css"
     />
 
@@ -533,7 +545,7 @@
         </div>
       </div>
 
-      <div class="map-container">
+      <!-- <div class="map-container">
         <div class="map-wrapper about-us">
           <iframe
             class="map"
@@ -549,6 +561,67 @@
             title="coastal kitchen cafe"
             aria-label="coastal kitchen cafe"
           ></iframe>
+        </div>
+      </div> -->
+
+      <div class="map-container">
+        <div class="map-wrapper">
+          <div class="sidebar">
+            <div class="left">
+              <div class="item initial-view">
+                <a class="title">Set Initial View</a>
+              </div>
+              <div class="section accommodations">
+                <div class="heading">
+                  <div>
+                    <span class="closed">+</span>
+                    <span class="open">-</span>
+                    <span class="circle-color"></span>
+                    Accommodations
+                  </div>
+                </div>
+                <div class="listings accommodations">
+                  <div class="inner"></div>
+                </div>
+              </div>
+              <div class="section navigation">
+                <div class="heading">
+                  <div>
+                    <span class="closed">+</span>
+                    <span class="open">-</span>
+                    <span class="circle-color"></span>
+                    Navigation
+                  </div>
+                </div>
+                <div class="listings navigation"><div class="inner"></div></div>
+              </div>
+              <div class="section sauna">
+                <div class="heading">
+                  <div>
+                    <span class="closed">+</span>
+                    <span class="open">-</span>
+                    <span class="circle-color"></span>
+                    Hottubs & Sauna
+                  </div>
+                </div>
+                <div class="listings sauna"><div class="inner"></div></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="close">
+                <div class="expanded">&#x25C0;</div>
+                <div class="collapsed">&#x25B6;</div>
+                <div class="title">
+                  <div class="expanded">Collapse side panel</div>
+                  <div class="collapsed">Expand side panel</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            id="map"
+            style="width: 100%; min-height: 600px; height: 70svh"
+          ></div>
         </div>
       </div>
 
@@ -868,6 +941,6 @@
       </div>
     </div>
 
-    <script src="core.js?28"></script>
+    <script src="core.js?29"></script>
   </body>
 </html>

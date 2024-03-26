@@ -1831,6 +1831,15 @@ body.kitchen .aux-container .intro__title {
   border-radius: 1rem;
   margin-inline: 0.5rem;
 }
+.sidebar .accommodations .heading .circle-color {
+  background-color: blue;
+}
+.sidebar .navigation .heading .circle-color {
+  background-color: darkgreen;
+}
+.sidebar .sauna .heading .circle-color {
+  background-color: burlywood;
+}
 .sidebar .attractions .heading .circle-color {
   background-color: blue;
 }

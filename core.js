@@ -1583,7 +1583,7 @@ function setSubmenuWidth(e) {
                 type: "Feature",
                 geometry: {
                   type: "Point",
-                  coordinates: [-124.4028599, 48.5558396],
+                  coordinates: [-124.405, 48.5551],
                 },
                 properties: {
                   id: "general-store",
@@ -1685,6 +1685,396 @@ function setSubmenuWidth(e) {
         // USEFUL
         addPoints(useful, "peru");
         addListings(useful, ".useful", pointClick);
+      });
+    }
+  }
+
+  if (PAGE == "contact-us") {
+    if (!mapboxgl.supported()) {
+      document.querySelector("#map").style.display = "none";
+    } else {
+      // show/hide sidepanel
+      const $sidebar = document.querySelector(".sidebar");
+      document
+        .querySelector(".sidebar .close")
+        .addEventListener("click", function (e) {
+          $sidebar.classList.toggle("collapsed");
+        });
+
+      // show/hide listings section
+      document.querySelectorAll(".heading").forEach((item) => {
+        item.addEventListener("click", function (e) {
+          const $heading = this;
+          const isOpen =
+            $heading.nextSibling.nextSibling.classList.contains("open");
+
+          document.querySelector(".heading.active")?.classList.remove("active");
+          document.querySelector(".listings.open")?.classList.remove("open");
+          if (isOpen) {
+            $heading.classList.remove("active");
+            $heading.nextSibling.nextSibling.classList.remove("open");
+          } else {
+            $heading.classList.add("active");
+            $heading.nextSibling.nextSibling.classList.add("open");
+          }
+        });
+      });
+
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/satellite-streets-v12",
+        center: [-124.42115, 48.55211],
+        zoom: 17,
+        attributionControl: false,
+        performanceMetricsCollection: false,
+        accessToken: TOKEN.MAPBOX,
+      });
+      map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
+      map.addControl(
+        new MapboxGeocoder({
+          accessToken: TOKEN.MAPBOX,
+          mapboxgl,
+        }),
+        "top-right"
+      );
+      map.scrollZoom.disable();
+
+      map.on("load", () => {
+        // click on an empty space
+        document
+          .querySelector(".sidebar .initial-view")
+          .addEventListener("click", function () {
+            map.flyTo({
+              center: [-124.42115, 48.55211],
+              zoom: 17,
+            });
+            const $active = document.querySelector(".listings .item.active");
+            $active?.classList.remove("active");
+            popupPoint.remove();
+          });
+
+        const popupPoint = new mapboxgl.Popup({
+          closeButton: true,
+          closeOnClick: false,
+        });
+        function showPopupPoint(e) {
+          const coordinates = e.features[0].geometry.coordinates.slice();
+          const description = e.features[0].properties.html;
+
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+
+          popupPoint.setLngLat(coordinates).setHTML(description).addTo(map);
+        }
+        function pointClick(e) {
+          e.stopPropagation();
+
+          const feature =
+            accommodations.features.find(
+              (item) => this.id == `listing-${item.data.properties.id}`
+            ) ||
+            navigation.features.find(
+              (item) => this.id == `listing-${item.data.properties.id}`
+            ) ||
+            sauna.features.find(
+              (item) => this.id == `listing-${item.data.properties.id}`
+            );
+
+          map.flyTo({
+            center: feature.data.geometry.coordinates,
+            zoom: 17,
+          });
+
+          const $active = document.querySelector(".listings .item.active");
+          $active?.classList.remove("active");
+          this.classList.add("active");
+          popupPoint.remove();
+          showPopupPoint({
+            features: [
+              {
+                geometry: {
+                  coordinates: feature.data.geometry.coordinates,
+                },
+                properties: {
+                  html: feature.data.properties.html,
+                },
+              },
+            ],
+            lngLat: {
+              lng: feature.data.geometry.coordinates[0],
+            },
+          });
+
+          document
+            .querySelector(".map-container")
+            .scrollIntoView({ behavior: "smooth" });
+        }
+
+        const accommodations = {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.4211, 48.55237],
+                },
+                properties: {
+                  id: "cabins",
+                  html: "<pre><strong>Private Cabins</strong></pre>",
+                  description: "Private Cabins",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.42065, 48.551575],
+                },
+                properties: {
+                  id: "cotton-wood",
+                  html: "<pre><strong>Cotton Wood Cottage</strong></pre>",
+                  description: "Cotton Wood Cottage",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.4211, 48.55137],
+                },
+                properties: {
+                  id: "sitka-spruce",
+                  html: "<pre><strong>Sitka Spruce Cottage</strong></pre>",
+                  description: "Sitka Spruce Cottage",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.4215, 48.55191],
+                },
+                properties: {
+                  id: "suites",
+                  html: "<pre><strong>Suites</strong></pre>",
+                  description: "Suites",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.42055, 48.55199],
+                },
+                properties: {
+                  id: "huts-h-m",
+                  html: "<pre><strong>Hiker Huts H-M</strong></pre>",
+                  description: "Hiker Huts H-M",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.42071, 48.55235],
+                },
+                properties: {
+                  id: "huts-p-u",
+                  html: "<pre><strong>Hiker Huts P-U</strong></pre>",
+                  description: "Hiker Huts P-U",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.42105, 48.55215],
+                },
+                properties: {
+                  id: "huts-v-y",
+                  html: "<pre><strong>Hiker Huts V-Y</strong></pre>",
+                  description: "Hiker Huts V-Y",
+                },
+              },
+            },
+          ],
+        };
+
+        const navigation = {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.4215, 48.5518],
+                },
+                properties: {
+                  id: "check-in",
+                  html: "<pre><strong>Guest Services Check-in</strong></pre>",
+                  description: "Guest Services Check-in",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.4217, 48.55204],
+                },
+                properties: {
+                  id: "lodge",
+                  html: "<pre><strong>Lodge</strong></pre>",
+                  description: "Lodge",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.42014, 48.55173],
+                },
+                properties: {
+                  id: "kitchen",
+                  html: "<pre><strong>Coastal Kitchen Cafe</strong></pre>",
+                  description: "Coastal Kitchen Cafe",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.4211, 48.5518],
+                },
+                properties: {
+                  id: "washroom",
+                  html: "<pre><strong>Washroom</strong></pre>",
+                  description: "Washroom",
+                },
+              },
+            },
+          ],
+        };
+
+        const sauna = {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.4217, 48.5518],
+                },
+                properties: {
+                  id: "sauna-suites-a",
+                  html: "<pre><strong>Hottub & Sauna (Suites)</strong></pre>",
+                  description: "Hottub & Sauna (Suites)",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.42155, 48.55204],
+                },
+                properties: {
+                  id: "sauna-suites-b",
+                  html: "<pre><strong>Hottub & Sauna (Suites) 2</strong></pre>",
+                  description: "Hottub & Sauna (Suites) 2",
+                },
+              },
+            },
+            {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [-124.4213, 48.5524],
+                },
+                properties: {
+                  id: "sauna-cabins",
+                  html: "<pre><strong>Hottub & Sauna (Cabins)</strong></pre>",
+                  description: "Hottub & Sauna (Cabins)",
+                },
+              },
+            },
+          ],
+        };
+
+        function addPoints(array, color) {
+          array.features.forEach((item) => {
+            const id = item.data.properties.id;
+            map.addSource(id, item);
+            map.addLayer({
+              id: `${id}-point`,
+              type: "circle",
+              source: id,
+              paint: {
+                "circle-radius": 8,
+                "circle-color": color,
+                "circle-stroke-width": 2,
+                "circle-stroke-color": "white",
+              },
+            });
+            map.on("click", `${id}-point`, showPopupPoint);
+            map.on("mouseenter", `${id}-point`, showPopupPoint);
+            map.on("mouseleave", `${id}-point`, function (e) {
+              popupPoint.remove();
+            });
+          });
+        }
+        // ACCOMMODATION
+        addPoints(accommodations, "blue");
+        addListings(accommodations, ".accommodations", pointClick);
+
+        // NAVIGATION
+        addPoints(navigation, "green");
+        addListings(navigation, ".navigation", pointClick);
+
+        // SAUNA
+        addPoints(sauna, "burlywood");
+        addListings(sauna, ".sauna", pointClick);
       });
     }
   }
