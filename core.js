@@ -2482,7 +2482,7 @@ function setSubmenuWidth(e) {
         addListings(fishingAreas, ".fishing", { onClick: areaClick });
 
         // red dashed pattern
-        map.loadImage("media/general/pattern-red-square.png", (err, image) => {
+        map.loadImage("../media/general/pattern-red-square.png", (err, image) => {
           if (err) throw err;
 
           map.addImage("pattern-red-stripes", image);
@@ -2549,7 +2549,7 @@ function setSubmenuWidth(e) {
           },
         });
 
-        map.loadImage("media/general/arrow-blue-left.png", (err, image) => {
+        map.loadImage("../media/general/arrow-blue-left.png", (err, image) => {
           if (err) throw err;
 
           map.addImage("arrow-blue-left", image);
