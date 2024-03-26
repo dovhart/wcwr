@@ -592,7 +592,7 @@ function setSubmenuWidth(e) {
                 },
                 properties: {
                   id: "upper-avatar-grove",
-                  html: "<pre><strong>Upper Avatar Grove: Canada's gnarliest tree</strong></pre>",
+                  html: "<pre><strong>Upper Avatar Grove: Canada's gnarliest tree</strong></pre><img class='map-popup-image' src='../media/options/experience/009.jpg' />",
                   description: "Upper Avatar Grove: Canada's gnarliest tree",
                 },
               },
@@ -671,7 +671,7 @@ function setSubmenuWidth(e) {
                 },
                 properties: {
                   id: "eden-grove",
-                  html: "<pre><strong>Eden Grove: Edins Waterfall</strong></pre>",
+                  html: "<pre><strong>Eden Grove: Edins Waterfall</strong></pre><img class='map-popup-image' src='../media/options/experience/009.jpg' />",
                   description: "Eden Grove: Edins Waterfall",
                 },
               },
