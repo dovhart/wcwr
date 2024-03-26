@@ -310,13 +310,27 @@ function highlightCurrentDay() {
     isOpen ? "OPEN" : "CLOSED";
 }
 
-function addListings(array, selector, callback) {
+function addListings(
+  array,
+  selector,
+  callbacks = {
+    onClick,
+  }
+) {
   const $listings = document.querySelector(`.listings${selector} .inner`);
   for (const feature of array.features) {
     const $listingsItem = $listings.appendChild(document.createElement("div"));
     $listingsItem.id = `listing-${feature.data.properties.id}`;
     $listingsItem.className = "item";
-    $listingsItem.addEventListener("click", callback);
+    if (callbacks.onClick) {
+      $listingsItem.addEventListener("click", callbacks.onClick);
+    }
+    if (callbacks.mouseenter) {
+      $listingsItem.addEventListener("mouseenter", callbacks.mouseenter);
+    }
+    if (callbacks.mouseleave) {
+      $listingsItem.addEventListener("mouseleave", callbacks.mouseleave);
+    }
 
     const $link = $listingsItem.appendChild(document.createElement("a"));
     $link.className = "title";
@@ -1664,27 +1678,39 @@ function setSubmenuWidth(e) {
         }
         // ATTRACTION POINTS
         addPoints(attractions, "blue");
-        addListings(attractions, ".attractions", pointClick);
+        addListings(attractions, ".attractions", {
+          onClick: pointClick,
+        });
 
         // TRAILS
         addPoints(trails, "green");
-        addListings(trails, ".trails", pointClick);
+        addListings(trails, ".trails", {
+          onClick: pointClick,
+        });
 
         // BEACHES
         addPoints(beaches, "steelblue");
-        addListings(beaches, ".beaches", pointClick);
+        addListings(beaches, ".beaches", {
+          onClick: pointClick,
+        });
 
         // TOILETS
         addPoints(toilets, "black");
-        addListings(toilets, ".toilets", pointClick);
+        addListings(toilets, ".toilets", {
+          onClick: pointClick,
+        });
 
         // PARKING
         addPoints(parking, "slategrey");
-        addListings(parking, ".parking", pointClick);
+        addListings(parking, ".parking", {
+          onClick: pointClick,
+        });
 
         // USEFUL
         addPoints(useful, "peru");
-        addListings(useful, ".useful", pointClick);
+        addListings(useful, ".useful", {
+          onClick: pointClick,
+        });
       });
     }
   }
@@ -2066,15 +2092,96 @@ function setSubmenuWidth(e) {
         }
         // ACCOMMODATION
         addPoints(accommodations, "blue");
-        addListings(accommodations, ".accommodations", pointClick);
+        addListings(accommodations, ".accommodations", {
+          onClick: pointClick,
+          mouseenter: function (e) {
+            popupPoint.remove();
+            const feature = accommodations.features.find(
+              (item) => this.id == `listing-${item.data.properties.id}`
+            );
+
+            showPopupPoint({
+              features: [
+                {
+                  geometry: {
+                    coordinates: feature.data.geometry.coordinates,
+                  },
+                  properties: {
+                    html: feature.data.properties.html,
+                  },
+                },
+              ],
+              lngLat: {
+                lng: feature.data.geometry.coordinates[0],
+              },
+            });
+          },
+          // mouseleave: function () {
+          //   popupPoint.remove();
+          // },
+        });
 
         // NAVIGATION
         addPoints(navigation, "green");
-        addListings(navigation, ".navigation", pointClick);
+        addListings(navigation, ".navigation", {
+          onClick: pointClick,
+          mouseenter: function (e) {
+            popupPoint.remove();
+            const feature = navigation.features.find(
+              (item) => this.id == `listing-${item.data.properties.id}`
+            );
+
+            showPopupPoint({
+              features: [
+                {
+                  geometry: {
+                    coordinates: feature.data.geometry.coordinates,
+                  },
+                  properties: {
+                    html: feature.data.properties.html,
+                  },
+                },
+              ],
+              lngLat: {
+                lng: feature.data.geometry.coordinates[0],
+              },
+            });
+          },
+          // mouseleave: function () {
+          //   popupPoint.remove();
+          // },
+        });
 
         // SAUNA
         addPoints(sauna, "burlywood");
-        addListings(sauna, ".sauna", pointClick);
+        addListings(sauna, ".sauna", {
+          onClick: pointClick,
+          mouseenter: function (e) {
+            popupPoint.remove();
+            const feature = sauna.features.find(
+              (item) => this.id == `listing-${item.data.properties.id}`
+            );
+
+            showPopupPoint({
+              features: [
+                {
+                  geometry: {
+                    coordinates: feature.data.geometry.coordinates,
+                  },
+                  properties: {
+                    html: feature.data.properties.html,
+                  },
+                },
+              ],
+              lngLat: {
+                lng: feature.data.geometry.coordinates[0],
+              },
+            });
+          },
+          // mouseleave: function () {
+          //   popupPoint.remove();
+          // },
+        });
       });
     }
   }
@@ -2357,7 +2464,7 @@ function setSubmenuWidth(e) {
         restrictedAreas.features.forEach((item) => {
           map.addSource(item.data.properties.id, item);
         });
-        addListings(restrictedAreas, ".restricted", areaClick);
+        addListings(restrictedAreas, ".restricted", { onClick: areaClick });
 
         // FISHING
         fishingAreas.features.forEach((item) => {
@@ -2372,29 +2479,26 @@ function setSubmenuWidth(e) {
             },
           });
         });
-        addListings(fishingAreas, ".fishing", areaClick);
+        addListings(fishingAreas, ".fishing", { onClick: areaClick });
 
         // red dashed pattern
-        map.loadImage(
-          "../media/general/pattern-red-square.png",
-          (err, image) => {
-            if (err) throw err;
+        map.loadImage("/media/general/pattern-red-square.png", (err, image) => {
+          if (err) throw err;
 
-            map.addImage("pattern-red-stripes", image);
+          map.addImage("pattern-red-stripes", image);
 
-            restrictedAreas.features.forEach((item) => {
-              const id = item.data.properties.id;
-              map.addLayer({
-                id: id,
-                type: "fill",
-                source: id,
-                paint: {
-                  "fill-pattern": "pattern-red-stripes",
-                },
-              });
+          restrictedAreas.features.forEach((item) => {
+            const id = item.data.properties.id;
+            map.addLayer({
+              id: id,
+              type: "fill",
+              source: id,
+              paint: {
+                "fill-pattern": "pattern-red-stripes",
+              },
             });
-          }
-        );
+          });
+        });
 
         // carmanah-point
         map.addSource("carmanah-point", {
@@ -2445,7 +2549,7 @@ function setSubmenuWidth(e) {
           },
         });
 
-        map.loadImage("../media/general/arrow-blue-left.png", (err, image) => {
+        map.loadImage("/media/general/arrow-blue-left.png", (err, image) => {
           if (err) throw err;
 
           map.addImage("arrow-blue-left", image);
