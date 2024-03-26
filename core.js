@@ -671,7 +671,7 @@ function setSubmenuWidth(e) {
                 },
                 properties: {
                   id: "eden-grove",
-                  html: "<pre><strong>Eden Grove: Edins Waterfall</strong></pre><img class='map-popup-image' src='../media/options/experience/009.jpg' />",
+                  html: "<pre><strong>Eden Grove: Edins Waterfall</strong></pre><img class='map-popup-image' src='../media/options/experience/005.jpg' />",
                   description: "Eden Grove: Edins Waterfall",
                 },
               },
