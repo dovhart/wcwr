@@ -2708,7 +2708,7 @@ body.kitchen .aux-container .intro__title {
   .location-includes-container .options {
     display: grid;
     grid-template-columns: 1fr;
-    max-width: 15rem;
+    max-width: 24rem;
     margin: auto;
   }
   body.suites .location-includes-container .options {
@@ -2813,25 +2813,6 @@ body.kitchen .aux-container .intro__title {
     grid-template-areas:
       "image1"
       "image2";
-  }
-  .location-gallery-container .options.kitchen {
-    grid-template-areas:
-      "image2"
-      "image3"
-      "image4"
-      "image5"
-      "image6"
-      "image7"
-      "image8"
-      "image9";
-  }
-  .location-gallery-container .options.about-us {
-    grid-template-areas:
-      "image1"
-      "image2"
-      "image3"
-      "image4"
-      "image5";
   }
   .location-gallery-container .options.second.trails {
     grid-template-areas:
