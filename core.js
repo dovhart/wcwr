@@ -115,6 +115,23 @@ const $slider_left = document.querySelector(".slider-left");
 const $slider_right = document.querySelector(".slider-right");
 const $carousel_icons = document.querySelector(".carousel__options-list");
 
+const EVENTS = [
+  {
+    title: "Song and Surf",
+    url: "https://songandsurf.com/",
+    start: "2024-02-16",
+    end: "2024-02-19",
+    allDay: true,
+  },
+  {
+    title: "Derby Weekend",
+    url: "https://pacificgatewaymarina.ca/",
+    start: "2024-08-17",
+    end: "2024-08-19",
+    allDay: true,
+  },
+];
+
 function onWindowResize() {
   scroll_x_step = window.innerWidth <= 900 ? document.body.clientWidth : 128;
   $slider_shadow.style.left = $iconList[slider_index].offsetLeft + "px";
@@ -321,6 +338,7 @@ function addListings(
   for (const feature of array.features) {
     const $listingsItem = $listings.appendChild(document.createElement("div"));
     $listingsItem.id = `listing-${feature.data.properties.id}`;
+    $listingsItem.dataset.section = feature.data.properties.section;
     $listingsItem.className = "item";
     if (callbacks.onClick) {
       $listingsItem.addEventListener("click", callbacks.onClick);
@@ -529,25 +547,11 @@ function setSubmenuWidth(e) {
         function pointClick(e) {
           e.stopPropagation();
 
-          const feature =
-            attractions.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            ) ||
-            trails.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            ) ||
-            beaches.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            ) ||
-            toilets.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            ) ||
-            parking.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            ) ||
-            useful.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            );
+          const feature = FeatureCollectionList[
+            this.dataset.section
+          ].features.find(
+            (item) => this.id == `listing-${item.data.properties.id}`
+          );
 
           map.flyTo({
             center: feature.data.geometry.coordinates,
@@ -579,1083 +583,1161 @@ function setSubmenuWidth(e) {
             .scrollIntoView({ behavior: "smooth" });
         }
 
-        const attractions = {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.438756, 48.618813],
-                },
-                properties: {
-                  id: "upper-avatar-grove",
-                  html: "<pre><strong>Upper Avatar Grove: Canada's gnarliest tree</strong></pre><img class='map-popup-image' src='../media/options/experience/009.jpg' />",
-                  description: "Upper Avatar Grove: Canada's gnarliest tree",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.450514, 48.646089],
-                },
-                properties: {
-                  id: "big-lonely-doug",
-                  html: "<pre><strong>Big Lonely Doug: the second largest Douglas Fir tree in Canada, 70.2 m / 230 ft tall, 1000 years old</strong></pre>",
-                  description:
-                    "Big Lonely Doug: the second largest Douglas Fir tree in Canada, 70.2 m / 230 ft tall, 1000 years old",
+        const FeatureCollectionList = {
+          attractions: {
+            type: "FeatureCollection",
+            color: "blue",
+            features: [
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.438756, 48.618813],
+                  },
+                  properties: {
+                    id: "upper-avatar-grove",
+                    section: "attractions",
+                    html: "<pre><strong>Upper Avatar Grove: Canada's gnarliest tree</strong></pre><img class='map-popup-image' src='../media/options/experience/009.jpg' />",
+                    description: "Upper Avatar Grove: Canada's gnarliest tree",
+                  },
                 },
               },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.220659, 48.579495],
-                },
-                properties: {
-                  id: "red-creek-fir",
-                  html: "<pre><strong>Red Creek Fir: world's largest Douglas Fir tree, 73.8 m / 242 ft tall, 1000 years old</strong></pre>",
-                  description:
-                    "Red Creek Fir: world's largest Douglas Fir tree, 73.8 m / 242 ft tall, 1000 years old",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.18675, 48.58816],
-                },
-                properties: {
-                  id: "san-juan-spruce",
-                  html: "<pre><strong>San Juan Spruce is The Largest Spruce Tree in Canada, 3.71 m / 12.2 ft wide</strong></pre>",
-                  description:
-                    "San Juan Spruce is The Largest Spruce Tree in Canada, 3.71 m / 12.2 ft wide",
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.450514, 48.646089],
+                  },
+                  properties: {
+                    id: "big-lonely-doug",
+                    section: "attractions",
+                    html: "<pre><strong>Big Lonely Doug: the second largest Douglas Fir tree in Canada, 70.2 m / 230 ft tall, 1000 years old</strong></pre>",
+                    description:
+                      "Big Lonely Doug: the second largest Douglas Fir tree in Canada, 70.2 m / 230 ft tall, 1000 years old",
+                  },
                 },
               },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.22602, 48.66046],
-                },
-                properties: {
-                  id: "harris-creek-spruce",
-                  html: "<pre><strong>Harris Creek Sitka Spruce, 4 m / 13 ft wide and 80 m / 260 ft tall.</strong></pre>",
-                  description:
-                    "Harris Creek Sitka Spruce, 4 m / 13 ft wide and 80 m / 260 ft tall.",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.444405, 48.643988],
-                },
-                properties: {
-                  id: "eden-grove",
-                  html: "<pre><strong>Eden Grove: Edins Waterfall</strong></pre><img class='map-popup-image' src='../media/options/experience/005.jpg' />",
-                  description: "Eden Grove: Edins Waterfall",
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.220659, 48.579495],
+                  },
+                  properties: {
+                    id: "red-creek-fir",
+                    section: "attractions",
+                    html: "<pre><strong>Red Creek Fir: world's largest Douglas Fir tree, 73.8 m / 242 ft tall, 1000 years old</strong></pre>",
+                    description:
+                      "Red Creek Fir: world's largest Douglas Fir tree, 73.8 m / 242 ft tall, 1000 years old",
+                  },
                 },
               },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.348929, 48.58887],
-                },
-                properties: {
-                  id: "bonsai-tree",
-                  html: "<pre><strong>Fairy Lake Bonsai Tree</strong></pre>",
-                  description: "Fairy Lake Bonsai Tree",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.29303, 48.49463],
-                },
-                properties: {
-                  id: "sombrio-east-waterfall",
-                  html: "<pre><strong>East Sombrio Beach waterfall</strong></pre>",
-                  description: "East Sombrio Beach waterfall",
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.18675, 48.58816],
+                  },
+                  properties: {
+                    id: "san-juan-spruce",
+                    section: "attractions",
+                    html: "<pre><strong>San Juan Spruce is The Largest Spruce Tree in Canada, 3.71 m / 12.2 ft wide</strong></pre>",
+                    description:
+                      "San Juan Spruce is The Largest Spruce Tree in Canada, 3.71 m / 12.2 ft wide",
+                  },
                 },
               },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.29209, 48.4916],
-                },
-                properties: {
-                  id: "juan-de-fuca-waterfall",
-                  html: "<pre><strong>Juan de Fuca Marine Trail waterfall</strong></pre>",
-                  description: "Juan de Fuca Marine Trail waterfall",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.09721, 48.43522],
-                },
-                properties: {
-                  id: "china-beach-waterfall",
-                  html: "<pre><strong>China Beach waterfall</strong></pre>",
-                  description: "China Beach Trail waterfall",
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.22602, 48.66046],
+                  },
+                  properties: {
+                    id: "harris-creek-spruce",
+                    section: "attractions",
+                    html: "<pre><strong>Harris Creek Sitka Spruce, 4 m / 13 ft wide and 80 m / 260 ft tall.</strong></pre>",
+                    description:
+                      "Harris Creek Sitka Spruce, 4 m / 13 ft wide and 80 m / 260 ft tall.",
+                  },
                 },
               },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.11233, 48.43663],
-                },
-                properties: {
-                  id: "mystic-beach-waterfall",
-                  html: "<pre><strong>Mystic Beach waterfall</strong></pre>",
-                  description: "Mystic Beach Trail waterfall",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.22881, 48.47395],
-                },
-                properties: {
-                  id: "lines-creek-waterfall",
-                  html: "<pre><strong>Lines Creek waterfall</strong></pre>",
-                  description: "Lines Creek Trail waterfall",
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.444405, 48.643988],
+                  },
+                  properties: {
+                    id: "eden-grove",
+                    section: "attractions",
+                    html: "<pre><strong>Eden Grove: Edins Waterfall</strong></pre><img class='map-popup-image' src='../media/options/experience/005.jpg' />",
+                    description: "Eden Grove: Edins Waterfall",
+                  },
                 },
               },
-            },
-          ],
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.348929, 48.58887],
+                  },
+                  properties: {
+                    id: "bonsai-tree",
+                    section: "attractions",
+                    html: "<pre><strong>Fairy Lake Bonsai Tree</strong></pre>",
+                    description: "Fairy Lake Bonsai Tree",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.29303, 48.49463],
+                  },
+                  properties: {
+                    id: "sombrio-east-waterfall",
+                    section: "attractions",
+                    html: "<pre><strong>East Sombrio Beach waterfall</strong></pre>",
+                    description: "East Sombrio Beach waterfall",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.29209, 48.4916],
+                  },
+                  properties: {
+                    id: "juan-de-fuca-waterfall",
+                    section: "attractions",
+                    html: "<pre><strong>Juan de Fuca Marine Trail waterfall</strong></pre>",
+                    description: "Juan de Fuca Marine Trail waterfall",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.09721, 48.43522],
+                  },
+                  properties: {
+                    id: "china-beach-waterfall",
+                    section: "attractions",
+                    html: "<pre><strong>China Beach waterfall</strong></pre>",
+                    description: "China Beach Trail waterfall",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.11233, 48.43663],
+                  },
+                  properties: {
+                    id: "mystic-beach-waterfall",
+                    section: "attractions",
+                    html: "<pre><strong>Mystic Beach waterfall</strong></pre>",
+                    description: "Mystic Beach Trail waterfall",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.22881, 48.47395],
+                  },
+                  properties: {
+                    id: "lines-creek-waterfall",
+                    section: "attractions",
+                    html: "<pre><strong>Lines Creek waterfall</strong></pre>",
+                    description: "Lines Creek Trail waterfall",
+                  },
+                },
+              },
+            ],
+          },
+
+          trails: {
+            type: "FeatureCollection",
+            color: "green",
+            features: [
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.4374, 48.61666],
+                  },
+                  properties: {
+                    id: "avatar-grove-trail",
+                    section: "trails",
+                    html: "<pre><strong>Avatar Grove</strong></pre>",
+                    description: "Avatar Grove: Lower and Upper trails",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.41585, 48.57733],
+                  },
+                  properties: {
+                    id: "west-coast-trail",
+                    section: "trails",
+                    html: "<pre><strong>West Coast Trailhead</strong></pre>",
+                    description: "West Coast Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.44474, 48.53281],
+                  },
+                  properties: {
+                    id: "botanical-beach-trail",
+                    section: "trails",
+                    html: "<pre><strong>Botanical Beach Trailhead</strong></pre>",
+                    description: "Botanical Beach Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.44373, 48.53291],
+                  },
+                  properties: {
+                    id: "juan-de-fuca-marine-trail",
+                    section: "trails",
+                    html: "<pre><strong>Juan de Fuca Marine Trailhead</strong></pre>",
+                    description: "Juan de Fuca Marine Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.37107, 48.51314],
+                  },
+                  properties: {
+                    id: "parkinson-creek-trail",
+                    section: "trails",
+                    html: "<pre><strong>Parkinson Creek Trailhead</strong></pre>",
+                    description: "Parkinson Creek Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.44368, 48.64366],
+                  },
+                  properties: {
+                    id: "eden-grove-trail",
+                    section: "trails",
+                    html: "<pre><strong>Eden Grove Trailhead</strong></pre>",
+                    description: "Eden Grove Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.2964, 48.50114],
+                  },
+                  properties: {
+                    id: "sombrio-trail",
+                    section: "trails",
+                    html: "<pre><strong>Sombrio Trailhead</strong></pre>",
+                    description: "Sombrio Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.2261, 48.57993],
+                  },
+                  properties: {
+                    id: "red-creek-fir-trail",
+                    section: "trails",
+                    html: "<pre><strong>Red Creek Fir Trailhead</strong></pre>",
+                    description: "Red Creek Fir Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.70193, 48.65909],
+                  },
+                  properties: {
+                    id: "carmanah-trail",
+                    section: "trails",
+                    html: "<pre><strong>Carmanah Trailhead</strong></pre>",
+                    description: "Carmanah Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.59764, 48.65036],
+                  },
+                  properties: {
+                    id: "tolkien-giant-trail",
+                    section: "trails",
+                    html: "<pre><strong>Tolkien Giant Trailhead</strong></pre>",
+                    description: "Tolkien Giant Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.59438, 48.65123],
+                  },
+                  properties: {
+                    id: "walbran-falls-trail",
+                    section: "trails",
+                    html: "<pre><strong>Walbran Falls Trailhead</strong></pre>",
+                    description: "Walbran Falls Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.33873, 48.50731],
+                  },
+                  properties: {
+                    id: "little-kuitshe-trail",
+                    section: "trails",
+                    html: "<pre><strong>Little Kuitshe Creek Trailhead</strong></pre>",
+                    description: "Little Kuitshe Creek Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.08041, 48.4343],
+                  },
+                  properties: {
+                    id: "second-beach-trail",
+                    section: "trails",
+                    html: "<pre><strong>Second Beach Trailhead</strong></pre>",
+                    description: "Second Beach Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.08983, 48.43761],
+                  },
+                  properties: {
+                    id: "china-beach-trail",
+                    section: "trails",
+                    html: "<pre><strong>China Beach Trailhead</strong></pre>",
+                    description: "China Beach Trailhead",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.09158, 48.43786],
+                  },
+                  properties: {
+                    id: "mystic-beach-trail",
+                    section: "trails",
+                    html: "<pre><strong>Mystic Beach Trailhead</strong></pre>",
+                    description: "Mystic Beach Trailhead",
+                  },
+                },
+              },
+            ],
+          },
+
+          beaches: {
+            type: "FeatureCollection",
+            color: "steelblue",
+            features: [
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.40489, 48.56973],
+                  },
+                  properties: {
+                    id: "pacheedaht-beach",
+                    section: "beaches",
+                    html: "<pre><strong>Pacheedaht beach</strong></pre>",
+                    description: "Pacheedaht beach",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.40717, 48.55711],
+                  },
+                  properties: {
+                    id: "park-beach",
+                    section: "beaches",
+                    html: "<pre><strong>The Park beach</strong></pre>",
+                    description: "The Park beach",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.44287, 48.52553],
+                  },
+                  properties: {
+                    id: "botanical-beach",
+                    section: "beaches",
+                    html: "<pre><strong>Botanical beach</strong></pre>",
+                    description: "Botanical beach",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.76656, 48.62743],
+                  },
+                  properties: {
+                    id: "dare-beach",
+                    section: "beaches",
+                    html: "<pre><strong>Dare beach</strong></pre>",
+                    description: "Dare beach",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.16613, 48.45122],
+                  },
+                  properties: {
+                    id: "bear-beach",
+                    section: "beaches",
+                    html: "<pre><strong>Bear beach</strong></pre>",
+                    description: "Bear beach",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.11433, 48.43849],
+                  },
+                  properties: {
+                    id: "mystic-beach",
+                    section: "beaches",
+                    html: "<pre><strong>Mystic beach</strong></pre>",
+                    description: "Mystic beach",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.09345, 48.43371],
+                  },
+                  properties: {
+                    id: "china-beach",
+                    section: "beaches",
+                    html: "<pre><strong>China beach</strong></pre>",
+                    description: "China beach",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.08706, 48.4298],
+                  },
+                  properties: {
+                    id: "second-beach",
+                    section: "beaches",
+                    html: "<pre><strong>Second beach</strong></pre>",
+                    description: "Second beach",
+                  },
+                },
+              },
+            ],
+          },
+
+          toilets: {
+            type: "FeatureCollection",
+            color: "black",
+            features: [
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.44364, 48.52644],
+                  },
+                  properties: {
+                    id: "botanical-east-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Botanical beach toilet</strong></pre>",
+                    description: "Botanical beach toilet (east side)",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.45109, 48.53055],
+                  },
+                  properties: {
+                    id: "botanical-west-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Botanical beach toilet</strong></pre>",
+                    description: "Botanical beach toilet (west side)",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.43285, 48.54822],
+                  },
+                  properties: {
+                    id: "woods-nose-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Woods Nose toilet</strong></pre>",
+                    description: "Woods Nose toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.37189, 48.51302],
+                  },
+                  properties: {
+                    id: "parkinson-creek-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Parkinson Creek toilet</strong></pre>",
+                    description: "Parkinson Creek toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.33852, 48.50763],
+                  },
+                  properties: {
+                    id: "little-kuitshe-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Little Kuitshe Creek toilet</strong></pre>",
+                    description: "Little Kuitshe Creek toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.29957, 48.49967],
+                  },
+                  properties: {
+                    id: "sombrio-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Sombrio beach toilet</strong></pre>",
+                    description: "Sombrio beach toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.29824, 48.49694],
+                  },
+                  properties: {
+                    id: "juan-de-fuca-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Juan de Fuca toilet</strong></pre>",
+                    description: "Juan de Fuca toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.29543, 48.4939],
+                  },
+                  properties: {
+                    id: "sombrio-east-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>East Sombrio Beach toilet</strong></pre>",
+                    description: "East Sombrio Beach toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.18452, 48.45461],
+                  },
+                  properties: {
+                    id: "bear-beach-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Bear beach toilet</strong></pre>",
+                    description: "Bear beach toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.17924, 48.4532],
+                  },
+                  properties: {
+                    id: "bear-beach-2-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Bear beach toilet 2</strong></pre>",
+                    description: "Bear beach toilet 2",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.1151, 48.43902],
+                  },
+                  properties: {
+                    id: "mystic-beach-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Mystic beach toilet</strong></pre>",
+                    description: "Mystic beach toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.11379, 48.43821],
+                  },
+                  properties: {
+                    id: "mystic-beach-2-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Mystic beach toilet 2</strong></pre>",
+                    description: "Mystic beach toilet 2",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.09296, 48.43374],
+                  },
+                  properties: {
+                    id: "china-beach-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>China beach toilet</strong></pre>",
+                    description: "China beach toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.07779, 48.43464],
+                  },
+                  properties: {
+                    id: "china-beach-camp-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>China Beach camp toilet</strong></pre>",
+                    description: "China Beach camp toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.07865, 48.43354],
+                  },
+                  properties: {
+                    id: "china-beach-camp-2-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>China Beach camp toilet 2</strong></pre>",
+                    description: "China Beach camp toilet 2",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.0791, 48.43576],
+                  },
+                  properties: {
+                    id: "china-beach-camp-3-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>China Beach camp toilet 3</strong></pre>",
+                    description: "China Beach camp toilet 3",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.08931, 48.4372],
+                  },
+                  properties: {
+                    id: "china-beach-trail-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>China Beach Trailhead toilet</strong></pre>",
+                    description: "China Beach Trailhead toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.09227, 48.43794],
+                  },
+                  properties: {
+                    id: "mystic-beach-trail-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Mystic Beach Trailhead toilet</strong></pre>",
+                    description: "Mystic Beach Trailhead toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.09212, 48.43742],
+                  },
+                  properties: {
+                    id: "mystic-beach-trail-2-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Mystic Beach Trailhead toilet 2</strong></pre>",
+                    description: "Mystic Beach Trailhead toilet 2",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.05442, 48.42128],
+                  },
+                  properties: {
+                    id: "jordan-river-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Jordan River toilet</strong></pre>",
+                    description: "Jordan River toilet",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.22503, 48.60745],
+                  },
+                  properties: {
+                    id: "lizard-lake-toilet",
+                    section: "toilets",
+                    html: "<pre><strong>Lizard Lake toilet</strong></pre>",
+                    description: "Lizard Lake toilet",
+                  },
+                },
+              },
+            ],
+          },
+
+          parking: {
+            type: "FeatureCollection",
+            color: "slategrey",
+            features: [
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.44517, 48.53334],
+                  },
+                  properties: {
+                    id: "botanical-parking",
+                    section: "parking",
+                    html: "<pre><strong>Botanical Beach / Juan de Fuca Parking</strong></pre>",
+                    description: "Botanical Beach / Juan de Fuca Parking",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.29552, 48.50121],
+                  },
+                  properties: {
+                    id: "sombrio-parking",
+                    section: "parking",
+                    html: "<pre><strong>Sombrio Beach Parking</strong></pre>",
+                    description: "Sombrio Beach Parking",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.0759, 48.4379],
+                  },
+                  properties: {
+                    id: "second-beach-parking",
+                    section: "parking",
+                    html: "<pre><strong>Second Beach parking</strong></pre>",
+                    description: "Second Beach parking",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.07495, 48.43374],
+                  },
+                  properties: {
+                    id: "second-beach-visitor-parking",
+                    section: "parking",
+                    html: "<pre><strong>Second Beach Visitor parking</strong></pre>",
+                    description: "Second Beach Visitor parking",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.05485, 48.42103],
+                  },
+                  properties: {
+                    id: "jordan-river-parking",
+                    section: "parking",
+                    html: "<pre><strong>Jordan River parking</strong></pre>",
+                    description: "Jordan River parking",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.22527, 48.60776],
+                  },
+                  properties: {
+                    id: "lizard-lake-parking",
+                    section: "parking",
+                    html: "<pre><strong>Lizard Lake parking</strong></pre>",
+                    description: "Lizard Lake parking",
+                  },
+                },
+              },
+            ],
+          },
+
+          useful: {
+            type: "FeatureCollection",
+            color: "peru",
+            features: [
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.40025, 48.55721],
+                  },
+                  properties: {
+                    id: "post-office",
+                    section: "useful",
+                    html: "<pre><strong>Post Office</strong></pre>",
+                    description: "Post Office",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.39965, 48.55747],
+                  },
+                  properties: {
+                    id: "fire-department",
+                    section: "useful",
+                    html: "<pre><strong>Volunteer Fire Department</strong></pre>",
+                    description: "Volunteer Fire Department",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.4008482, 48.5574178],
+                  },
+                  properties: {
+                    id: "ambulance-station",
+                    section: "useful",
+                    html: "<pre><strong>Ambulance Station</strong></pre>",
+                    description: "Ambulance Station",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.405, 48.5551],
+                  },
+                  properties: {
+                    id: "general-store",
+                    section: "useful",
+                    html: "<pre><strong>General Store</strong></pre>",
+                    description: "General Store",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.39879, 48.55792],
+                  },
+                  properties: {
+                    id: "gas-station",
+                    section: "useful",
+                    html: "<pre><strong>Pacheedaht Gas Bar Station</strong></pre>",
+                    description: "Pacheedaht Gas Bar Station",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.400588, 48.55712],
+                  },
+                  properties: {
+                    id: "ev-station",
+                    section: "useful",
+                    html: "<pre><strong>Electric Vehicle Charging Station (open 24/7)</strong></pre>",
+                    description:
+                      "Electric Vehicle Charging Station (open 24/7)",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.16963, 48.45781],
+                  },
+                  properties: {
+                    id: "rosemond-pit",
+                    section: "useful",
+                    html: "<pre><strong>Rosemond Pit</strong></pre>",
+                    description: "Rosemond Pit",
+                  },
+                },
+              },
+            ],
+          },
         };
 
-        const trails = {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.4374, 48.61666],
-                },
-                properties: {
-                  id: "avatar-grove-trail",
-                  html: "<pre><strong>Avatar Grove</strong></pre>",
-                  description: "Avatar Grove: Lower and Upper trails",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.41585, 48.57733],
-                },
-                properties: {
-                  id: "west-coast-trail",
-                  html: "<pre><strong>West Coast Trailhead</strong></pre>",
-                  description: "West Coast Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.44474, 48.53281],
-                },
-                properties: {
-                  id: "botanical-beach-trail",
-                  html: "<pre><strong>Botanical Beach Trailhead</strong></pre>",
-                  description: "Botanical Beach Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.44373, 48.53291],
-                },
-                properties: {
-                  id: "juan-de-fuca-marine-trail",
-                  html: "<pre><strong>Juan de Fuca Marine Trailhead</strong></pre>",
-                  description: "Juan de Fuca Marine Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.37107, 48.51314],
-                },
-                properties: {
-                  id: "parkinson-creek-trail",
-                  html: "<pre><strong>Parkinson Creek Trailhead</strong></pre>",
-                  description: "Parkinson Creek Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.44368, 48.64366],
-                },
-                properties: {
-                  id: "eden-grove-trail",
-                  html: "<pre><strong>Eden Grove Trailhead</strong></pre>",
-                  description: "Eden Grove Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.2964, 48.50114],
-                },
-                properties: {
-                  id: "sombrio-trail",
-                  html: "<pre><strong>Sombrio Trailhead</strong></pre>",
-                  description: "Sombrio Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.2261, 48.57993],
-                },
-                properties: {
-                  id: "red-creek-fir-trail",
-                  html: "<pre><strong>Red Creek Fir Trailhead</strong></pre>",
-                  description: "Red Creek Fir Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.70193, 48.65909],
-                },
-                properties: {
-                  id: "carmanah-trail",
-                  html: "<pre><strong>Carmanah Trailhead</strong></pre>",
-                  description: "Carmanah Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.59764, 48.65036],
-                },
-                properties: {
-                  id: "tolkien-giant-trail",
-                  html: "<pre><strong>Tolkien Giant Trailhead</strong></pre>",
-                  description: "Tolkien Giant Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.59438, 48.65123],
-                },
-                properties: {
-                  id: "walbran-falls-trail",
-                  html: "<pre><strong>Walbran Falls Trailhead</strong></pre>",
-                  description: "Walbran Falls Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.33873, 48.50731],
-                },
-                properties: {
-                  id: "little-kuitshe-trail",
-                  html: "<pre><strong>Little Kuitshe Creek Trailhead</strong></pre>",
-                  description: "Little Kuitshe Creek Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.08041, 48.4343],
-                },
-                properties: {
-                  id: "second-beach-trail",
-                  html: "<pre><strong>Second Beach Trailhead</strong></pre>",
-                  description: "Second Beach Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.08983, 48.43761],
-                },
-                properties: {
-                  id: "china-beach-trail",
-                  html: "<pre><strong>China Beach Trailhead</strong></pre>",
-                  description: "China Beach Trailhead",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.09158, 48.43786],
-                },
-                properties: {
-                  id: "mystic-beach-trail",
-                  html: "<pre><strong>Mystic Beach Trailhead</strong></pre>",
-                  description: "Mystic Beach Trailhead",
-                },
-              },
-            },
-          ],
-        };
-
-        const beaches = {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.40489, 48.56973],
-                },
-                properties: {
-                  id: "pacheedaht-beach",
-                  html: "<pre><strong>Pacheedaht beach</strong></pre>",
-                  description: "Pacheedaht beach",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.40717, 48.55711],
-                },
-                properties: {
-                  id: "park-beach",
-                  html: "<pre><strong>The Park beach</strong></pre>",
-                  description: "The Park beach",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.44287, 48.52553],
-                },
-                properties: {
-                  id: "botanical-beach",
-                  html: "<pre><strong>Botanical beach</strong></pre>",
-                  description: "Botanical beach",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.76656, 48.62743],
-                },
-                properties: {
-                  id: "dare-beach",
-                  html: "<pre><strong>Dare beach</strong></pre>",
-                  description: "Dare beach",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.16613, 48.45122],
-                },
-                properties: {
-                  id: "bear-beach",
-                  html: "<pre><strong>Bear beach</strong></pre>",
-                  description: "Bear beach",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.11433, 48.43849],
-                },
-                properties: {
-                  id: "mystic-beach",
-                  html: "<pre><strong>Mystic beach</strong></pre>",
-                  description: "Mystic beach",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.09345, 48.43371],
-                },
-                properties: {
-                  id: "china-beach",
-                  html: "<pre><strong>China beach</strong></pre>",
-                  description: "China beach",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.08706, 48.4298],
-                },
-                properties: {
-                  id: "second-beach",
-                  html: "<pre><strong>Second beach</strong></pre>",
-                  description: "Second beach",
-                },
-              },
-            },
-          ],
-        };
-
-        const toilets = {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.44364, 48.52644],
-                },
-                properties: {
-                  id: "botanical-east-toilet",
-                  html: "<pre><strong>Botanical beach toilet</strong></pre>",
-                  description: "Botanical beach toilet (east side)",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.45109, 48.53055],
-                },
-                properties: {
-                  id: "botanical-west-toilet",
-                  html: "<pre><strong>Botanical beach toilet</strong></pre>",
-                  description: "Botanical beach toilet (west side)",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.43285, 48.54822],
-                },
-                properties: {
-                  id: "woods-nose-toilet",
-                  html: "<pre><strong>Woods Nose toilet</strong></pre>",
-                  description: "Woods Nose toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.37189, 48.51302],
-                },
-                properties: {
-                  id: "parkinson-creek-toilet",
-                  html: "<pre><strong>Parkinson Creek toilet</strong></pre>",
-                  description: "Parkinson Creek toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.33852, 48.50763],
-                },
-                properties: {
-                  id: "little-kuitshe-toilet",
-                  html: "<pre><strong>Little Kuitshe Creek toilet</strong></pre>",
-                  description: "Little Kuitshe Creek toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.29957, 48.49967],
-                },
-                properties: {
-                  id: "sombrio-toilet",
-                  html: "<pre><strong>Sombrio beach toilet</strong></pre>",
-                  description: "Sombrio beach toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.29824, 48.49694],
-                },
-                properties: {
-                  id: "juan-de-fuca-toilet",
-                  html: "<pre><strong>Juan de Fuca toilet</strong></pre>",
-                  description: "Juan de Fuca toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.29543, 48.4939],
-                },
-                properties: {
-                  id: "sombrio-east-toilet",
-                  html: "<pre><strong>East Sombrio Beach toilet</strong></pre>",
-                  description: "East Sombrio Beach toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.18452, 48.45461],
-                },
-                properties: {
-                  id: "bear-beach-toilet",
-                  html: "<pre><strong>Bear beach toilet</strong></pre>",
-                  description: "Bear beach toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.17924, 48.4532],
-                },
-                properties: {
-                  id: "bear-beach-2-toilet",
-                  html: "<pre><strong>Bear beach toilet 2</strong></pre>",
-                  description: "Bear beach toilet 2",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.1151, 48.43902],
-                },
-                properties: {
-                  id: "mystic-beach-toilet",
-                  html: "<pre><strong>Mystic beach toilet</strong></pre>",
-                  description: "Mystic beach toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.11379, 48.43821],
-                },
-                properties: {
-                  id: "mystic-beach-2-toilet",
-                  html: "<pre><strong>Mystic beach toilet 2</strong></pre>",
-                  description: "Mystic beach toilet 2",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.09296, 48.43374],
-                },
-                properties: {
-                  id: "china-beach-toilet",
-                  html: "<pre><strong>China beach toilet</strong></pre>",
-                  description: "China beach toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.07779, 48.43464],
-                },
-                properties: {
-                  id: "china-beach-camp-toilet",
-                  html: "<pre><strong>China Beach camp toilet</strong></pre>",
-                  description: "China Beach camp toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.07865, 48.43354],
-                },
-                properties: {
-                  id: "china-beach-camp-2-toilet",
-                  html: "<pre><strong>China Beach camp toilet 2</strong></pre>",
-                  description: "China Beach camp toilet 2",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.0791, 48.43576],
-                },
-                properties: {
-                  id: "china-beach-camp-3-toilet",
-                  html: "<pre><strong>China Beach camp toilet 3</strong></pre>",
-                  description: "China Beach camp toilet 3",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.08931, 48.4372],
-                },
-                properties: {
-                  id: "china-beach-trail-toilet",
-                  html: "<pre><strong>China Beach Trailhead toilet</strong></pre>",
-                  description: "China Beach Trailhead toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.09227, 48.43794],
-                },
-                properties: {
-                  id: "mystic-beach-trail-toilet",
-                  html: "<pre><strong>Mystic Beach Trailhead toilet</strong></pre>",
-                  description: "Mystic Beach Trailhead toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.09212, 48.43742],
-                },
-                properties: {
-                  id: "mystic-beach-trail-2-toilet",
-                  html: "<pre><strong>Mystic Beach Trailhead toilet 2</strong></pre>",
-                  description: "Mystic Beach Trailhead toilet 2",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.05442, 48.42128],
-                },
-                properties: {
-                  id: "jordan-river-toilet",
-                  html: "<pre><strong>Jordan River toilet</strong></pre>",
-                  description: "Jordan River toilet",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.22503, 48.60745],
-                },
-                properties: {
-                  id: "lizard-lake-toilet",
-                  html: "<pre><strong>Lizard Lake toilet</strong></pre>",
-                  description: "Lizard Lake toilet",
-                },
-              },
-            },
-          ],
-        };
-
-        const parking = {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.44517, 48.53334],
-                },
-                properties: {
-                  id: "botanical-parking",
-                  html: "<pre><strong>Botanical Beach / Juan de Fuca Parking</strong></pre>",
-                  description: "Botanical Beach / Juan de Fuca Parking",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.29552, 48.50121],
-                },
-                properties: {
-                  id: "sombrio-parking",
-                  html: "<pre><strong>Sombrio Beach Parking</strong></pre>",
-                  description: "Sombrio Beach Parking",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.0759, 48.4379],
-                },
-                properties: {
-                  id: "second-beach-parking",
-                  html: "<pre><strong>Second Beach parking</strong></pre>",
-                  description: "Second Beach parking",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.07495, 48.43374],
-                },
-                properties: {
-                  id: "second-beach-visitor-parking",
-                  html: "<pre><strong>Second Beach Visitor parking</strong></pre>",
-                  description: "Second Beach Visitor parking",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.05485, 48.42103],
-                },
-                properties: {
-                  id: "jordan-river-parking",
-                  html: "<pre><strong>Jordan River parking</strong></pre>",
-                  description: "Jordan River parking",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.22527, 48.60776],
-                },
-                properties: {
-                  id: "lizard-lake-parking",
-                  html: "<pre><strong>Lizard Lake parking</strong></pre>",
-                  description: "Lizard Lake parking",
-                },
-              },
-            },
-          ],
-        };
-
-        const useful = {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.40025, 48.55721],
-                },
-                properties: {
-                  id: "post-office",
-                  html: "<pre><strong>Post Office</strong></pre>",
-                  description: "Post Office",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.39965, 48.55747],
-                },
-                properties: {
-                  id: "fire-department",
-                  html: "<pre><strong>Volunteer Fire Department</strong></pre>",
-                  description: "Volunteer Fire Department",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.4008482, 48.5574178],
-                },
-                properties: {
-                  id: "ambulance-station",
-                  html: "<pre><strong>Ambulance Station</strong></pre>",
-                  description: "Ambulance Station",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.405, 48.5551],
-                },
-                properties: {
-                  id: "general-store",
-                  html: "<pre><strong>General Store</strong></pre>",
-                  description: "General Store",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.39879, 48.55792],
-                },
-                properties: {
-                  id: "gas-station",
-                  html: "<pre><strong>Pacheedaht Gas Bar Station</strong></pre>",
-                  description: "Pacheedaht Gas Bar Station",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.400588, 48.55712],
-                },
-                properties: {
-                  id: "ev-station",
-                  html: "<pre><strong>Electric Vehicle Charging Station (open 24/7)</strong></pre>",
-                  description: "Electric Vehicle Charging Station (open 24/7)",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.16963, 48.45781],
-                },
-                properties: {
-                  id: "rosemond-pit",
-                  html: "<pre><strong>Rosemond Pit</strong></pre>",
-                  description: "Rosemond Pit",
-                },
-              },
-            },
-          ],
-        };
-
-        function addPoints(array, color) {
-          array.features.forEach((item) => {
+        function addPoints(FeatureCollection) {
+          FeatureCollection.features.forEach((item) => {
             const id = item.data.properties.id;
             map.addSource(id, item);
             map.addLayer({
@@ -1664,7 +1746,7 @@ function setSubmenuWidth(e) {
               source: id,
               paint: {
                 "circle-radius": 8,
-                "circle-color": color,
+                "circle-color": FeatureCollection.color,
                 "circle-stroke-width": 2,
                 "circle-stroke-color": "white",
               },
@@ -1676,41 +1758,13 @@ function setSubmenuWidth(e) {
             });
           });
         }
-        // ATTRACTION POINTS
-        addPoints(attractions, "blue");
-        addListings(attractions, ".attractions", {
-          onClick: pointClick,
-        });
 
-        // TRAILS
-        addPoints(trails, "green");
-        addListings(trails, ".trails", {
-          onClick: pointClick,
-        });
-
-        // BEACHES
-        addPoints(beaches, "steelblue");
-        addListings(beaches, ".beaches", {
-          onClick: pointClick,
-        });
-
-        // TOILETS
-        addPoints(toilets, "black");
-        addListings(toilets, ".toilets", {
-          onClick: pointClick,
-        });
-
-        // PARKING
-        addPoints(parking, "slategrey");
-        addListings(parking, ".parking", {
-          onClick: pointClick,
-        });
-
-        // USEFUL
-        addPoints(useful, "peru");
-        addListings(useful, ".useful", {
-          onClick: pointClick,
-        });
+        for (const section in FeatureCollectionList) {
+          addPoints(FeatureCollectionList[section]);
+          addListings(FeatureCollectionList[section], "." + section, {
+            onClick: pointClick,
+          });
+        }
       });
     }
   }
@@ -1799,16 +1853,11 @@ function setSubmenuWidth(e) {
         function pointClick(e) {
           e.stopPropagation();
 
-          const feature =
-            accommodations.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            ) ||
-            navigation.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            ) ||
-            sauna.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            );
+          const feature = FeatureCollectionList[
+            this.dataset.section
+          ].features.find(
+            (item) => this.id == `listing-${item.data.properties.id}`
+          );
 
           map.flyTo({
             center: feature.data.geometry.coordinates,
@@ -1840,236 +1889,241 @@ function setSubmenuWidth(e) {
             .scrollIntoView({ behavior: "smooth" });
         }
 
-        const accommodations = {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.4211, 48.55237],
-                },
-                properties: {
-                  id: "cabins",
-                  html: "<pre><strong>Private Cabins</strong></pre>",
-                  description: "Private Cabins",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.42065, 48.551575],
-                },
-                properties: {
-                  id: "cotton-wood",
-                  html: "<pre><strong>Cotton Wood Cottage</strong></pre>",
-                  description: "Cotton Wood Cottage",
+        const FeatureCollectionList = {
+          accommodations: {
+            type: "FeatureCollection",
+            color: "blue",
+            features: [
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.4211, 48.55237],
+                  },
+                  properties: {
+                    id: "cabins",
+                    html: "<pre><strong>Private Cabins</strong></pre>",
+                    description: "Private Cabins",
+                  },
                 },
               },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.4211, 48.55137],
-                },
-                properties: {
-                  id: "sitka-spruce",
-                  html: "<pre><strong>Sitka Spruce Cottage</strong></pre>",
-                  description: "Sitka Spruce Cottage",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.4215, 48.55191],
-                },
-                properties: {
-                  id: "suites",
-                  html: "<pre><strong>Suites</strong></pre>",
-                  description: "Suites",
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.42065, 48.551575],
+                  },
+                  properties: {
+                    id: "cotton-wood",
+                    html: "<pre><strong>Cotton Wood Cottage</strong></pre>",
+                    description: "Cotton Wood Cottage",
+                  },
                 },
               },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.42055, 48.55199],
-                },
-                properties: {
-                  id: "huts-h-m",
-                  html: "<pre><strong>Hiker Huts H-M</strong></pre>",
-                  description: "Hiker Huts H-M",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.42071, 48.55235],
-                },
-                properties: {
-                  id: "huts-p-u",
-                  html: "<pre><strong>Hiker Huts P-U</strong></pre>",
-                  description: "Hiker Huts P-U",
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.4211, 48.55137],
+                  },
+                  properties: {
+                    id: "sitka-spruce",
+                    html: "<pre><strong>Sitka Spruce Cottage</strong></pre>",
+                    description: "Sitka Spruce Cottage",
+                  },
                 },
               },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.42105, 48.55215],
-                },
-                properties: {
-                  id: "huts-v-y",
-                  html: "<pre><strong>Hiker Huts V-Y</strong></pre>",
-                  description: "Hiker Huts V-Y",
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.4215, 48.55191],
+                  },
+                  properties: {
+                    id: "suites",
+                    html: "<pre><strong>Suites</strong></pre>",
+                    description: "Suites",
+                  },
                 },
               },
-            },
-          ],
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.42055, 48.55199],
+                  },
+                  properties: {
+                    id: "huts-h-m",
+                    html: "<pre><strong>Hiker Huts H-M</strong></pre>",
+                    description: "Hiker Huts H-M",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.42071, 48.55235],
+                  },
+                  properties: {
+                    id: "huts-p-u",
+                    html: "<pre><strong>Hiker Huts P-U</strong></pre>",
+                    description: "Hiker Huts P-U",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.42105, 48.55215],
+                  },
+                  properties: {
+                    id: "huts-v-y",
+                    html: "<pre><strong>Hiker Huts V-Y</strong></pre>",
+                    description: "Hiker Huts V-Y",
+                  },
+                },
+              },
+            ],
+          },
+
+          navigation: {
+            type: "FeatureCollection",
+            color: "green",
+            features: [
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.4215, 48.5518],
+                  },
+                  properties: {
+                    id: "check-in",
+                    html: "<pre><strong>Guest Services Check-in</strong></pre>",
+                    description: "Guest Services Check-in",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.4217, 48.55204],
+                  },
+                  properties: {
+                    id: "lodge",
+                    html: "<pre><strong>Lodge</strong></pre>",
+                    description: "Lodge",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.42014, 48.55173],
+                  },
+                  properties: {
+                    id: "kitchen",
+                    html: "<pre><strong>Coastal Kitchen Cafe</strong></pre>",
+                    description: "Coastal Kitchen Cafe",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.4211, 48.5518],
+                  },
+                  properties: {
+                    id: "washroom",
+                    html: "<pre><strong>Washroom</strong></pre>",
+                    description: "Washroom",
+                  },
+                },
+              },
+            ],
+          },
+
+          sauna: {
+            type: "FeatureCollection",
+            color: "burlywood",
+            features: [
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.4217, 48.5518],
+                  },
+                  properties: {
+                    id: "sauna-suites-a",
+                    html: "<pre><strong>Hottub & Sauna (Suites)</strong></pre>",
+                    description: "Hottub & Sauna (Suites)",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.42155, 48.55204],
+                  },
+                  properties: {
+                    id: "sauna-suites-b",
+                    html: "<pre><strong>Hottub & Sauna (Suites) 2</strong></pre>",
+                    description: "Hottub & Sauna (Suites) 2",
+                  },
+                },
+              },
+              {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-124.4213, 48.5524],
+                  },
+                  properties: {
+                    id: "sauna-cabins",
+                    html: "<pre><strong>Hottub & Sauna (Cabins)</strong></pre>",
+                    description: "Hottub & Sauna (Cabins)",
+                  },
+                },
+              },
+            ],
+          },
         };
 
-        const navigation = {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.4215, 48.5518],
-                },
-                properties: {
-                  id: "check-in",
-                  html: "<pre><strong>Guest Services Check-in</strong></pre>",
-                  description: "Guest Services Check-in",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.4217, 48.55204],
-                },
-                properties: {
-                  id: "lodge",
-                  html: "<pre><strong>Lodge</strong></pre>",
-                  description: "Lodge",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.42014, 48.55173],
-                },
-                properties: {
-                  id: "kitchen",
-                  html: "<pre><strong>Coastal Kitchen Cafe</strong></pre>",
-                  description: "Coastal Kitchen Cafe",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.4211, 48.5518],
-                },
-                properties: {
-                  id: "washroom",
-                  html: "<pre><strong>Washroom</strong></pre>",
-                  description: "Washroom",
-                },
-              },
-            },
-          ],
-        };
-
-        const sauna = {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.4217, 48.5518],
-                },
-                properties: {
-                  id: "sauna-suites-a",
-                  html: "<pre><strong>Hottub & Sauna (Suites)</strong></pre>",
-                  description: "Hottub & Sauna (Suites)",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.42155, 48.55204],
-                },
-                properties: {
-                  id: "sauna-suites-b",
-                  html: "<pre><strong>Hottub & Sauna (Suites) 2</strong></pre>",
-                  description: "Hottub & Sauna (Suites) 2",
-                },
-              },
-            },
-            {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: [-124.4213, 48.5524],
-                },
-                properties: {
-                  id: "sauna-cabins",
-                  html: "<pre><strong>Hottub & Sauna (Cabins)</strong></pre>",
-                  description: "Hottub & Sauna (Cabins)",
-                },
-              },
-            },
-          ],
-        };
-
-        function addPoints(array, color) {
-          array.features.forEach((item) => {
+        function addPoints(FeatureCollection) {
+          FeatureCollection.features.forEach((item) => {
             const id = item.data.properties.id;
             map.addSource(id, item);
             map.addLayer({
@@ -2078,7 +2132,7 @@ function setSubmenuWidth(e) {
               source: id,
               paint: {
                 "circle-radius": 8,
-                "circle-color": color,
+                "circle-color": FeatureCollection.color,
                 "circle-stroke-width": 2,
                 "circle-stroke-color": "white",
               },
@@ -2090,98 +2144,38 @@ function setSubmenuWidth(e) {
             });
           });
         }
-        // ACCOMMODATION
-        addPoints(accommodations, "blue");
-        addListings(accommodations, ".accommodations", {
-          onClick: pointClick,
-          mouseenter: function (e) {
-            popupPoint.remove();
-            const feature = accommodations.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            );
 
-            showPopupPoint({
-              features: [
-                {
-                  geometry: {
-                    coordinates: feature.data.geometry.coordinates,
+        for (const section in FeatureCollectionList) {
+          addPoints(FeatureCollectionList[section]);
+          addListings(FeatureCollectionList[section], "." + section, {
+            onClick: pointClick,
+            mouseenter: function (e) {
+              popupPoint.remove();
+              const feature = FeatureCollectionList[section].features.find(
+                (item) => this.id == `listing-${item.data.properties.id}`
+              );
+
+              showPopupPoint({
+                features: [
+                  {
+                    geometry: {
+                      coordinates: feature.data.geometry.coordinates,
+                    },
+                    properties: {
+                      html: feature.data.properties.html,
+                    },
                   },
-                  properties: {
-                    html: feature.data.properties.html,
-                  },
+                ],
+                lngLat: {
+                  lng: feature.data.geometry.coordinates[0],
                 },
-              ],
-              lngLat: {
-                lng: feature.data.geometry.coordinates[0],
-              },
-            });
-          },
-          // mouseleave: function () {
-          //   popupPoint.remove();
-          // },
-        });
-
-        // NAVIGATION
-        addPoints(navigation, "green");
-        addListings(navigation, ".navigation", {
-          onClick: pointClick,
-          mouseenter: function (e) {
-            popupPoint.remove();
-            const feature = navigation.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            );
-
-            showPopupPoint({
-              features: [
-                {
-                  geometry: {
-                    coordinates: feature.data.geometry.coordinates,
-                  },
-                  properties: {
-                    html: feature.data.properties.html,
-                  },
-                },
-              ],
-              lngLat: {
-                lng: feature.data.geometry.coordinates[0],
-              },
-            });
-          },
-          // mouseleave: function () {
-          //   popupPoint.remove();
-          // },
-        });
-
-        // SAUNA
-        addPoints(sauna, "burlywood");
-        addListings(sauna, ".sauna", {
-          onClick: pointClick,
-          mouseenter: function (e) {
-            popupPoint.remove();
-            const feature = sauna.features.find(
-              (item) => this.id == `listing-${item.data.properties.id}`
-            );
-
-            showPopupPoint({
-              features: [
-                {
-                  geometry: {
-                    coordinates: feature.data.geometry.coordinates,
-                  },
-                  properties: {
-                    html: feature.data.properties.html,
-                  },
-                },
-              ],
-              lngLat: {
-                lng: feature.data.geometry.coordinates[0],
-              },
-            });
-          },
-          // mouseleave: function () {
-          //   popupPoint.remove();
-          // },
-        });
+              });
+            },
+            // mouseleave: function () {
+            //   popupPoint.remove();
+            // },
+          });
+        }
       });
     }
   }
@@ -2482,23 +2476,26 @@ function setSubmenuWidth(e) {
         addListings(fishingAreas, ".fishing", { onClick: areaClick });
 
         // red dashed pattern
-        map.loadImage("../media/general/pattern-red-square.png", (err, image) => {
-          if (err) throw err;
+        map.loadImage(
+          "../media/general/pattern-red-square.png",
+          (err, image) => {
+            if (err) throw err;
 
-          map.addImage("pattern-red-stripes", image);
+            map.addImage("pattern-red-stripes", image);
 
-          restrictedAreas.features.forEach((item) => {
-            const id = item.data.properties.id;
-            map.addLayer({
-              id: id,
-              type: "fill",
-              source: id,
-              paint: {
-                "fill-pattern": "pattern-red-stripes",
-              },
+            restrictedAreas.features.forEach((item) => {
+              const id = item.data.properties.id;
+              map.addLayer({
+                id: id,
+                type: "fill",
+                source: id,
+                paint: {
+                  "fill-pattern": "pattern-red-stripes",
+                },
+              });
             });
-          });
-        });
+          }
+        );
 
         // carmanah-point
         map.addSource("carmanah-point", {
@@ -2778,22 +2775,7 @@ function setSubmenuWidth(e) {
     if ($calendar && window.FullCalendar) {
       const calendar = new FullCalendar.Calendar($calendar, {
         initialView: "dayGridMonth",
-        events: [
-          {
-            title: "Song and Surf",
-            url: "https://songandsurf.com/",
-            start: "2024-02-16",
-            end: "2024-02-19",
-            allDay: true,
-          },
-          {
-            title: "Derby Weekend",
-            url: "https://pacificgatewaymarina.ca/",
-            start: "2024-08-17",
-            end: "2024-08-19",
-            allDay: true,
-          },
-        ],
+        events: EVENTS,
         eventClick: function (info) {
           info.jsEvent.preventDefault();
 
