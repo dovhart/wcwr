@@ -13,7 +13,7 @@ function formatDate(date) {
 }
 const setup_parameters = {
   hotel_id: 3433, // required - your WebRezPro hotel id must be entered
-  default_days_in_advance: 0, // optional - default is 0 days in advance,
+  default_days_in_advance: 1, // optional - default is 0 days in advance,
   flag_turnoff_autoload_date: "1", // 0 = arrival and departure dates automatically loaded, 1 = not loaded, default is 0
 };
 
@@ -37,9 +37,11 @@ jQuery(document).ready(function ($) {
       $.datepicker.formatDate(global_date_format, date_to)
     );
 
-    if (setup_parameters == 1) {
-      $("#date_from,#date_from-mobile").val(formatDate(date_from));
-      $("#date_to,#date_to-mobile").val(formatDate(date_to));
+    if (setup_parameters) {
+      $("#date_from").val(formatDate(date_from));
+      $("#date_from-mobile").val(formatDate(date_from));
+      $("#date_to").val(formatDate(date_to));
+      $("#date_to-mobile").val(formatDate(date_to));
     }
 
     var num_months = 1;

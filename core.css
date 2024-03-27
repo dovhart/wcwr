@@ -2680,7 +2680,7 @@ body.kitchen .aux-container .intro__title {
     padding-block: 0.5rem;
   }
   .mobile-book-container .menu-item {
-    font-size: var(--fs-title);
+    font-size: var(--fs-default);
     background-color: var(--main-color);
     padding-block: 0.5rem;
     text-transform: uppercase;
