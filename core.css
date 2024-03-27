@@ -1193,17 +1193,6 @@ body.kitchen .aux-container .intro__title {
     "image6 image6 image5 image5"
     "image1 image1 image2 image2";
 }
-.location-gallery-container .options.salmon-fishing {
-  grid-template-areas:
-    "image4 image4 image5 image8"
-    "image4 image4 image2 image7";
-}
-.location-gallery-container .options.freshwater-fishing,
-.location-gallery-container .options.halibut-fishing {
-  grid-template-areas:
-    "image4 image4 image5 image9"
-    "image4 image4 image2 image7";
-}
 .location-gallery-container .options.catch {
   grid-template-areas:
     "image7 image7 image5 image5"
@@ -1214,6 +1203,13 @@ body.kitchen .aux-container .intro__title {
     "image2 image2 image3 image3 image6 image6"
     "image4 image4 image4 image5 image5 image5"
     "image7 image7 image8 image8 image9 image9";
+}
+.location-gallery-container .options.kitchen2 {
+  grid-template-areas: "image12 image12 image14 image14 image13 image13";
+}
+.location-gallery-container .options.contact-us {
+  grid-template-areas:
+    "image6";
 }
 .location-gallery-container .options.about-us {
   grid-template-areas:
@@ -1226,10 +1222,21 @@ body.kitchen .aux-container .intro__title {
     "image6 image6 image8 image8"
     "image9 image9 image9 image9";
 }
+.location-gallery-container .options.third.about-us {
+  grid-template-areas:
+    "image9 image10 image10 image11"
+    "image9 image10 image10 image11";
+}
 .location-gallery-container .options.second.trails {
   grid-template-areas:
     "image11 image11 image10 image10 image12 image12"
     "image13 image13 image14 image14 image9 image9";
+}
+.location-gallery-container .options.second.trails2 {
+  grid-template-areas:
+    "image16 image16 image16"
+    "image15 image15 image17"
+    "image15 image15 image17";
 }
 .location-gallery-container .options.second.shop {
   grid-template-areas:
@@ -2787,24 +2794,7 @@ body.kitchen .aux-container .intro__title {
       "image6"
       "image7";
   }
-  .location-gallery-container .options.salmon-fishing {
-    grid-template-areas:
-      "image4"
-      "image5"
-      "image8"
-      "image2"
-      "image7";
-  }
-  .location-gallery-container .options.freshwater-fishing,
-  .location-gallery-container .options.halibut-fishing {
-    grid-template-areas:
-      "image4"
-      "image5"
-      "image9"
-      "image2"
-      "image7";
-  }
-  .location-gallery-container .options.catch {
+  /* .location-gallery-container .options.catch {
     grid-template-areas: "image7";
   }
   .location-gallery-container .options.catch .image2,
@@ -2812,7 +2802,7 @@ body.kitchen .aux-container .intro__title {
   .location-gallery-container .options.catch .image5,
   .location-gallery-container .options.catch .image8 {
     display: none;
-  }
+  } */
   .location-gallery-container .options.gear,
   .location-gallery-container .options.livecam {
     grid-template-areas:
