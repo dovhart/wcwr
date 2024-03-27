@@ -1152,6 +1152,15 @@ body.kitchen .aux-container .intro__title {
 .location-gallery-container .options .image14 {
   grid-area: image14;
 }
+.location-gallery-container .options .image15 {
+  grid-area: image15;
+}
+.location-gallery-container .options .image16 {
+  grid-area: image16;
+}
+.location-gallery-container .options .image17 {
+  grid-area: image17;
+}
 .location-gallery-container .options {
   display: grid;
   grid-column-gap: 1rem;
